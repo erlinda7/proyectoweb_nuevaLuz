@@ -29,7 +29,13 @@
             </li>
           </ul>
         </div>
-        <div class="col-4"></div>
+        <div class="col-4">
+            <ul v-for="(reunion, index ) of reunionesIglesia" :key="index">
+                <li><p class="contacto">Servicios</p></li>
+                <li >{{reunion.dia}}</li>
+                <li class="margin-left">{{reunion.titulo}}: {{reunion.hora_inicio}} - {{reunion_fin}}</li>
+            </ul>
+        </div>
       </div>
     </div>
   </footer>
@@ -39,24 +45,24 @@
 import axios from "axios";
 export default {
   data: () => ({
-    iglesias: []
+    iglesias: [],
+    reunionesIglesia: []
   }),
   created() {
     this.obtenerIglesia();
+    this.obtenerReunionesIglesia();
     console.log("ejecutando obtenerIglesia");
     //this.getList()
   },
   methods: {
     async obtenerIglesia() {
-            console.log('ejecutando obtenerIglesia');
-            
             try {
                 const respuesta = await axios.get('http://localhost:8080/iglesia');
                 this.iglesias = respuesta.data;
             } catch (error) {
                 console.log('error al conectar al api: ',error);
             }
-        }
+        },
     /*getList() {
       axios
         .get("http://localhost:8080/iglesia")
@@ -66,6 +72,14 @@ export default {
         })
         .catch(error => console.log(error));
     }*/
+    async obtenerReunionesIglesia() {
+            try {
+                const respuesta = await axios.get('http://localhost:8080/reunion_iglesia');
+                this.reunionesIglesia = respuesta.data;
+            } catch (error) {
+                console.log('error al conectar al api: ',error);
+            }
+        }
   }
 };
 </script>
@@ -103,5 +117,7 @@ li {
   font-weight: bold;
   margin-top: 15px;
   margin-left: 15px;
+}.margin-left{
+    margin-left: 30px;
 }
 </style>
