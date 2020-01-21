@@ -20,6 +20,8 @@ Iglesia.getAll = resultado => {         //Iglesia es como una clase objeto a ese
     resultado(null, res);   //devuelve hasta el controlador
     
   })
+
+  
 }
 
 
