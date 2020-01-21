@@ -9,29 +9,29 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">INICIO<span class="sr-only">(current)</span></a>
+        <router-link class="nav-link" to="/">INICIO<span class="sr-only">(current)</span></router-link>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           NUEVA LUZ
         </a>
         <div id="fondoDrop" class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">HISTORIA</a>
-          <a class="dropdown-item" href="#">QUIENES SOMOS</a>
-          <a class="dropdown-item" href="#">LIDERAZGO</a>
+          <router-link class="dropdown-item" to="/NuevaLuz_Historia">HISTORIA</router-link>
+          <router-link class="dropdown-item" to="/NuevaLuz_QuienesSomos">QUIENES SOMOS</router-link>
+          <router-link class="dropdown-item" to="/NuevaLuz_Liderazgo">LIDERAZGO</router-link>
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">MINISTERIOS</a>
+        <router-link class="nav-link" to="/Ministerios">MINISTERIOS</router-link>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">DIRECTORIO</a>
+        <router-link class="nav-link" to="/Directorio">DIRECTORIO</router-link>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">PUBLICACIONES</a>
+        <router-link class="nav-link" to="/Publicaciones">PUBLICACIONES</router-link>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">CONTACTO</a>
+        <router-link class="nav-link" to="/Contacto">CONTACTO</router-link>
       </li>
     </ul>
   </div>

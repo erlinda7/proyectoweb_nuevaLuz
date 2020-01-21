@@ -1,10 +1,6 @@
 <template>
   <div id="app" class="fondoNav">
     <navbar/>
-    <div class="container bg-white" id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
     <router-view/>
     <piepagina/>
   </div>
