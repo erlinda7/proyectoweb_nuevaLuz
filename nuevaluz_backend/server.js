@@ -24,6 +24,7 @@ app.get("/", (req, res) => {
 
 
 require("./app/routes/iglesia.routes.js")(app);
+require("./app/routes/reunion_iglesia.routes.js")(app);
 
 
 
