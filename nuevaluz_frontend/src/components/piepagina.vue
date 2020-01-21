@@ -24,12 +24,19 @@
                 <i class="fab fa-facebook-square a"></i> Visítanos
               </a>
             </li>
-            <li>
-              <img class="cuadRedon" src="@/assets/NUEVA_LUZ.jpg" alt width="40%" />
+            <li class="textCenter">
+              <img class="cuadRedon" src="@/assets/NUEVA_LUZ.jpg" alt width="60%" />
             </li>
           </ul>
         </div>
-        <div class="col-4"></div>
+        <div class="col-4">
+            <p class="contacto colorTituloPie">Servicios</p>
+            <ul class="sinMargenTB" v-for="(reunion, index ) of reunionesIglesia" :key="index">
+                <li ><b>{{reunion.dia}}</b></li>
+                <li class="margin-left">{{reunion.titulo}}: {{reunion.hora_inicio}} - {{reunion.hora_fin}}</li>
+            </ul>
+            <br>
+        </div>
       </div>
     </div>
   </footer>
@@ -39,24 +46,24 @@
 import axios from "axios";
 export default {
   data: () => ({
-    iglesias: []
+    iglesias: [],
+    reunionesIglesia: []
   }),
   created() {
     this.obtenerIglesia();
+    this.obtenerReunionesIglesia();
     console.log("ejecutando obtenerIglesia");
     //this.getList()
   },
   methods: {
     async obtenerIglesia() {
-            console.log('ejecutando obtenerIglesia');
-            
             try {
                 const respuesta = await axios.get('http://localhost:8080/iglesia');
                 this.iglesias = respuesta.data;
             } catch (error) {
                 console.log('error al conectar al api: ',error);
             }
-        }
+        },
     /*getList() {
       axios
         .get("http://localhost:8080/iglesia")
@@ -66,6 +73,14 @@ export default {
         })
         .catch(error => console.log(error));
     }*/
+    async obtenerReunionesIglesia() {
+            try {
+                const respuesta = await axios.get('http://localhost:8080/reunion_iglesia');
+                this.reunionesIglesia = respuesta.data;
+            } catch (error) {
+                console.log('error al conectar al api: ',error);
+            }
+        }
   }
 };
 </script>
@@ -84,6 +99,7 @@ li {
 }
 .margen {
   margin-right: 5px;
+  margin-top: 15px
 }
 .contacto {
   font-size: 16px;
@@ -103,5 +119,20 @@ li {
   font-weight: bold;
   margin-top: 15px;
   margin-left: 15px;
+  text-align: center
+}
+.margin-left{
+    margin-left: 30px;
+}
+.colorTituloPie {
+  text-align: center;
+  color: rgb(0, 124, 217);
+}
+.sinMargenTB{
+    margin-top: 0;
+    margin-bottom: 0
+}
+.textCenter{
+    text-align: center
 }
 </style>

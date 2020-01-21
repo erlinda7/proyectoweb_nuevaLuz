@@ -47,10 +47,10 @@ export default {
 
 <style>
 .fondoNav{
-    background-color: rgb(235,220,161);
+    background-color: rgb(251,251,226);
 }
 #fondoDrop{
-    background-color: rgb(235,220,161);
+    background-color: rgb(251,251,226);
 }
 
 </style>
