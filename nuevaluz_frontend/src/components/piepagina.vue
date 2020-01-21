@@ -24,17 +24,18 @@
                 <i class="fab fa-facebook-square a"></i> Visítanos
               </a>
             </li>
-            <li>
-              <img class="cuadRedon" src="@/assets/NUEVA_LUZ.jpg" alt width="40%" />
+            <li class="textCenter">
+              <img class="cuadRedon" src="@/assets/NUEVA_LUZ.jpg" alt width="60%" />
             </li>
           </ul>
         </div>
         <div class="col-4">
-            <ul v-for="(reunion, index ) of reunionesIglesia" :key="index">
-                <li><p class="contacto">Servicios</p></li>
-                <li >{{reunion.dia}}</li>
-                <li class="margin-left">{{reunion.titulo}}: {{reunion.hora_inicio}} - {{reunion_fin}}</li>
+            <p class="contacto colorTituloPie">Servicios</p>
+            <ul class="sinMargenTB" v-for="(reunion, index ) of reunionesIglesia" :key="index">
+                <li ><b>{{reunion.dia}}</b></li>
+                <li class="margin-left">{{reunion.titulo}}: {{reunion.hora_inicio}} - {{reunion.hora_fin}}</li>
             </ul>
+            <br>
         </div>
       </div>
     </div>
@@ -98,6 +99,7 @@ li {
 }
 .margen {
   margin-right: 5px;
+  margin-top: 15px
 }
 .contacto {
   font-size: 16px;
@@ -117,7 +119,20 @@ li {
   font-weight: bold;
   margin-top: 15px;
   margin-left: 15px;
-}.margin-left{
+  text-align: center
+}
+.margin-left{
     margin-left: 30px;
+}
+.colorTituloPie {
+  text-align: center;
+  color: rgb(0, 124, 217);
+}
+.sinMargenTB{
+    margin-top: 0;
+    margin-bottom: 0
+}
+.textCenter{
+    text-align: center
 }
 </style>
