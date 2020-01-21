@@ -1,13 +1,24 @@
 <template>
   <div id="app">
+    <navbar/>
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div>
     <router-view/>
+    <piepagina/>
   </div>
 </template>
-
+<script>
+import navbar from '@/components/navbar'
+import piepagina from './components/piepagina'
+export default {
+   components: {
+     navbar,
+     piepagina
+   }
+}
+</script>>
 <style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;

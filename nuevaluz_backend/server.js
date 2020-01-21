@@ -1,15 +1,18 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+var cors = require('cors')
 
 const app = express();
 
 app.use(bodyParser.json());
 
+app.use(cors())
+
 app.use(bodyParser.urlencoded({extended:true}));
 
 //settings
 app.set('port', process.env.PORT ||8080);  //si esta definido un puerto que lo tome (jeruko) y sino 3000
-
+app.set('json spaces', 2)
 
 
 
