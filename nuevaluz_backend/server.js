@@ -28,6 +28,7 @@ require("./app/routes/reunion_iglesia.routes.js")(app);
 
 //para vista directorio
 require("./app/routes/pastores.routes.js")(app);
+require("./app/routes/ancianos.routes.js")(app);
 
 
 
