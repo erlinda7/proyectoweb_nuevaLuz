@@ -1,12 +1,19 @@
 <template>
   <div>
-      <p>vista inicio</p>
+      <inicioCarrusel/>
+      <Bienvenida/>
+      
   </div>
 </template>
 
 <script>
+import inicioCarrusel from '@/components/inicioCarrusel'
+import Bienvenida from '@/components/Bienvenida'
 export default {
-
+  components: {
+    inicioCarrusel,
+    Bienvenida
+  }
 }
 </script>
 
