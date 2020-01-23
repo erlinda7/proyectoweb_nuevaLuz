@@ -26,6 +26,9 @@ app.get("/", (req, res) => {
 require("./app/routes/iglesia.routes.js")(app);
 require("./app/routes/reunion_iglesia.routes.js")(app);
 
+//para vista directorio
+require("./app/routes/pastores.routes.js")(app);
+
 
 
 //Starting the server
