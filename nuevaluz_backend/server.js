@@ -30,6 +30,7 @@ require("./app/routes/reunion_iglesia.routes.js")(app);
 require("./app/routes/pastores.routes.js")(app);
 require("./app/routes/ancianos.routes.js")(app);
 require("./app/routes/diaconos.routes.js")(app);
+require("./app/routes/diaconizas.routes.js")(app);
 
 
 
