@@ -94,7 +94,7 @@ export default {
   methods: {
     async obtenerdirectorio() {
       try {
-        const respuesta = await axios.get("http://localhost:8080/directorio");
+        const respuesta = await axios.get("http://localhost:3000/directorio");
         this.directorios = respuesta.data;
       } catch (error) {
         console.log("error al conectar al api: ", error);
