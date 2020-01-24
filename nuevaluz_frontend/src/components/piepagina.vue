@@ -8,13 +8,13 @@
               <p class="contacto">Contacto</p>
             </li>
             <li>
-              <img src="@/assets/llamada(1).png" class="margen" alt />{{iglesia.telefono}}</li>
+              <img src="@/assets/llamada.png" class="margen" alt />{{iglesia.telefono}}</li>
             <li>
-              <img src="@/assets/whatsapp(1).png" class="margen" alt />Whatsapp</li>
+              <img src="@/assets/whatsapp.png" class="margen" alt />Whatsapp</li>
             <li>
-              <img src="@/assets/archivos-y-carpetas.png" class="margen" alt />{{iglesia.email}}</li>
+              <img src="@/assets/email.png" class="margen" alt />{{iglesia.email}}</li>
             <li>
-              <img src="@/assets/direccion-de-casa.png" class="margen" alt />{{iglesia.direccion}}</li>
+              <img src="@/assets/adress.png" class="margen" alt />{{iglesia.direccion}}</li>
           </ul>
         </div>
         <div class="col-sm-4">
