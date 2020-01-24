@@ -58,7 +58,7 @@ export default {
   methods: {
     async obtenerIglesia() {
             try {
-                const respuesta = await axios.get('http://localhost:8080/iglesia');
+                const respuesta = await axios.get('http://localhost:3000/iglesia');
                 this.iglesias = respuesta.data;
             } catch (error) {
                 console.log('error al conectar al api: ',error);
@@ -75,7 +75,7 @@ export default {
     }*/
     async obtenerReunionesIglesia() {
             try {
-                const respuesta = await axios.get('http://localhost:8080/reunion_iglesia');
+                const respuesta = await axios.get('http://localhost:3000/reunion_iglesia');
                 this.reunionesIglesia = respuesta.data;
             } catch (error) {
                 console.log('error al conectar al api: ',error);
