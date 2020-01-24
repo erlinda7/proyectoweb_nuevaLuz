@@ -2,7 +2,7 @@
   <footer class="fondoColor">
     <div class="container">
       <div class="row">
-        <div class="col-4">
+        <div class="col-sm-4">
           <ul v-for="(iglesia, index ) of iglesias" :key="index">
             <li>
               <p class="contacto">Contacto</p>
@@ -17,7 +17,7 @@
               <img src="@/assets/direccion-de-casa.png" class="margen" alt />{{iglesia.direccion}}</li>
           </ul>
         </div>
-        <div class="col-4">
+        <div class="col-sm-4">
           <ul>
             <li class="visitanos">
               <a href="https://www.facebook.com/ucenuevaluzironcollo/">
@@ -29,7 +29,7 @@
             </li>
           </ul>
         </div>
-        <div class="col-4">
+        <div class="col-sm-4">
             <p class="contacto colorTituloPie">Servicios</p>
             <ul class="sinMargenTB" v-for="(reunion, index ) of reunionesIglesia" :key="index">
                 <li ><b>{{reunion.dia}}</b></li>
