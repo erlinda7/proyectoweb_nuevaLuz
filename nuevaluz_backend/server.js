@@ -32,6 +32,8 @@ require("./app/routes/evento.routes.js")(app);
 
 require("./app/routes/ministerio.routes.js")(app);
 
+require("./app/routes/liderazgo.routes.js")(app);
+
 
 
 //Starting the server
