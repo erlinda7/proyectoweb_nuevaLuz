@@ -30,6 +30,8 @@ require("./app/routes/directorio.routes.js")(app);
 
 require("./app/routes/evento.routes.js")(app);
 
+require("./app/routes/ministerio.routes.js")(app);
+
 
 
 //Starting the server
