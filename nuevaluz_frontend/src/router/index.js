@@ -39,9 +39,9 @@ const routes = [
     component: () => import('../views/Ministerios.vue')
   },
   {
-    path: '/Ministerio_Femenil',
-    name: 'Ministerio_Femenil',
-    component: () => import('../views/Ministerio_Femenil.vue')
+    path: '/Ministerio_Descripcion',
+    name: 'Ministerio_Descripcion',
+    component: () => import('../views/Ministerio_Descripcion.vue')
   },
   {
     path: '/Ministerio_Juvenil',

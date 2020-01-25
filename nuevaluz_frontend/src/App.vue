@@ -8,11 +8,12 @@
 <script>
 import navbar from '@/components/navbar'
 import piepagina from './components/piepagina'
+
 export default {
    components: {
      navbar,
      piepagina
-   }
+   },
 }
 </script>>
 <style>
