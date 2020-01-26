@@ -4,12 +4,12 @@
       <div  v-for="(ministerio,index) in ministerios" :key="index">
         <div class="col mb-4">
           <div class="card " style="max-width: 20rem; margin:auto">
-            <router-link :to="{name:'Ministerio_Descripcion', params:{id:ministerio.id_ministerio}}">
+            <router-link style="text-decoration: none" :to="{name:'Ministerio_Descripcion', params:{id:ministerio.id_ministerio}}">
               <img :src="require('@/assets/' + ministerio.imagen)" class="card-img-top" alt="imagen" />
-              <div class="card-img-overlay ">
-                <h5 class="card-title circulo">{{ministerio.nombre}}</h5>
+              <div class="card-img-overlay">
+                <h5 style="color: white" class="card-title">{{ministerio.nombre}}</h5> <!--disañar circulo-->
               </div>
-              <div class="card-body">
+              <div style="color:black" class="card-body">
                 <h5>{{ministerio.nombre}}</h5>
                 <p class="card-text">:{{ministerio.descripcion_corta}}</p>
               </div>
@@ -75,5 +75,8 @@ export default {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap
+}
+#textMinisterio{
+  text-decoration: none
 }
 </style>
