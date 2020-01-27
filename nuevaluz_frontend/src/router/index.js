@@ -44,46 +44,6 @@ const routes = [
     component: () => import('../views/Ministerio_Descripcion.vue')
   },
   {
-    path: '/Ministerio_Juvenil',
-    name: 'Ministerio_Juvenil',
-    component: () => import('../views/Ministerio_Juvenil.vue')
-  },
-  {
-    path: '/Ministerio_Prejuvenil',
-    name: 'Ministerio_Prejuvenil',
-    component: () => import('../views/Ministerio_Prejuvenil.vue')
-  },
-  {
-    path: '/Ministerio_Misioneros',
-    name: 'Ministerio_Misioneros',
-    component: () => import('../views/Ministerio_Misioneros.vue')
-  },
-  {
-    path: '/Ministerio_Evangelistas',
-    name: 'Ministerio_Evangelistas',
-    component: () => import('../views/Ministerio_Evangelistas.vue')
-  },
-  {
-    path: '/Ministerio_Tesoritos',
-    name: 'Ministerio_Tesoritos',
-    component: () => import('../views/Ministerio_Tesoritos.vue')
-  },
-  {
-    path: '/Ministerio_Joyitas',
-    name: 'Ministerio_Joyitas',
-    component: () => import('../views/Ministerio_Joyitas.vue')
-  },
-  {
-    path: '/Ministerio_HoritaFeliz',
-    name: 'Ministerio_HoritaFeliz',
-    component: () => import('../views/Ministerio_HoritaFeliz.vue')
-  },
-  {
-    path: '/Ministerio_Oanza',
-    name: 'Ministerio_Oanza',
-    component: () => import('../views/Ministerio_Oanza.vue')
-  },
-  {
     path: '/Directorio',
     name: 'Directorio',
     component: () => import('../views/Directorio.vue')
