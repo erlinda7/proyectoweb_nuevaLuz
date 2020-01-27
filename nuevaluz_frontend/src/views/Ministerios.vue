@@ -7,15 +7,15 @@
     <div class="row row-cols-1 row-cols-md-2">
       <div  v-for="(ministerio,index) in ministerios" :key="index">
         <div class="col mb-4">
-          <div class="card " style="max-width: 20rem; margin:auto">
+          <div class="card" style="max-width: 20rem; margin:auto; margin-bottom: 100px">
             <router-link style="text-decoration: none" :to="{name:'Ministerio_Descripcion', params:{id:ministerio.id_ministerio}}">
-              <img :src="require('@/assets/' + ministerio.imagen)" class="card-img-top" alt="imagen" height="300px"/>
+              <img :src="require('@/assets/' + ministerio.imagen)" class="card-img-top" alt="imagen" height="280px"/>
               <div class="card-img-overlay">
-                <h5 style="color: white" class="card-title">{{ministerio.nombre}}</h5> <!--disañar circulo??-->
+                <h5 id="diseñoSuperior" class="card-title">{{ministerio.nombre}}</h5> 
               </div>
-              <div style="color:black" class="card-body">
-                <h5>{{ministerio.nombre}}</h5>
-                <p class="card-text">:{{ministerio.descripcion_corta}}</p>
+              <div id="diseñoInferior" class="card-body">
+                <h5 id="titulo" class="card-title">{{ministerio.nombre}}</h5>
+                <p id="texto" class="card-text">{{ministerio.descripcion_corta}}</p>
               </div>
             </router-link>
           </div>
@@ -58,22 +58,16 @@ export default {
 </script>
 
 <style>
-.circulo {
-  font-family: 'Times New Roman', Times, serif;
+
+#diseñoSuperior{
   color: white;
-  margin: auto;
-  width: 180px;
-  height: 180px;
-  -moz-border-radius: 50%;
-  -webkit-border-radius: 50%;
-  border-radius: 50%;
-  background: green;
-  opacity: 0.8;
-  filter: alpha(opacity=50);
-  padding-top: 50px;
-  font-size: 30px;
+  background-color: green;
+  height: 60px;
+  font-family: 'Times New Roman', Times, serif;
+  border: greenyellow 5px double;
   font-weight: bold;
-  
+  font-size: 22px;
+  border-radius: 5px
 }
 .centrarTodo{
   display: flex;
@@ -84,11 +78,26 @@ export default {
   text-decoration: none
 }
 .container .titulo {
-  color: black;
+  color: rgb(0, 31, 58);
   font-size: 40px;
   font-weight: bold;
   font-family: "serif", Times New Roman, Times;
   padding-top: 80px;
   padding-bottom: 60px;
 }
+#diseñoInferior{
+  background-color: rgb(0, 31, 58);
+  color:  wheat;
+  font-family: 'Times New Roman', Times, serif;
+  height: 140px;
+}
+#diseñoInferior #titulo{
+  font-weight: bold;
+  font-size: 20px;
+}
+#diseñoInferior #texto{
+  font-size: 15px;
+  text-align: left;
+}
+
 </style>
