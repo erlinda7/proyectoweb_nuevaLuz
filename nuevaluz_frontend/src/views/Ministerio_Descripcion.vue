@@ -1,8 +1,13 @@
 <template>
   <div class="container">
     <h1 class="titulo">
-      MINISTERIO DE LA IGLESIA
-      <span>"NUEVA LUZ"</span>
+      <div v-for="(ministerio, index) in ministerios" :key="index">
+        <div v-if="ministerio.id_ministerio==$route.params.id">
+          MINISTERIO DE LA IGLESIA
+          <span>"NUEVA LUZ"</span>
+          {{ministerio.nombre}}
+        </div>
+      </div>
     </h1>
     <div class="row">
       <div class="col-sm-5">
@@ -23,36 +28,33 @@
         </div>
 
       </div>
-      <div class="col-sm-7">
+      <div class="col-sm-7" style="margin-bottom: 100px">
         <div v-for="(ministerio, index) in ministerios" :key="index">
           <div v-if="ministerio.id_ministerio==$route.params.id">
-            <h2>Informacion del Ministerio {{ministerio.nombre}}</h2>
-            <h4>descripcion:</h4>
-            <p>{{ministerio.descripcion}}</p>
-            <p>lugar:{{ministerio.lugar}}</p>
-            <p>nombre_responsable:{{ministerio.nombre_responsable}}</p>
-            <p>email:{{ministerio.email}}</p>
-            <p>telefono:{{ministerio.telefono}}</p>
+            <h4 class="descripcion">Descripcion:</h4>
+            <p class="letras">{{ministerio.descripcion}}</p>
+            <div class="row">
+              <div class="col-sm-5">
+                <div class="detallesTitulo">
+                  <p style="margin: 0px">Lugar:</p>
+                  <p style="margin: 0px">Nombre Responsable:</p>
+                  <p style="margin: 0px">Email:</p>
+                  <p style="margin: 0px">Telefono:</p>
+                </div>
+              </div>
+               <div class="col-sm-7">
+                <div class="detalles"> 
+                  <p style="margin: 0px">{{ministerio.lugar}}</p>
+                  <p style="margin: 0px">{{ministerio.nombre_responsable}}</p>
+                  <p style="margin: 0px">{{ministerio.email}}</p>
+                  <p style="margin: 0px">{{ministerio.telefono}}</p>
+                </div>
+               </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <!--
-    <div v-for="(ministerio,index) in ministerios" :key="index">
-      <div v-if="ministerio.id_ministerio==$route.params.id">
-        <p>id_ministerio:{{ministerio.id_ministerio}}</p>
-        <p>Titulo:{{ministerio.nombre}}</p>
-        <p>descripcion:{{ministerio.descripcion}}</p>
-        <p>lugar:{{ministerio.lugar}}</p>
-        <p>nombre_responsable:{{ministerio.nombre_responsable}}</p>
-        <p>email:{{ministerio.email}}</p>
-        <p>telefono:{{ministerio.telefono}}</p>
-        <img :src="require('@/fotos/' + ministerio.foto)" alt="imagen" width="20%" />
-        <br />
-        <br />
-      </div>
-    </div>
-    -->
   </div>
 </template>
 
@@ -87,7 +89,6 @@ export default {
 };
 </script>
 
-
 <style>
 .container .titulo {
   color: black;
@@ -96,5 +97,42 @@ export default {
   font-family: "serif", Times New Roman, Times;
   padding-top: 80px;
   padding-bottom: 60px;
+  
+}
+.container .descripcion{
+  background-color: rgb(226, 205, 166);
+  font-family: 'Times New Roman', Times, serif;
+  text-align: left;
+  font-weight: bold;
+  padding-left: 15px;
+  padding-right: 15px
+
+}
+.container .letras{
+  background-color: white;
+  font-family: 'Times New Roman', Times, serif;
+  text-align: left;
+  text-align: justify;
+  padding-left: 15px;
+  padding-right: 15px
+}
+.container .detallesTitulo{
+  font-size: 15px;
+  margin-top:  1px;
+  margin-bottom: 1px;
+  font-family: 'Times New Roman', Times, serif;
+  text-align: left;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-weight: bold;
+}
+.container .detalles{
+  font-size: 15px;
+  margin-top:  1px;
+  margin-bottom: 1px;
+  font-family: 'Times New Roman', Times, serif;
+  text-align: left;
+  padding-left: 15px;
+  padding-right: 15px
 }
 </style>

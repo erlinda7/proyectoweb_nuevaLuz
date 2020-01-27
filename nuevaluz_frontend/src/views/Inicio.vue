@@ -1,7 +1,9 @@
 <template>
   <div>
     <inicioCarrusel />
+    <img class="img-fluid" src="@/assets/separador.png" alt="" width="55%">
     <Bienvenida />
+    <img class="img-fluid" src="@/assets/separador.png" alt="" width="55%">
     <div class="links">
       <div class="container">
         <div class="row">
@@ -30,6 +32,7 @@
             </div>
           </div>
         </div>
+        <br>
       </div>
     </div>
     <br />

@@ -14,6 +14,7 @@
             que sólo en Él hay salvación y vida eterna. </p>
         </div>
       </div>
+      <img src="@/assets/separador.png" class="img-fluid" alt="Responsive image" width="55%">
       <div id="fondoRosas" class="row separacion">
           <div class="col-2">
               
@@ -51,16 +52,16 @@ export default {};
 
 <style>
 .separacion{
-    margin-top: 40px;
-    margin-bottom:  40px;
+    margin-top: 10px;
+    margin-bottom:  10px;
 }
 .borde{
-    border-radius: 20px;
+    border-radius: 5px;
     border: 1px solid blue;
     background-image: url('../assets/fondoRosa.png')
 }
 .letra{
-    font-family: 'Great Vibes', cursive;
+    font-family: 'Times New Roman', Times, serif;
 }
 .bordeArriba{
     margin-top: 30px;
