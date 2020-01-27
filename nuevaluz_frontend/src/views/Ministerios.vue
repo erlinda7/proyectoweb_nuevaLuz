@@ -1,5 +1,9 @@
 <template>
   <div class="container">
+    <h1 class="titulo">
+      MINISTERIOS DE LA IGLESIA
+      <span>"NUEVA LUZ"</span>
+    </h1>
     <div class="row row-cols-1 row-cols-md-2">
       <div  v-for="(ministerio,index) in ministerios" :key="index">
         <div class="col mb-4">
@@ -7,7 +11,7 @@
             <router-link style="text-decoration: none" :to="{name:'Ministerio_Descripcion', params:{id:ministerio.id_ministerio}}">
               <img :src="require('@/assets/' + ministerio.imagen)" class="card-img-top" alt="imagen" />
               <div class="card-img-overlay">
-                <h5 style="color: white" class="card-title">{{ministerio.nombre}}</h5> <!--disañar circulo-->
+                <h5 style="color: white" class="card-title">{{ministerio.nombre}}</h5> <!--disañar circulo??-->
               </div>
               <div style="color:black" class="card-body">
                 <h5>{{ministerio.nombre}}</h5>
@@ -78,5 +82,13 @@ export default {
 }
 #textMinisterio{
   text-decoration: none
+}
+.container .titulo {
+  color: black;
+  font-size: 40px;
+  font-weight: bold;
+  font-family: "serif", Times New Roman, Times;
+  padding-top: 80px;
+  padding-bottom: 60px;
 }
 </style>

@@ -1,4 +1,6 @@
 <template>
+<div>
+  <nuevaLuzCarrusel/>
   <div class="container">
     <div class="pastores">
       <h1>PASTORES</h1>
@@ -62,11 +64,16 @@
     </div>
      ---------------------- -->
   </div>
+</div>
 </template>
 
 <script>
+import nuevaLuzCarrusel from '@/components/nuevaLuzCarrusel'
 import axios from "axios";
 export default {
+  components:{
+    nuevaLuzCarrusel
+  },
   data: () => ({
     lideres: [],
     pastores: [],
