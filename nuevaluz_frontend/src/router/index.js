@@ -39,7 +39,7 @@ const routes = [
     component: () => import('../views/Ministerios.vue')
   },
   {
-    path: '/Ministerio_Descripcion',
+    path: '/Ministerio_Descripcion/:id',
     name: 'Ministerio_Descripcion',
     component: () => import('../views/Ministerio_Descripcion.vue')
   },

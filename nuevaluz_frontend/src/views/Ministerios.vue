@@ -1,26 +1,29 @@
 <template>
-  <div class="contanier">
-    <p>vista ministerios</p>
-    <router-link to="/Ministerio_Descripcion">Ministerio Descripcion</router-link>
-    <br />
-    <router-link to="/Ministerio_Juvenil">Juvenil</router-link>
-    <br />
-    <router-link to="/Ministerio_Prejuvenil">Prejuvenil</router-link>
-    <br />
-    <router-link to="/Ministerio_Misioneros">Misioneros</router-link>
-    <br />
-    <router-link to="/Ministerio_Evangelistas">Evangelistas</router-link>
-    <br />
-    <router-link to="/Ministerio_Tesoritos">Tesoritos</router-link>
-    <br />
-    <router-link to="/Ministerio_Joyitas">Joyitas</router-link>
-    <br />
-    <router-link to="/Ministerio_HoritaFeliz">HoritaFeliz</router-link>
-    <br />
-    <router-link to="/Ministerio_Oanza">Oanza</router-link>
-
-    <br />
-    <br />
+  <div class="container">
+    <h1 class="titulo">
+      MINISTERIOS DE LA IGLESIA
+      <span>"NUEVA LUZ"</span>
+    </h1>
+    <div class="row row-cols-1 row-cols-md-2">
+      <div  v-for="(ministerio,index) in ministerios" :key="index">
+        <div class="col mb-4">
+          <div class="card " style="max-width: 20rem; margin:auto">
+            <router-link style="text-decoration: none" :to="{name:'Ministerio_Descripcion', params:{id:ministerio.id_ministerio}}">
+              <img :src="require('@/assets/' + ministerio.imagen)" class="card-img-top" alt="imagen" />
+              <div class="card-img-overlay">
+                <h5 style="color: white" class="card-title">{{ministerio.nombre}}</h5> <!--disañar circulo??-->
+              </div>
+              <div style="color:black" class="card-body">
+                <h5>{{ministerio.nombre}}</h5>
+                <p class="card-text">:{{ministerio.descripcion_corta}}</p>
+              </div>
+            </router-link>
+          </div>
+        </div>
+      </div>
+      <router-view/>
+  </div>
+    <!--
     <div v-for="(ministerio,index) in ministerios" :key="index">
         <p>id_ministerio:{{ministerio.id_ministerio}}</p>
         <p>Titulo:{{ministerio.nombre}}</p>
@@ -28,6 +31,7 @@
          <img :src="require('@/assets/' + ministerio.imagen)" alt="imagen" width="50%" />
         <br><br>
     </div>
+    -->
   </div>
 </template>
 
@@ -54,4 +58,37 @@ export default {
 </script>
 
 <style>
+.circulo {
+  font-family: 'Times New Roman', Times, serif;
+  color: white;
+  margin: auto;
+  width: 180px;
+  height: 180px;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  background: green;
+  opacity: 0.8;
+  filter: alpha(opacity=50);
+  padding-top: 50px;
+  font-size: 30px;
+  font-weight: bold;
+  
+}
+.centrarTodo{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap
+}
+#textMinisterio{
+  text-decoration: none
+}
+.container .titulo {
+  color: black;
+  font-size: 40px;
+  font-weight: bold;
+  font-family: "serif", Times New Roman, Times;
+  padding-top: 80px;
+  padding-bottom: 60px;
+}
 </style>
