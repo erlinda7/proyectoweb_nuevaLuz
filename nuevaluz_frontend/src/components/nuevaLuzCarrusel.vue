@@ -3,13 +3,13 @@
     <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active" data-interval="10000">
-          <img id="bordeCir" src="@/assets/Carrusel_Inicio1.jpeg" class="d-block w-100" alt="..." height="500px"/>
+          <img id="bordeCir" src="@/assets/historia.jpg" class="d-block w-100" alt="..." height="500px"/>
         </div>
         <div class="carousel-item" data-interval="2000">
-          <img id="bordeCir" src="@/assets/Carrusel_Inicio2.jpeg" class="d-block w-100" alt="..." height="500px"/>
+          <img id="bordeCir" src="@/assets/quienessomos.jpg" class="d-block w-100" alt="..." height="500px"/>
         </div>
         <div class="carousel-item">
-          <img id="bordeCir" src="@/assets/Carrusel_Inicio3.jpeg" class="d-block w-100" alt="..." height="500px"/>
+          <img id="bordeCir" src="@/assets/nuevaluzliderazgo.jpg" class="d-block w-100" alt="..." height="500px"/>
         </div>
       </div>
       <a class="carousel-control-prev" href="#carouselExampleInterval" role="button" data-slide="prev">

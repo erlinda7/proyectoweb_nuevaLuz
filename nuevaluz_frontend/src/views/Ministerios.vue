@@ -9,7 +9,7 @@
         <div class="col mb-4">
           <div class="card " style="max-width: 20rem; margin:auto">
             <router-link style="text-decoration: none" :to="{name:'Ministerio_Descripcion', params:{id:ministerio.id_ministerio}}">
-              <img :src="require('@/assets/' + ministerio.imagen)" class="card-img-top" alt="imagen" />
+              <img :src="require('@/assets/' + ministerio.imagen)" class="card-img-top" alt="imagen" height="300px"/>
               <div class="card-img-overlay">
                 <h5 style="color: white" class="card-title">{{ministerio.nombre}}</h5> <!--disañar circulo??-->
               </div>
