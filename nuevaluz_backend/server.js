@@ -1,22 +1,23 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require('cors');
+const jwt = require('jsonwebtoken');
+
+const llaveConfig = require("./app/config/llave.config");
 
 const app = express();
 
-app.use(bodyParser.json());
-
-app.use(cors())
 
 
-app.use(bodyParser.urlencoded({extended:true}));
 
 //settings
 app.set('port', process.env.PORT ||3000);  //si esta definido un puerto que lo tome (jeruko) y sino 3000
 app.set('json spaces', 2); 
 
 
-
+app.use(bodyParser.json());
+app.use(cors())
+app.use(bodyParser.urlencoded({extended:true}));
 
 
 //routes para ejemplo si levante

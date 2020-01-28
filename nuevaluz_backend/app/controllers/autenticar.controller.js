@@ -1,27 +1,41 @@
-const AutenticarModel = require("../models/autenticar.model");
+//const autenticarModel = require("../models/autenticar.model");
+const express = require("express");
+const jwt = require('jsonwebtoken');
+const llaveConfig = require("../config/llave.config");
+const app2 = express();
 
-// Create and Save a new Customer
-exports.create = (req, res) => {
-  // Validate request
+app2.set('llave', llaveConfig.llave);
+
+
+
+exports.autenticar = (req, res) => {
+
   if (!req.body) {
     res.status(400).send({
       message: "El contenido no puede ser vacio!"
     });
   }
 
-  // Create a Customer
-  const autenticarModel = new AutenticarModel({
-    usuario: req.body.usuario,
-    contrasenia: req.body.contrasenia
-  });
+  if (req.body.nombre_user == "juan" && req.body.contrasenia == "12345") {
+    const payload = {
+      check: true
+    };
+    const token = jwt.sign(payload, app2.get('llave'), {
+      expiresIn: 1440
+     });
+     res.json({
+      mensaje: 'Autenticación correcta',
+      token: token
+     });
 
-  // Save Customer in the database
-  AutenticarModel.create(autenticarModel, (err, data) => {
-    if (err)
-      res.status(500).send({
-        message:
-          err.message || "Ocurrio un error mientras se creaba autentificacion."
-      });
-    else res.send(data);
-  });
+  } else {
+    res.json({ mensaje: "Usuario o contraseña incorrectos" })
+  }
+
+
+
+
+
 };
+
+
