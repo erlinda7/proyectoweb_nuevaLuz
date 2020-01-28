@@ -1,11 +1,10 @@
-//const autenticarModel = require("../models/autenticar.model");
+const autenticarModel = require("../models/autenticar.model");
 const express = require("express");
 const jwt = require('jsonwebtoken');
 const llaveConfig = require("../config/llave.config");
-const app2 = express();
+const app = express();
 
-app2.set('llave', llaveConfig.llave);
-
+app.set('llave', llaveConfig.llave);
 
 
 exports.autenticar = (req, res) => {
@@ -16,25 +15,34 @@ exports.autenticar = (req, res) => {
     });
   }
 
-  if (req.body.nombre_user == "juan" && req.body.contrasenia == "12345") {
-    const payload = {
-      check: true
-    };
-    const token = jwt.sign(payload, app2.get('llave'), {
-      expiresIn: 1440
-     });
-     res.json({
-      mensaje: 'Autenticación correcta',
-      token: token
-     });
 
-  } else {
-    res.json({ mensaje: "Usuario o contraseña incorrectos" })
-  }
+  ///---------
+  autenticarModel.getUsuario(req.body.nombre_user, (err, data) => {
+    if (err) {
+      res.status(404).send({
+        message: `Usuario no encontrado ${req.body.nombre_user}.`
+      });
 
+    } else {
+      //console.log(data);
+      if (req.body.nombre_user == data.nombre_user && req.body.contrasenia == data.contrasenia) {
+        const payload = {
+          check: true
+        };
+        const token = jwt.sign(payload, app.get('llave'), {
+          expiresIn: 1440
+        });
+        res.json({
+          mensaje: 'Autenticación correcta',
+          token: token
+        });
 
+      } else {
+        res.json({ mensaje: "Usuario o contraseña incorrectos" })
+      }
 
-
+    }
+  });
 
 };
 
