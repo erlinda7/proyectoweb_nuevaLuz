@@ -63,11 +63,6 @@
             <router-link id="colorTamañoLetra" class="nav-link" to="/Contacto">CONTACTO</router-link>
           </li>
         </ul>
-        <ul id="login" class="navbar-nav ">
-          <li class="nav-item">
-            <router-link id="texto" class="nav-link" to="/Login">Login</router-link>
-          </li>
-        </ul>
       </div>
     </nav>
   </header>
@@ -96,22 +91,4 @@ export default {};
 #linea {
   border-bottom: 2px solid rgb(0, 31, 58);
 }
-
-/**-------------login--------- */
-#login #texto {
-  color: rgb(11, 90, 22);
-  font-style: italic;
-  font-family: "Times New Roman", Times, serif;
-  font-size: 19px;
-  font-weight: bold;
-}
-#login #texto:hover{
-  color: rgb(66, 111, 150);
-}
-#login li{
-  float: right;
-  padding-left: 32px
-}
-
-
 </style>
