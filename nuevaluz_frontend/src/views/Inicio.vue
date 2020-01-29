@@ -11,7 +11,7 @@
             <div class="card bg-dark text-white">
               <img src="@/assets/historia1.jpg" class="card-img" alt="..." height="300PX" />
               <div class="card-img-overlay">
-                <router-link id="diseñoSuperior" to="/NuevaLuz_Historia" class="card-title"> HISTORIA </router-link>
+                <router-link id="diseñoSuperior1" to="/NuevaLuz_Historia" class="card-title"> HISTORIA </router-link>
               </div>
             </div>
           </div>
@@ -19,7 +19,7 @@
             <div class="card bg-dark text-white">
               <img src="@/assets/misiones1.jpeg" class="card-img" alt="..." height="300PX" />
               <div class="card-img-overlay">
-                <router-link  id="diseñoSuperior" to="/NuevaLuz_QuienesSomos" class="card-title">CAMINANDO</router-link >
+                <router-link  id="diseñoSuperior1" to="/NuevaLuz_QuienesSomos" class="card-title">CAMINANDO</router-link >
               </div>
             </div>
           </div>
@@ -27,7 +27,7 @@
             <div class="card bg-dark text-white">
               <img src="@/assets/liderazgo.jpg" class="card-img" alt="..." height="300PX" />
               <div class="card-img-overlay">
-                <router-link id="diseñoSuperior" to="/NuevaLuz_Liderazgo" class="card-title">LIDERAZGO</router-link>
+                <router-link id="diseñoSuperior1" to="/NuevaLuz_Liderazgo" class="card-title">LIDERAZGO</router-link>
               </div>
             </div>
           </div>
@@ -51,7 +51,7 @@ export default {
 </script>
 
 <style>
-#diseñoSuperior{
+#diseñoSuperior1{
   color: white;
   background-color: rgb(0, 31, 58);
   height: 40px;

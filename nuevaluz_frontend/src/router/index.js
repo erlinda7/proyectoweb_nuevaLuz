@@ -51,14 +51,9 @@ const routes = [
     component: () => import('../views/Contacto.vue')
   },
   {
-    path:'/Login',
-    name:'Login',
-    component: () => import('../views/Login.vue')
-  },
-  {
-    path:'/Administracion',
-    name:'Administracion',
-    component: () => import('../views/Administracion.vue')
+    path: '/AdministrarEvento',
+    name: 'AdministrarEvento',
+    component: () => import('../views/AdministrarEvento')
   }
 ]
 
