@@ -5,6 +5,7 @@
         <div v-if="ministerio.id_ministerio==$route.params.id">
           MINISTERIO DE LA IGLESIA
           <span>"NUEVA LUZ"</span>
+          <br>
           {{ministerio.nombre}}
         </div>
       </div>
@@ -16,19 +17,19 @@
           <div v-for="(ministerio, index) in ministerios" :key="index">
             <div v-if="ministerio.id_ministerio==$route.params.id">
             <div class="col-sm">
-              <div class="card" style="width: 20rem; margin: auto;">
-                <img src="@/assets/fondoBlanco.jpg" class="card-img-top" alt="..." />
+              <div class="card" style="width: 25rem; margin: auto;">
+                <img src="@/assets/fondoRosa.jpg" class="card-img-top" alt="..." height="450px"/>
                 <div class="card-img-overlay">
-                  <img style="margin-top: 30px " :src="require('@/fotos/' + ministerio.foto)" alt="" width="200px">
+                  <img style="margin-top: 60px" :src="require('@/fotos/' + ministerio.foto)" alt="" width="200px">
                 </div>
               </div>
             </div>
             </div>
           </div>
-        </div>
+        </div> 
 
       </div>
-      <div class="col-sm-7" style="margin-bottom: 100px">
+      <div class="col-sm-7" style="margin-bottom: 100px;">
         <div v-for="(ministerio, index) in ministerios" :key="index">
           <div v-if="ministerio.id_ministerio==$route.params.id">
             <h4 class="descripcion">Descripcion:</h4>
@@ -37,16 +38,46 @@
               <div class="col-sm-5">
                 <div class="detallesTitulo">
                   <p style="margin: 0px">Lugar:</p>
-                  <p style="margin: 0px">Nombre Responsable:</p>
-                  <p style="margin: 0px">Email:</p>
-                  <p style="margin: 0px">Telefono:</p>
                 </div>
               </div>
                <div class="col-sm-7">
                 <div class="detalles"> 
                   <p style="margin: 0px">{{ministerio.lugar}}</p>
+                </div>
+               </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-5">
+                <div class="detallesTitulo">
+                  <p style="margin: 0px">Nombre Responsable:</p>
+                </div>
+              </div>
+               <div class="col-sm-7">
+                <div class="detalles"> 
                   <p style="margin: 0px">{{ministerio.nombre_responsable}}</p>
+                </div>
+               </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-5">
+                <div class="detallesTitulo">
+                  <p style="margin: 0px">Email:</p>
+                </div>
+              </div>
+               <div class="col-sm-7">
+                <div class="detalles"> 
                   <p style="margin: 0px">{{ministerio.email}}</p>
+                </div>
+               </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-5">
+                <div class="detallesTitulo">
+                  <p style="margin: 0px">Telefono:</p>
+                </div>
+              </div>
+               <div class="col-sm-7">
+                <div class="detalles"> 
                   <p style="margin: 0px">{{ministerio.telefono}}</p>
                 </div>
                </div>
@@ -55,6 +86,26 @@
         </div>
       </div>
     </div>
+   <div>
+     <h4 class="titulo">Visita Nuestros Ministerios</h4>
+   </div>
+   <!----->
+   <div class="row justify-content-center">
+      <div  v-for="(ministerio,index) in ministerios" :key="index">
+        <div class="col mb-4">
+          <div class="card" style="max-width: 10rem; margin:auto; margin-bottom: 30px">
+            <router-link style="text-decoration: none" :to="{name:'Ministerio_Descripcion', params:{id:ministerio.id_ministerio}}">
+              <img :src="require('@/assets/' + ministerio.imagen)" class="card-img-top" alt="imagen" height="160px"/>
+              <div id="diseñoInferior" class="card-body">
+                <h5 id="titulo" class="card-title">{{ministerio.nombre}}</h5>
+              </div>
+            </router-link>
+          </div>
+        </div>
+      </div>
+      <router-view/>
+  </div>
+   <!----->
   </div>
 </template>
 
@@ -78,15 +129,10 @@ export default {
         console.log(this.ministerios);
       }
     },
-    //no uso este metodo para filtrar, por que al recargar(F5) se pierde todo
-    //estoy usando v-if
-    filtrarMinisterioId() {
-      return (this.ministerioSeleccionado = this.ministerios.filter(
-        ministerio => ministerio.id_ministerio === this.$route.params.id
-      ));
-    }
   }
 };
+
+
 </script>
 
 <style>
@@ -105,7 +151,8 @@ export default {
   text-align: left;
   font-weight: bold;
   padding-left: 15px;
-  padding-right: 15px
+  padding-right: 15px;
+ 
 
 }
 .container .letras{
@@ -114,7 +161,10 @@ export default {
   text-align: left;
   text-align: justify;
   padding-left: 15px;
-  padding-right: 15px
+  padding-right: 15px;
+  font-size: 20px;
+  padding-top: 20px;
+  margin-bottom: 50px; 
 }
 .container .detallesTitulo{
   font-size: 15px;
@@ -135,4 +185,15 @@ export default {
   padding-left: 15px;
   padding-right: 15px
 }
+#diseñoInferior{
+  background-color: rgb(0, 31, 58);
+  color:  wheat;
+  font-family: 'Times New Roman', Times, serif;
+  height: 90px;
+}
+#diseñoInferior #titulo{
+  font-weight: bold;
+  font-size: 15px;
+}
+
 </style>

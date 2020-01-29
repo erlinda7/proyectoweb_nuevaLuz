@@ -7,14 +7,14 @@
         <div class="col-sm-5">
           <img class="img-fluid" src="@/assets/IglesiaConstruccion.jpg" alt />
           <br>
-          <p>Descripcion de la Imagen1</p>
+          <p>Construccion de la Iglesia "Nueva Luz"</p>
           <br>
           <br>
           <br>
           <br>
           <img class="img-fluid" src="@/assets/IglesiaConstruccion2.jpg" alt />
           <br>
-          <p>Descripcion de la imagen2</p>
+          <p>Iglesia "Nueva luz" Gestión 2008</p>
         </div>
         <div class="col-sm-7 parrafo">
           <p>

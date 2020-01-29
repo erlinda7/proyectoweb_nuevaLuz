@@ -12,7 +12,7 @@ import piepagina from './components/piepagina'
 export default {
    components: {
      navbar,
-     piepagina
+     piepagina,
    },
 }
 </script>>
