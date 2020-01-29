@@ -14,7 +14,7 @@
             que sólo en Él hay salvación y vida eterna. </p>
         </div>
       </div>
-      <img src="@/assets/separador.png" class="img-fluid" alt="Responsive image" width="55%">
+      <img src="@/assets/separador.png" class="img-fluid" alt="Responsive image" width="50%">
       <div id="fondoRosas" class="row separacion">
           <div class="col-2">
               

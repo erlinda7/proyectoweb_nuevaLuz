@@ -15,7 +15,7 @@
               </li>
               <li>
                 <img src="@/assets/whatsapp.png" class="margen" alt />
-                <p class="texto">whatsapp</p>
+                <p class="texto">{{iglesia.whatsapp}}</p>
               </li>
               <li>
                 <img src="@/assets/email.png" class="margen" alt />

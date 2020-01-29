@@ -10,7 +10,7 @@
             <li>
               <img src="@/assets/llamada.png" class="margen" alt />{{iglesia.telefono}}</li>
             <li>
-              <img src="@/assets/whatsapp.png" class="margen" alt />Whatsapp</li>
+              <img src="@/assets/whatsapp.png" class="margen" alt />{{iglesia.whatsapp}}</li>
             <li>
               <img src="@/assets/email.png" class="margen" alt />{{iglesia.email}}</li>
             <li>

@@ -110,37 +110,37 @@ export default {
 
     filtrarPastor() {
       this.pastores = this.directorios.filter(
-        directorio => directorio.nombre_cargo === "pastor"
+        directorio => directorio.nombre_cargo === "Pastor"
       );
     },
     filtrarAnciano() {
       this.ancianos = this.directorios.filter(
-        directorio => directorio.nombre_cargo === "anciano"
+        directorio => directorio.nombre_cargo === "Anciano"
       );
     },
     filtrarDiacono() {
       this.diaconos = this.directorios.filter(
-        directorio => directorio.nombre_cargo === "diacono"
+        directorio => directorio.nombre_cargo === "Diacono"
       );
     },
     filtrarDiaconiza() {
       this.diaconizas = this.directorios.filter(
-        directorio => directorio.nombre_cargo === "diaconiza"
+        directorio => directorio.nombre_cargo === "Diaconiza"
       );
     },
     filtrarTesorero() {
       this.tesoreros = this.directorios.filter(
-        directorio => directorio.nombre_cargo === "tesorero"
+        directorio => directorio.nombre_cargo === "Tesorero"
       );
     },
     filtrarSecretario() {
       this.secretarios = this.directorios.filter(
-        directorio => directorio.nombre_cargo === "secretario"
+        directorio => directorio.nombre_cargo === "Secretario"
       );
     },
     filtrarsuperintendente() {
       this.superintendentes = this.directorios.filter(
-        directorio => directorio.nombre_cargo === "superintendente"
+        directorio => directorio.nombre_cargo === "Superintendente"
       );
     }
   }

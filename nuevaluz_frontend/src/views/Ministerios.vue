@@ -13,7 +13,7 @@
               <div class="card-img-overlay">
                 <h5 id="diseñoSuperior" class="card-title">{{ministerio.nombre}}</h5> 
               </div>
-              <div id="diseñoInferior" class="card-body">
+              <div id="diseñoInferior1" class="card-body">
                 <h5 id="titulo" class="card-title">{{ministerio.nombre}}</h5>
                 <p id="texto" class="card-text">{{ministerio.descripcion_corta}}</p>
               </div>
@@ -23,15 +23,6 @@
       </div>
       <router-view/>
   </div>
-    <!--
-    <div v-for="(ministerio,index) in ministerios" :key="index">
-        <p>id_ministerio:{{ministerio.id_ministerio}}</p>
-        <p>Titulo:{{ministerio.nombre}}</p>
-        <p>descripcion_corta:{{ministerio.descripcion_corta}}</p>
-         <img :src="require('@/assets/' + ministerio.imagen)" alt="imagen" width="50%" />
-        <br><br>
-    </div>
-    -->
   </div>
 </template>
 
@@ -67,7 +58,8 @@ export default {
   border: greenyellow 5px double;
   font-weight: bold;
   font-size: 22px;
-  border-radius: 5px
+  border-radius: 5px;
+  
 }
 .centrarTodo{
   display: flex;
@@ -84,20 +76,23 @@ export default {
   font-family: "serif", Times New Roman, Times;
   padding-top: 80px;
   padding-bottom: 60px;
+  
 }
-#diseñoInferior{
+#diseñoInferior1{
   background-color: rgb(0, 31, 58);
   color:  wheat;
   font-family: 'Times New Roman', Times, serif;
   height: 140px;
 }
-#diseñoInferior #titulo{
+#diseñoInferior1 #titulo{
   font-weight: bold;
   font-size: 20px;
+  
 }
-#diseñoInferior #texto{
-  font-size: 15px;
-  text-align: left;
+#diseñoInferior1 #texto{
+  font-size: 17px;
+  text-align: center;
+  color: greenyellow
 }
 
 </style>

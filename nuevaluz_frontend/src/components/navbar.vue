@@ -3,7 +3,7 @@
       <nav  class="navbar navbar-expand-lg navbar-light fondoNav">
         <img src="@/assets/NUEVA_LUZ_FOND_TRANS.png" alt="" width="7%">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon bg-info"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
@@ -54,14 +54,21 @@ export default {
 #colorTamañoLetra{
   color: rgb(251,251,226);
   font-size: 19px;
-  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  padding-left: 15px
+  font-family: 'Times New Roman', Times, serif;
+  padding-left: 15px;
+  font-weight: bold;
 }
 #colorTamañoLetra :hover{
   color: rgb(66, 111, 150)
 }
 #linea{
   border-bottom: 2px solid rgb(0, 31, 58)
+}
+header{
+  position: sticky;
+  top: 0;
+  width:100%;
+  z-index:2
 }
 
 </style>
