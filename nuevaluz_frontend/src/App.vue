@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="fondoNav">
+  <div id="app" class="fondocolor">
     <navbar/>
     <router-view/>
     <piepagina/>
@@ -12,7 +12,7 @@ import piepagina from './components/piepagina'
 export default {
    components: {
      navbar,
-     piepagina
+     piepagina,
    },
 }
 </script>>
@@ -36,5 +36,8 @@ export default {
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+.fondocolor{
+  background-color: rgb(251,251,226)
 }
 </style>

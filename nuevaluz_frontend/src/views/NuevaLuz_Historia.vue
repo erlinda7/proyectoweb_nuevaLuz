@@ -2,19 +2,19 @@
   <div>
     <nuevaLuzCarrusel />
     <div class="container">
-      <h1 class="titulo">Asi Comienza Nuestra Historia</h1>
+      <h1 class="tituloHistoria">Asi Comienza Nuestra Historia</h1>
       <div class="row historia">
         <div class="col-sm-5">
           <img class="img-fluid" src="@/assets/IglesiaConstruccion.jpg" alt />
           <br>
-          <p>Descripcion de la Imagen1</p>
+          <p>Construccion de la Iglesia "Nueva Luz"</p>
           <br>
           <br>
           <br>
           <br>
           <img class="img-fluid" src="@/assets/IglesiaConstruccion2.jpg" alt />
           <br>
-          <p>Descripcion de la imagen2</p>
+          <p>Iglesia "Nueva luz" Gestión 2008</p>
         </div>
         <div class="col-sm-7 parrafo">
           <p>
@@ -79,7 +79,17 @@ export default {
   margin-bottom: 25px; 
 }
 .historia .parrafo{
-  text-align: justify
+  text-align: justify;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 17px
+}
+.container .tituloHistoria{
+  color: rgb(0, 31, 58);
+  font-size: 40px;
+  font-weight: bold;
+  font-family: "serif", Times New Roman, Times;
+  padding-top: 80px;
+  padding-bottom: 60px;
 }
 
 </style>

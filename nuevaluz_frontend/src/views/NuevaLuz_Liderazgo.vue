@@ -2,67 +2,48 @@
 <div>
   <nuevaLuzCarrusel/>
   <div class="container">
-    <div class="pastores">
-      <h1>PASTORES</h1>
-      
+    <div>
+      <div class="title"> 
+        <h1><b> PASTORES </b></h1>
+      </div>
         <div class="row justify-content-center">
           <div v-for="(pastor, index) in pastores" :key="index">
             <div class="col-sm">
-              <div class="card" style="width: 18rem; margin: auto;">
+              <div class="card" style="width: 18rem; margin: auto; margin-bottom: 30px">
                 <img src="@/assets/fondoBlanco.jpg" class="card-img-top" alt="..." />
                 <div class="card-img-overlay">
-                  <img style="margin-top: 30px " :src="require('@/fotos/'+ pastor.foto)" alt="" width="150px">
+                  <img :src="require('@/fotos/'+ pastor.foto)" alt="" width="266px">
                 </div>
                 <div class="card-body">
-                  <h5 class="card-title">{{pastor.nombre_cargo}}</h5>
-                  <p class="card-text">{{pastor.nombre}} {{pastor.apellido_paterno}}</p>
+                  <h5 class="card-title text"><b>{{pastor.nombre_cargo}}</b></h5>
+                  <p class="card-text text" >{{pastor.nombre}} {{pastor.apellido_paterno}}</p>
                </div>
               </div>
             </div>
           </div>
         </div>
     </div>
-    <div class="ancianos">
-      <H1>ANCIANOS</H1>
+    <div>
+      <div class="title">
+        <H1><b> ANCIANOS </b></H1>
+      </div>
       <div class="row justify-content-center">
           <div v-for="(anciano, index) in ancianos" :key="index">
-            <div class="col-sm">
-              <div class="card" style="width: 18rem; margin: auto;">
+            <div  class="col-sm">
+              <div class="card" style="width: 18rem; margin: auto; margin-bottom: 100px">
                 <img src="@/assets/fondoBlanco.jpg" class="card-img-top" alt="..." />
                 <div class="card-img-overlay">
-                  <img style="margin-top: 50px " :src="require('@/fotos/'+ anciano.foto)" alt="" width="150px">
+                  <img :src="require('@/fotos/'+ anciano.foto)" alt="" width="266px">
                 </div>
                 <div class="card-body">
-                  <h5 class="card-title">{{anciano.nombre_cargo}}</h5>
-                  <p class="card-text">{{anciano.nombre}} {{anciano.apellido_paterno}}</p>
+                  <h5 class="card-title text"><b>{{anciano.nombre_cargo}}</b></h5>
+                  <p class="card-text text">{{anciano.nombre}} {{anciano.apellido_paterno}}</p>
                </div>
               </div>
             </div>
           </div>
         </div>
     </div>
-
-
-    <!-- ----------------------------- 
-    <br>
-    <br>
-    <p>---------------------------desde backend---------------</p><br>
-    <h1>pastores</h1>
-    <div v-for="(pastor, index) in pastores" :key="index">
-      <img :src="require('@/fotos/'+ pastor.foto)" alt="" width="20%">
-      <p>{{pastor.nombre}} {{pastor.apellido_paterno}}</p>
-      <p>{{pastor.nombre_cargo}}</p>
-    </div>
-
-    <h1>ancianos</h1>
-    <div>
-      <div v-for="(anciano, index) in ancianos" :key="index">
-      <img :src="require('@/fotos/'+ anciano.foto)" alt="" width="20%">
-      <p>{{anciano.nombre}} {{anciano.apellido_paterno}}</p>
-      <p>{{anciano.nombre_cargo}}</p>
-    </div>
-    </div>
-     ---------------------- -->
   </div>
 </div>
 </template>
@@ -95,12 +76,12 @@ export default {
     },
     filtrarPastor() {
       this.pastores = this.lideres.filter(
-        lider => lider.nombre_cargo === "pastor"
+        lider => lider.nombre_cargo === "Pastor"
       );
     },
     filtrarAnciano() {
       this.ancianos = this.lideres.filter(
-        lider => lider.nombre_cargo === "anciano"
+        lider => lider.nombre_cargo === "Anciano"
       );
     }
   }
@@ -108,13 +89,18 @@ export default {
 </script>
 
 <style>
-.imgAtras{
-  position: relative;
+.container .title {
+  color: rgb(0, 31, 58);
+  font-size: 60px;
+  font-weight: bold;
+  font-family: "serif", Times New Roman, Times;
+  padding-top: 80px;
+  padding-bottom: 60px;
 }
-.imgFrente{
-  position: absolute;
-  top:0px;
-  left:0px;
-  border:none;
+.container .text{
+  color: rgb(0, 31, 58);;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 25px
+  
 }
 </style>

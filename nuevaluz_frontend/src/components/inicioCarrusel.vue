@@ -30,6 +30,6 @@ export default {};
 
 <style>
 #bordeCir{
-  border-radius: 20px
+  border-radius: 5px
 }
 </style>
