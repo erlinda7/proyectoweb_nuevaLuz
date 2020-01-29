@@ -1,19 +1,12 @@
-const express = require("express");
 const jwt = require('jsonwebtoken');
 const llaveConfig = require("../config/llave.config");
-const app = express();
-
-app.set('llave', llaveConfig.llave);
 
 
-
-const rutasProtegidas = express.Router();
-
-var verificarToken = rutasProtegidas.use((req, res, next) => {
+var verificarToken  = function(req, res, next)  {
     const token = req.headers['access-token'];
 
     if (token) {
-        jwt.verify(token, app.get('llave'), (err, decoded) => {
+        jwt.verify(token, llaveConfig.llave, (err, decoded) => {
             if (err) {
                 return res.json({ mensaje: 'Token inválida' });
             } else {
@@ -26,6 +19,6 @@ var verificarToken = rutasProtegidas.use((req, res, next) => {
             mensaje: 'Token no proveída.'
         });
     }
-});
+};
 
 module.exports = verificarToken;
