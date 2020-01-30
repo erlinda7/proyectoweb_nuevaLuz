@@ -12,7 +12,7 @@
               <div class="card" style="width: 18rem; margin: auto; margin-bottom: 30px">
                 <img src="@/assets/fondoBlanco.jpg" class="card-img-top" alt="..." />
                 <div class="card-img-overlay">
-                  <img :src="require('@/fotos/'+ pastor.foto)" alt="" width="266px">
+                  <img :src="`http://localhost:3000${pastor.foto}`" alt="" width="266px">
                 </div>
                 <div class="card-body">
                   <h5 class="card-title text"><b>{{pastor.nombre_cargo}}</b></h5>
@@ -33,7 +33,7 @@
               <div class="card" style="width: 18rem; margin: auto; margin-bottom: 100px">
                 <img src="@/assets/fondoBlanco.jpg" class="card-img-top" alt="..." />
                 <div class="card-img-overlay">
-                  <img :src="require('@/fotos/'+ anciano.foto)" alt="" width="266px">
+                  <img :src="`http://localhost:3000${anciano.foto}`" alt="" width="266px">
                 </div>
                 <div class="card-body">
                   <h5 class="card-title text"><b>{{anciano.nombre_cargo}}</b></h5>

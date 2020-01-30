@@ -20,7 +20,7 @@
               <div class="card" style="width: 25rem; margin: auto;">
                 <img src="@/assets/fondoRosa.jpg" class="card-img-top" alt="..." height="450px"/>
                 <div class="card-img-overlay">
-                  <img style="margin-top: 60px" :src="require('@/fotos/' + ministerio.foto)" alt="" width="200px">
+                  <img style="margin-top: 60px" :src="`http://localhost:3000${ministerio.foto}`" alt="" width="200px">
                 </div>
               </div>
             </div>
@@ -95,7 +95,7 @@
         <div class="col mb-4">
           <div class="card" style="max-width: 10rem; margin:auto; margin-bottom: 30px">
             <router-link style="text-decoration: none" :to="{name:'Ministerio_Descripcion', params:{id:ministerio.id_ministerio}}">
-              <img :src="require('@/assets/' + ministerio.imagen)" class="card-img-top" alt="imagen" height="160px"/>
+              <img :src="`http://localhost:3000${ministerio.imagen}`" class="card-img-top" alt="imagen" height="160px"/>
               <div id="diseñoInferior" class="card-body">
                 <h5 id="titulo" class="card-title">{{ministerio.nombre}}</h5>
               </div>
