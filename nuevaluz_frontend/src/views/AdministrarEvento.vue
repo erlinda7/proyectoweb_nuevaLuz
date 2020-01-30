@@ -8,30 +8,38 @@
           <div class="col-sm-6">
     <b-form @submit="onSubmit" @reset="onReset" v-if="show">
 
+    <b-form-group id="input-group-3" label="Potada del evento" label-for="input-3">
+      <b-form-file  v-model="file" :state="Boolean(file)" placeholder="Ingresa Imagen" drop-placeholder="Drop file here...">
+      </b-form-file>
+      </b-form-group>
+
+      <b-form-group id="input-group-3" label-for="input-3">
+      <b-form inline>
+        <b-input v-model="exito" placeholder="Jane Doe" disabled></b-input>
+        <b-button variant="primary">Guardar Imagen</b-button>
+      </b-form>
+    </b-form-group>
+      
     <b-form-group id="input-group-1" label="Nombre del evento:" label-for="input-1">
-        <b-form-input id="input-1" v-model="form.name" required placeholder="Ingresa un nombre">
+        <b-form-input id="input-1" v-model="form.nombre" required placeholder="Ingresa un nombre">
         </b-form-input>
     </b-form-group>
 
     <b-form-group label="Descripcion del evento" label-for="textarea-formatter">
-      <b-form-textarea id="textarea-formatter" v-model="text1" placeholder="Ingresa la descripcion" required>
+      <b-form-textarea id="textarea-formatter" v-model="form.descripcion" placeholder="Ingresa la descripcion" required>
       </b-form-textarea>
     </b-form-group>
 
     <b-form-group id="input-group-2" label="Lugar del evento" label-for="input-2">
-        <b-form-input id="input-2" v-model="form.name" required placeholder="Ingresa el lugar">
+        <b-form-input id="input-2" v-model="form.lugar" required placeholder="Ingresa el lugar">
         </b-form-input>
     </b-form-group>
     
     <div class="form-group">
       <label >Fecha del evento</label>
-      <input type="date" name="bday" min="1000-01-01" max="3000-12-31" class="form-control">
+      <input v-model="form.fecha" type="date" name="bday" min="1000-01-01" max="3000-12-31" class="form-control">
     </div>
-
-    <b-form-group id="input-group-3" label="Potada del evento" label-for="input-3">
-    <b-form-file v-model="file" :state="Boolean(file)" placeholder="Ingresa Imagen" drop-placeholder="Drop file here...">
-    </b-form-file>
-    </b-form-group>
+  
     <div class="mt-3">Selecciona una opcion: {{ file ? file.name : '' }}</div>
       <b-button type="submit" variant="primary">Submit</b-button>
       <b-button type="reset" variant="danger">Reset</b-button>
@@ -45,32 +53,58 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
     data() {
       return {
+        exito: '',
+        imagenes:{},
         file: null,
-        text1:'',
-        selected: null,
-        options: [
-          { value: null, text: 'Please select an option' },
-          { value: 'a', text: 'This is First option' },
-          { value: 'b', text: 'Selected Option' },
-          { value: { C: '3PO' }, text: 'This is an option with object value' },
-          { value: 'd', text: 'This one is disabled', disabled: true }
-        ],
         form: {
+          nombre: '',
+          descripcion: '',
+          lugar: '',
           fecha: '',
-          email: '',
-          name: '',
-          food: null,
-          checked: []
         },
-        foods: [{ text: 'Select One', value: null }, 'Carrots', 'Beans', 'Tomatoes', 'Corn'],
         show: true
       }
     },
     methods: {
+      
+      async enviarImagen(){
+        const fd = new FormData();
+        fd.append('file',this.file)
+        axios.post('http://localhost:3000/subir', fd)
+          .then(res => {
+            this.imagenes = [res.data]
+            console.log(res.data)
+          })
+      },
+      async enviarFormulario() {
+      try {
+        const res = await axios.post(
+          "http://localhost:3000/evento",
+          {
+            titulo: this.nombre,
+            descripcion: this.descripcion,
+            lugar: this.lugar,
+            imagen: `/images/${this.NombreImg()}`,
+            id_iglesia: 1
+          }
+        );
+        console.log(res.data)
+      } catch (e) {
+        console.error(e);
+      }
+    },
+      NombreImg(){
+        let nombre = this.imagenes[0];
+        console.log(nombre.filename);
+        this.exito = 'imagen guardada';
+        return nombre.filename
+      },
       onSubmit(evt) {
+
         evt.preventDefault()
         alert(JSON.stringify(this.form))
       },
