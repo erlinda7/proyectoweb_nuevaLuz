@@ -43,9 +43,6 @@ export default {
         console.log("error al conectar al api: ", error);
       }
     },
-    getImg() {
-      return "../eventos/culto.jpg";
-    }
   }
 };
 </script>
