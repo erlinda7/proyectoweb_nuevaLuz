@@ -9,4 +9,7 @@ module.exports = app => {
 
   // Modificar evento por id
   app.put("/evento/:eventoId", eventoController.update);
+
+  // Eliminar un evento por eventoId
+  app.delete("/evento/:eventoId", eventoController.delete);
 }

@@ -75,3 +75,21 @@ exports.update = (req, res) => {
     }
   );
 };
+
+
+//---para eliminar un evento por eventoId
+exports.delete = (req, res) => {
+  eventoModel.remove(req.params.eventoId, (err, data) => {
+    if (err) {
+      if (err.kind === "no_encontrado") {
+        res.status(404).send({
+          message: `Evento no encontrado por id ${req.params.eventoId}.`
+        });
+      } else {
+        res.status(500).send({
+          message: "no se pudo eliminar el evento con id " + req.params.eventoId
+        });
+      }
+    } else res.send({ message: `Evento eliminado con exito!` });
+  });
+};

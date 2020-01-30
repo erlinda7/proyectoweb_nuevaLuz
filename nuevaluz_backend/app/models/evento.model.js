@@ -20,7 +20,7 @@ Evento.getAll = resultado => {
       return;
     }
     console.log("evento:", res);
-    resultado(null,  res);
+    resultado(null, res);
 
   })
 
@@ -45,7 +45,7 @@ Evento.create = (nuevoEvento, result) => {
 //guradando las modificaciones de evento en la base de datos
 Evento.updateById = (id, evento, result) => {
   //console.log(id,"id llegando");
-  
+
   sql.query(
     "UPDATE evento SET titulo = ?, descripcion = ?, lugar = ?, fecha= ?, imagen = ?, id_iglesia = ? WHERE id_evento = ?",
     [evento.titulo, evento.descripcion, evento.lugar, evento.fecha, evento.imagen, evento.id_iglesia, id],
@@ -66,6 +66,26 @@ Evento.updateById = (id, evento, result) => {
       result(null, { id: id, ...evento });
     }
   );
+};
+
+
+Evento.remove = (id, result) => {
+  sql.query("DELETE FROM evento WHERE id_evento = ?", id, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+
+    if (res.affectedRows == 0) {
+      // not found Customer with the id
+      result({ kind: "no_encontrado" }, null);
+      return;
+    }
+
+    console.log("evento eliminado con id: ", id);
+    result(null, res);
+  });
 };
 
 
