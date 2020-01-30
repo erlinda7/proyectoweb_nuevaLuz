@@ -53,7 +53,7 @@ const routes = [
   {
     path: '/AdministrarEvento',
     name: 'AdministrarEvento',
-    component: () => import('../views/AdministrarEvento')
+    component: () => import('../views/AdministrarEvento.vue')
   }
 ]
 
