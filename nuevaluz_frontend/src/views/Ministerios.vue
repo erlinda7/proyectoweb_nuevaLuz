@@ -9,7 +9,7 @@
         <div class="col mb-4">
           <div class="card" style="max-width: 20rem; margin:auto; margin-bottom: 100px">
             <router-link style="text-decoration: none" :to="{name:'Ministerio_Descripcion', params:{id:ministerio.id_ministerio}}">
-              <img :src="require('@/assets/' + ministerio.imagen)" class="card-img-top" alt="imagen" height="280px"/>
+              <img :src="`http://localhost:3000${ministerio.imagen}`" class="card-img-top" alt="imagen" height="280px"/>
               <div class="card-img-overlay">
                 <h5 id="diseñoSuperior" class="card-title">{{ministerio.nombre}}</h5> 
               </div>
