@@ -40,7 +40,6 @@
 
 <script>
 export default {
-
 }
 </script>
 
@@ -70,5 +69,4 @@ header{
   width:100%;
   z-index:2
 }
-
 </style>
