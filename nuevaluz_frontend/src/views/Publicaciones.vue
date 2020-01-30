@@ -5,7 +5,8 @@
       <div class="container">
         <div class="row caja" v-for="(evento,index) in eventos" :key="index">
           <div class="col-sm">
-            <img class="foto" :src="require('@/eventos/' + evento.imagen)" alt="imagen" width="100%" />
+            <img class="foto" :src="`http://localhost:3000/images/${evento.imagen}`" alt="imagen" width="100%" />
+           
           </div>
           <div class="col-sm">
             <h2 class="titulo2">{{evento.titulo}}</h2>
@@ -19,6 +20,7 @@
         </div>
       </div>
     </div>
+   
   </div>
 </template>
 
