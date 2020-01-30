@@ -2,12 +2,13 @@
   <div class="container">
       <br>
       <h5>Registrar Evento</h5>
+      {{evento}}
       <br>
       <br>
     <!--FORMULARIO PARA CREAR EVENTO-->
     <div class="row justify-content-center">
       <div class="col-sm-6">
-        <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+        <b-form @submit="onSubmit" v-if="show">
 
           <b-form-group id="input-group-3" label="Potada del evento" label-for="input-3">
             <b-form-file  v-model="file" :state="Boolean(file)" placeholder="Ingresa Imagen" drop-placeholder="Drop file here...">
@@ -43,7 +44,6 @@
   
           <div class="mt-3">Selecciona una opcion: {{ file ? file.name : '' }}</div>
             <b-button type="submit" variant="primary">Submit</b-button>
-            <b-button type="reset" variant="danger">Reset</b-button>
         </b-form>
         
       </div>
@@ -52,7 +52,7 @@
       <!--FORMULARIO DE MODIFICACION DE EVENTO-->
       <div class="row justify-content-center">
       <div class="col-sm-6">
-        <b-form @submit="onSubmit" @reset="onReset" v-if="!show">
+        <b-form @submit="onUpdate" v-if="!show">
 
           <b-form-group id="input-group-3" label="Potada del evento" label-for="input-3">
             <b-form-file  v-model="file" :state="Boolean(file)" placeholder="Ingresa Imagen" drop-placeholder="Drop file here...">
@@ -67,30 +67,30 @@
           </b-form-group>
       
           <b-form-group id="input-group-1" label="Nombre del evento:" label-for="input-1">
-            <b-form-input id="input-1" v-model="form.nombre" required placeholder="Ingresa un nombre">
+            <b-form-input id="input-1" v-model="evento.titulo" required placeholder="Ingresa un nombre">
             </b-form-input>
           </b-form-group>
 
           <b-form-group label="Descripcion del evento" label-for="textarea-formatter">
-            <b-form-textarea id="textarea-formatter" v-model="form.descripcion" placeholder="Ingresa la descripcion" required>
+            <b-form-textarea id="textarea-formatter" v-model="evento.descripcion" placeholder="Ingresa la descripcion" required>
             </b-form-textarea>
           </b-form-group>
 
           <b-form-group id="input-group-2" label="Lugar del evento" label-for="input-2">
-            <b-form-input id="input-2" v-model="form.lugar" required placeholder="Ingresa el lugar">
+            <b-form-input id="input-2" v-model="evento.lugar" required placeholder="Ingresa el lugar">
             </b-form-input>
           </b-form-group>
     
           <div class="form-group">
             <label >Fecha del evento</label>
-            <input v-model="form.fecha" type="date" name="bday" min="1000-01-01" max="3000-12-31" class="form-control">
+            <input v-model="evento.fecha" type="date" name="bday" min="1000-01-01" max="3000-12-31" class="form-control">
           </div>
   
           <div class="mt-3">Selecciona una opcion: {{ file ? file.name : '' }}</div>
-            <b-button type="reset" variant="primary">Actualizar</b-button>
+            <b-button type="update" variant="primary">Actualizar</b-button>
         </b-form>
         <b-card class="mt-3" header="Form Data Result">
-          <pre class="m-0">{{ form }}</pre>
+          <pre class="m-0">{{ evento }}</pre>
         </b-card>
       </div>
     </div>
@@ -110,7 +110,7 @@
           <tr v-for="(evento,index) of eventos" :key="index">
             <th scope="row">{{evento.titulo}}</th>
             <td><button class="btn btn-warning" v-on:click="cargarDatos(evento)" >Modificar</button></td>
-            <td><button class="btn btn-danger" v-on:click="Eliminar(evento.id)" >Eliminar</button></td>
+            <td><button class="btn btn-danger" v-on:click="eliminarEvento(evento.id_evento)" >Eliminar</button></td>
           </tr>
         </tbody>
       </table>
@@ -127,10 +127,20 @@ export default {
         imagenes:{},
         file: null,
         form: {
+          id: '',
           nombre: '',
           descripcion: '',
           lugar: '',
           fecha: '',
+        },
+        evento:{
+          id_evento: 0,
+          titulo: '',
+          descripcion: '',
+          lugar: '',
+          fecha: '',
+          imagen: '',
+          id_iglesia: 1
         },
         eventos: [],
         show: true
@@ -156,7 +166,7 @@ export default {
         this.exito = 'imagen guardada';
       },
       async enviarFormulario() {
-      try {
+       try {
         const res = await axios.post(
           "http://localhost:3000/evento",
           {
@@ -169,28 +179,36 @@ export default {
           }
         );
         console.log(res.data)
-      } catch (e) {
+       } catch (e) {
         console.error(e);
         }
       },
-      async actualizarFormulario(valorid){
+      async actualizarFormulario(){
        try { 
-        const res = await axios.put(
-          "http://localhost:3000/evento/"+valorid,
+        await axios.put(
+          "http://localhost:3000/evento/"+this.evento.id_evento,
           {
-            titulo: this.form.nombre,
-            descripcion: this.form.descripcion,
-            lugar: this.form.lugar,
-            fecha: this.form.fecha,
+            titulo: this.evento.titulo,
+            descripcion: this.evento.descripcion,
+            lugar: this.evento.lugar,
+            fecha: this.evento.fecha,
             imagen: `/images/${this.NombreImg()}`,
             id_iglesia: 1
           }
         );
-        console.log(res.data)
+        this.obtenerevento()
        }catch (e){
          console.error(e);
        }  
     },
+      async eliminarEvento(id){
+        try {
+          await axios.delete('http://localhost:3000/evento/'+id);
+          this.obtenerevento()
+        } catch (error) {
+          console.log(error);
+        }
+      },
       NombreImg(){
         let nombre = this.imagenes[0];
         console.log(nombre.filename);
@@ -203,17 +221,21 @@ export default {
         alert(JSON.stringify(this.form))
         this.enviarFormulario();
       },
-      onReset(evt) {
+      onUpdate(evt) {
+
         evt.preventDefault()
-        alert(JSON.stringify(this.form))
-        this.actualizarFormulario(this.evento.id)
+        alert(JSON.stringify(this.evento))
+        this.actualizarFormulario()
       },
-      cargarDatos(cargar) {
+      cargarDatos(event) {
         this.show = false;
-        this.form.nombre = cargar.titulo
-        this.form.descripcion = cargar.descripcion
-        this.form.lugar = cargar.lugar
-        this.form.fecha = cargar.fecha
+        this.evento.id_evento = event.id_evento
+        this.evento.titulo = event.titulo
+        this.evento.descripcion = event.descripcion
+        this.evento.lugar = event.lugar
+        this.evento.fecha = event.fecha
+        console.log(this.evento.id);
+        
       }
     },
     created() {
