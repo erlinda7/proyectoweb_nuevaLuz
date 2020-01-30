@@ -7,6 +7,7 @@ const Evento = function (evento) {
     this.lugar = evento.lugar;
     this.fecha = evento.fecha;
     this.imagen = evento.imagen;
+    this.id_iglesia = evento.id_iglesia;
 }
 
 
@@ -24,6 +25,21 @@ Evento.getAll = resultado => {
 
 
 }
+
+//guardando en la bd evento
+Evento.create = (nuevoEvento, result) => {
+    sql.query("INSERT INTO evento SET ?", nuevoEvento, (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+        return;
+      }
+  
+      console.log("evento creado: ", { id: res.insertId, ...nuevoEvento });
+      result(null, { id: res.insertId, ...nuevoEvento });
+    });
+  };
+
 
 
 module.exports = Evento;
