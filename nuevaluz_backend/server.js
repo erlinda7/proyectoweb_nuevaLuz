@@ -40,6 +40,8 @@ require("./app/routes/liderazgo.routes.js")(app);
 require("./app/routes/autenticar.routes.js")(app);
 
 
+
+
 //prueba ruta protegida
 require("./app/routes/pruebaRutaProtegida.routes.js")(app);
 
@@ -48,9 +50,8 @@ require("./app/routes/pruebaRutaProtegida.routes.js")(app);
 //ruta para subir imagenes
 require("./app/routes/subir.routes.js")(app);
 
-
-
-
+//ruta para eliminar imagenes
+//require("./app/routes/eliminar.routes.js")(app);
 
 //Starting the server
 app.listen(app.get('port'), ()=>{
