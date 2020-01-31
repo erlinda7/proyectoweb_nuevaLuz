@@ -10,4 +10,7 @@ module.exports = app => {
   // Modificar ministerio por id
   app.put("/ministerio/:ministerioId", ministerioController.update);
 
+  // Eliminar un ministerio por ministerioId
+  app.delete("/ministerio/:ministerioId", ministerioController.delete);
+
 }

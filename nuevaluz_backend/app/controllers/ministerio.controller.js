@@ -80,3 +80,21 @@ exports.update = (req, res) => {
 };
 
 
+//---para eliminar un ministerio por ministerioId
+exports.delete = (req, res) => {
+  ministerioModel.remove(req.params.ministerioId, (err, data) => {
+    if (err) {
+      if (err.kind === "no_encontrado") {
+        res.status(404).send({
+          message: `Ministerio no encontrado por id ${req.params.ministerioId}.`
+        });
+      } else {
+        res.status(500).send({
+          message: "no se pudo eliminar el ministerio con id " + req.params.ministerioId
+        });
+      }
+    } else res.send({ message: `Ministerio eliminado con exito!` });
+  });
+};
+
+
