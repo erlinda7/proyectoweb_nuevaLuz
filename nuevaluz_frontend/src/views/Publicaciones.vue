@@ -5,7 +5,7 @@
       <div class="container">
         <div class="row caja" v-for="(evento,index) in eventos" :key="index">
           <div class="col-sm">
-            <img class="foto" :src="`http://localhost:3000${evento.imagen}`" alt="imagen" width="100%" />
+            <img class="foto" :src="url+`${evento.imagen}`" alt="imagen" width="100%" />
            
           </div>
           <div class="col-sm">
@@ -26,18 +26,22 @@
 
 <script>
 import axios from "axios";
+import {mapState} from "vuex";
 
 export default {
   data: () => ({
     eventos: []
   }),
+  computed: {
+    ...mapState(['url'])
+  },
   created() {
     this.obtenerevento();
   },
   methods: {
     async obtenerevento() {
       try {
-        const respuesta = await axios.get("http://localhost:3000/evento");
+        const respuesta = await axios.get(this.url+"/evento");
         this.eventos = respuesta.data;
       } catch (error) {
         console.log("error al conectar al api: ", error);

@@ -33,7 +33,7 @@
               <div class="card" style="width: 18rem; margin: auto; margin-bottom: 100px">
                 <img src="@/assets/fondoBlanco.jpg" class="card-img-top" alt="..." />
                 <div class="card-img-overlay">
-                  <img :src="`http://localhost:3000${anciano.foto}`" alt="" width="266px">
+                  <img :src="url+`${anciano.foto}`" alt="" width="266px">
                 </div>
                 <div class="card-body">
                   <h5 class="card-title text"><b>{{anciano.nombre_cargo}}</b></h5>
@@ -51,6 +51,7 @@
 <script>
 import nuevaLuzCarrusel from '@/components/nuevaLuzCarrusel'
 import axios from "axios";
+import {mapState} from "vuex"
 export default {
   components:{
     nuevaLuzCarrusel
@@ -60,13 +61,16 @@ export default {
     pastores: [],
     ancianos: []
   }),
+  computed:{
+    ...mapState(['url'])
+  },
   created() {
     this.obtenerlideres();
   },
   methods: {
     async obtenerlideres() {
       try {
-        const respuesta = await axios.get("http://localhost:3000/liderazgo");
+        const respuesta = await axios.get(this.url+"/liderazgo");
         this.lideres = respuesta.data;
       } catch (error) {
         console.log("error al conectar al api: ", error);
