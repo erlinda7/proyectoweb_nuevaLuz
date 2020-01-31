@@ -48,9 +48,8 @@ require("./app/routes/pruebaRutaProtegida.routes.js")(app);
 //ruta para subir imagenes
 require("./app/routes/subir.routes.js")(app);
 
-
-
-
+//ruta para eliminar imagenes
+//require("./app/routes/eliminar.routes.js")(app);
 
 //Starting the server
 app.listen(app.get('port'), ()=>{
