@@ -39,7 +39,7 @@ require("./app/routes/liderazgo.routes.js")(app);
 
 require("./app/routes/autenticar.routes.js")(app);
 
-
+require("./app/routes/miembro.routes.js")(app);
 
 
 //prueba ruta protegida
