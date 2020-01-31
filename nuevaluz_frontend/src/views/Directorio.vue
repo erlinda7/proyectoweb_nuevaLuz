@@ -77,6 +77,7 @@
 
 <script>
 import axios from "axios";
+import {mapState} from "vuex"
 export default {
   data: () => ({
     directorios: [],
@@ -88,13 +89,16 @@ export default {
     secretarios: [],
     superintendentes: []
   }),
+  computed: {
+    ...mapState(['url'])
+  },
   created() {
     this.obtenerdirectorio();
   },
   methods: {
     async obtenerdirectorio() {
       try {
-        const respuesta = await axios.get("http://localhost:3000/directorio");
+        const respuesta = await axios.get(this.url+"/directorio");
         this.directorios = respuesta.data;
       } catch (error) {
         console.log("error al conectar al api: ", error);

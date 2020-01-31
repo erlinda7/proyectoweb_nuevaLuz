@@ -120,6 +120,8 @@
 
 <script>
 import axios from 'axios'
+import {mapState} from 'vuex'
+
 export default {
     data() {
       return {
@@ -145,6 +147,9 @@ export default {
         eventos: [],
         show: true
       }
+    },
+    computed: {
+      ...mapState(['url'])
     },
     methods: {
       async obtenerevento() {
@@ -186,7 +191,7 @@ export default {
       async actualizarFormulario(){
        try { 
         await axios.put(
-          "http://localhost:3000/evento/"+this.evento.id_evento,
+          this.url+"/"+this.evento.id_evento,
           {
             titulo: this.evento.titulo,
             descripcion: this.evento.descripcion,
@@ -203,7 +208,7 @@ export default {
     },
       async eliminarEvento(id){
         try {
-          await axios.delete('http://localhost:3000/evento/'+id);
+          await axios.delete(this.url+'/'+id);
           this.obtenerevento()
         } catch (error) {
           console.log(error);
