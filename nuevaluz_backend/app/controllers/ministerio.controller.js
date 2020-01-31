@@ -35,7 +35,7 @@ exports.create = (req, res) => {
     foto: req.body.foto,
     imagen: req.body.imagen,
     id_iglesia: req.body.id_iglesia
-    });
+  });
 
   // guardar evento en la base de datos
   ministerioModel.create(ministerio, (err, data) => {
@@ -47,3 +47,36 @@ exports.create = (req, res) => {
     else res.send(data);
   });
 };
+
+
+//------para modificar y guardar un evento identificando del request el idevento
+exports.update = (req, res) => {
+  // Validate Request
+  console.log("req: ", req.body);
+
+  if (!req.body) {
+    res.status(400).send({
+      message: "El contenido del body no puede ser vacio!!"
+    });
+  }
+
+  ministerioModel.updateById(
+    req.params.ministerioId,
+    new ministerioModel(req.body),
+    (err, data) => {
+      if (err) {
+        if (err.kind === "no_encontrado") {
+          res.status(404).send({
+            message: `Ministerio no encontrado con id ${req.params.ministerioId}.`
+          });
+        } else {
+          res.status(500).send({
+            message: "Error actualizando ministerio con id" + req.params.ministerioId
+          });
+        }
+      } else res.status(200).json(data);
+    }
+  );
+};
+
+

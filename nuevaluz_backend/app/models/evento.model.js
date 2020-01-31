@@ -68,7 +68,7 @@ Evento.updateById = (id, evento, result) => {
   );
 };
 
-
+//para eliminar un evento de la bd
 Evento.remove = (id, result) => {
   sql.query("DELETE FROM evento WHERE id_evento = ?", id, (err, res) => {
     if (err) {
