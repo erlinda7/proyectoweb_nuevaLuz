@@ -20,7 +20,7 @@ exports.create = (req, res) => {
   // Validate request
   if (!req.body) {
     res.status(400).send({
-      message: "Content can not be empty!"
+      message: "El contenido del body no puede ser vacio!"
     });
   }
 
