@@ -42,6 +42,8 @@ require("./app/routes/autenticar.routes.js")(app);
 require("./app/routes/miembro.routes.js")(app);
 
 require("./app/routes/miembroIglesiaConversion.routes")(app);  //iglesia conversion del miembro
+require("./app/routes/miembroIglesiaBautizo.routes")(app);  //iglesia bautizo del miembro
+
 
 //prueba ruta protegida
 require("./app/routes/pruebaRutaProtegida.routes.js")(app);

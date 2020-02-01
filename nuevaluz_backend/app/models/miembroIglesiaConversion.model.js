@@ -6,7 +6,7 @@ const MiembroIglesiaConversion = function (miembroIglesiaConversion) {
     this.id_miembro = miembroIglesiaConversion.id_miembro;
 }
 
-//guardando en la bd miembro en la tabla miembro
+//guardando en la bd miembro en la tabla iglesia_conversion
 MiembroIglesiaConversion.createMiembroIglesiaConversion= (nuevoMiembroIglesiaConversion, result) => {
     sql.query("INSERT INTO iglesia_conversion SET ?", nuevoMiembroIglesiaConversion, (err, res) => {
       if (err) {
