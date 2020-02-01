@@ -15,6 +15,7 @@ Directorio.getAll = resultado => {
         "WHERE m.id_miembro = c.id_miembro AND m.id_miembro = g.id_miembro " +
         "AND (c.nombre_cargo = 'pastor' OR c.nombre_cargo = 'anciano' OR c.nombre_cargo = 'diacono' "+ 
         "OR c.nombre_cargo = 'diaconiza' OR c.nombre_cargo = 'tesorero' OR c.nombre_cargo = 'secretario' OR c.nombre_cargo = 'superintendente')"+
+        //pendiente gestion actual
         "AND  year(g.fecha_fin) = YEAR(NOW())",
         (err, res) => {
             if (err) {
