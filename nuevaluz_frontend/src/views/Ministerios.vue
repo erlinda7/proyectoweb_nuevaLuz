@@ -9,7 +9,7 @@
         <div class="col mb-4">
           <div class="card" style="max-width: 20rem; margin:auto; margin-bottom: 100px">
             <router-link style="text-decoration: none" :to="{name:'Ministerio_Descripcion', params:{id:ministerio.id_ministerio}}">
-              <img :src="`http://localhost:3000${ministerio.imagen}`" class="card-img-top" alt="imagen" height="280px"/>
+              <img :src="url+`${ministerio.imagen}`" class="card-img-top" alt="imagen" height="280px"/>
               <div class="card-img-overlay">
                 <h5 id="diseñoSuperior" class="card-title">{{ministerio.nombre}}</h5> 
               </div>
@@ -28,17 +28,22 @@
 
 <script>
 import axios from "axios";
+import {mapState} from "vuex";
+
 export default {
   data: () => ({
     ministerios: []
   }),
+  computed: {
+    ...mapState(['url'])
+  },
   created() {
     this.obtenerMinisterio();
   },
   methods: {
     async obtenerMinisterio() {
       try {
-        const respuesta = await axios.get("http://localhost:3000/ministerio");
+        const respuesta = await axios.get(this.url+"/ministerio");
         this.ministerios = respuesta.data;
       } catch (error) {
         console.log("error al conectar al api: ", error);

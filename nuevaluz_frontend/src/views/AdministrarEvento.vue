@@ -17,7 +17,7 @@
 
           <b-form-group id="input-group-3" label-for="input-3">
             <b-form inline>
-              <b-input v-model="exito" disabled></b-input>
+              <b-input v-model="form.imagen" disabled></b-input>
               <b-button variant="primary" v-on:click="enviarImagen()">Guardar Imagen</b-button>
             </b-form>
           </b-form-group>
@@ -61,8 +61,8 @@
 
           <b-form-group id="input-group-3" label-for="input-3">
             <b-form inline>
-              <b-input v-model="exito" disabled></b-input>
-              <b-button variant="primary" v-on:click="enviarImagen()">Guardar Imagen</b-button>
+              <b-input v-model="evento.imagen" disabled></b-input>
+              <b-button variant="primary" v-on:click="actualizarImagen()">Guardar Imagen</b-button>
             </b-form>
           </b-form-group>
       
@@ -83,7 +83,7 @@
     
           <div class="form-group">
             <label >Fecha del evento</label>
-            <input v-model="evento.fecha" type="date" name="bday" min="1000-01-01" max="3000-12-31" class="form-control">
+            <input v-model="evento.fecha" min="1000-01-01" max="3000-12-31" class="form-control">
           </div>
   
           <div class="mt-3">Selecciona una opcion: {{ file ? file.name : '' }}</div>
@@ -120,11 +120,11 @@
 
 <script>
 import axios from 'axios'
+import {mapState} from 'vuex'
+
 export default {
     data() {
       return {
-        exito: '',
-        imagenes:{},
         file: null,
         form: {
           id: '',
@@ -132,6 +132,7 @@ export default {
           descripcion: '',
           lugar: '',
           fecha: '',
+          imagen: ''
         },
         evento:{
           id_evento: 0,
@@ -140,16 +141,20 @@ export default {
           lugar: '',
           fecha: '',
           imagen: '',
-          id_iglesia: 1
+          id_iglesia: 1,
+
         },
         eventos: [],
         show: true
       }
     },
+    computed: {
+      ...mapState(['url'])
+    },
     methods: {
       async obtenerevento() {
         try {
-          const respuesta = await axios.get("http://localhost:3000/evento");
+          const respuesta = await axios.get(this.url+"/evento");
           this.eventos = respuesta.data;
         } catch (error) {
           console.log("error al conectar al api: ", error);
@@ -158,26 +163,35 @@ export default {
       async enviarImagen(){
         const fd = new FormData();
         fd.append('file',this.file)
-        axios.post('http://localhost:3000/subir', fd)
+        axios.post(this.url+'/subir', fd)
           .then(res => {
-            this.imagenes = [res.data]
+            this.form.imagen = '/images/'+res.data.filename
             console.log(res.data)
           })
-        this.exito = 'imagen guardada';
+      },
+      async actualizarImagen(){
+        const fd = new FormData();
+        fd.append('file',this.file)
+        axios.post(this.url+'/subir', fd)
+          .then(res => {
+            this.evento.imagen = '/images/'+res.data.filename
+            console.log(res.data)
+          })
       },
       async enviarFormulario() {
        try {
         const res = await axios.post(
-          "http://localhost:3000/evento",
+          this.url+"/evento",
           {
             titulo: this.form.nombre,
             descripcion: this.form.descripcion,
             lugar: this.form.lugar,
             fecha: this.form.fecha,
-            imagen: `/images/${this.NombreImg()}`,
+            imagen: this.form.imagen,
             id_iglesia: 1
           }
         );
+        this.obtenerevento()
         console.log(res.data)
        } catch (e) {
         console.error(e);
@@ -186,13 +200,13 @@ export default {
       async actualizarFormulario(){
        try { 
         await axios.put(
-          "http://localhost:3000/evento/"+this.evento.id_evento,
+          this.url+"/evento/"+this.evento.id_evento,
           {
             titulo: this.evento.titulo,
             descripcion: this.evento.descripcion,
             lugar: this.evento.lugar,
             fecha: this.evento.fecha,
-            imagen: `/images/${this.NombreImg()}`,
+            imagen: this.evento.imagen,
             id_iglesia: 1
           }
         );
@@ -203,17 +217,11 @@ export default {
     },
       async eliminarEvento(id){
         try {
-          await axios.delete('http://localhost:3000/evento/'+id);
+          await axios.delete(this.url+'/evento/'+id);
           this.obtenerevento()
         } catch (error) {
           console.log(error);
         }
-      },
-      NombreImg(){
-        let nombre = this.imagenes[0];
-        console.log(nombre.filename);
-        return nombre.filename
-        
       },
       onSubmit(evt) {
 
@@ -233,7 +241,9 @@ export default {
         this.evento.titulo = event.titulo
         this.evento.descripcion = event.descripcion
         this.evento.lugar = event.lugar
-        this.evento.fecha = event.fecha
+        let fecha2= new Date(event.fecha.replace(/ /g,""))
+        this.evento.fecha = fecha2.getFullYear()+'-'+fecha2.getMonth()+'-'+fecha2.getDate()
+        this.evento.imagen = event.imagen
         console.log(this.evento.id);
         
       }
