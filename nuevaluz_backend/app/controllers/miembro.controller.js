@@ -14,8 +14,7 @@ exports.findAll = (req, res) => {
   })
 }
 
-
-//-------para crear y guardar nuevo miembro
+//para crear y guardar nuevo miembro
 exports.createMiembro = (req, res) => {
   // Validate request
   if (!req.body) {
@@ -24,7 +23,7 @@ exports.createMiembro = (req, res) => {
     });
   }
 
-  // Crear un Evento
+  // Crear un Miembro
   const miembro = new miembroModel({
     nombre : req.body.nombre,
     apellido_paterno: req.body.apellido_paterno,
@@ -47,3 +46,7 @@ exports.createMiembro = (req, res) => {
     else res.send(data);
   });
 };
+
+
+
+
