@@ -45,7 +45,7 @@ require("./app/routes/miembroIglesiaConversion.routes")(app);  //iglesia convers
 require("./app/routes/miembroIglesiaBautizo.routes")(app);  //iglesia bautizo del miembro
 require("./app/routes/miembroAnciano.routes")(app);  //miembro anciano
 require("./app/routes/miembroPastor.routes")(app);  //miembro pastor
-
+require("./app/routes/miembroCargoLider.routes")(app);  //cargo_lider del miembro
 
 //prueba ruta protegida
 require("./app/routes/pruebaRutaProtegida.routes.js")(app);
