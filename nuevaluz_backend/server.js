@@ -40,9 +40,9 @@ require("./app/routes/liderazgo.routes.js")(app);
 require("./app/routes/autenticar.routes.js")(app);
 
 
-require("./app/routes/listaMiembros.routes.js")(app);
-require("./app/routes/miembro.routes.js")(app);
+require("./app/routes/listaMiembros.routes.js")(app); // "todos los datos" de los miembros
 
+require("./app/routes/miembro.routes.js")(app); //metodos post put delete  miembros
 require("./app/routes/miembroIglesiaConversion.routes")(app);  //iglesia conversion del miembro
 require("./app/routes/miembroIglesiaBautizo.routes")(app);  //iglesia bautizo del miembro
 require("./app/routes/miembroAnciano.routes")(app);  //miembro anciano
