@@ -43,12 +43,12 @@ require("./app/routes/autenticar.routes.js")(app);
 require("./app/routes/listaMiembros.routes.js")(app); // "todos los datos" de los miembros
 
 require("./app/routes/miembro.routes.js")(app); //metodos post put delete  miembros
-require("./app/routes/miembroIglesiaConversion.routes")(app);  //iglesia conversion del miembro
-require("./app/routes/miembroIglesiaBautizo.routes")(app);  //iglesia bautizo del miembro
-require("./app/routes/miembroAnciano.routes")(app);  //miembro anciano
-require("./app/routes/miembroPastor.routes")(app);  //miembro pastor
-require("./app/routes/miembroCargoLider.routes")(app);  //cargo_lider del miembro
 require("./app/routes/miembroGestionCargo.routes")(app);  //gestion_cargo del miembro
+require("./app/routes/miembroCargoLider.routes")(app);  //cargo_lider del miembro
+require("./app/routes/miembroFotografia.routes")(app);  //fotografia del miembro anciano, pastor
+
+
+
 
 //prueba ruta protegida
 require("./app/routes/pruebaRutaProtegida.routes.js")(app);
