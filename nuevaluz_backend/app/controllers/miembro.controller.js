@@ -37,5 +37,35 @@ exports.createMiembro = (req, res) => {
 };
 
 
+//para modificar y guardar un miembro por id
+exports.update = (req, res) => {
+  console.log("req: ", req.body);
+
+  if (!req.body) {
+    res.status(400).send({
+      message: "El contenido del body no puede ser vacio!"
+    });
+  }
+
+  miembroModel.updateById(
+    req.params.miembroId,
+    new miembroModel(req.body),
+    (err, data) => {
+      if (err) {
+        if (err.kind === "no_encontrado") {
+          res.status(404).send({
+            message: `Miembro no encontrado con id ${req.params.miembroId}.`
+          });
+        } else {
+          res.status(500).send({
+            message: "Error actualizando evento con id" + req.params.miembroId
+          });
+        }
+      } else res.status(200).json(data);
+    }
+  );
+};
+
+
 
 

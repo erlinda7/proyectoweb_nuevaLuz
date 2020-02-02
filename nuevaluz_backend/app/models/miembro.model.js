@@ -32,4 +32,31 @@ Miembro.createMiembro = (nuevoMiembro, result) => {
 };
 
 
+//guradando las modificaciones de miembro en la base de datos
+Miembro.updateById = (id, miembro, result) => {
+  sql.query(
+    "UPDATE miembro SET nombre = ?, apellido_paterno = ?, apellido_materno = ?, " +
+    "telefono= ?, estado_civil = ?, fecha_nac = ?, fecha_conversion = ?, iglesia_conversion = ?, " +
+    "fecha_bautizo = ?, iglesia_bautizo = ?, nom_completo_pastor_bautizo = ? WHERE id_miembro = ?",
+    [miembro.nombre, miembro.apellido_paterno, miembro.apellido_materno,
+    miembro.telefono, miembro.estado_civil, miembro.fecha_nac, miembro.fecha_conversion,
+    miembro.iglesia_conversion, miembro.fecha_bautizo, miembro.iglesia_bautizo, miembro.nom_completo_pastor_bautizo, id],
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+
+      if (res.affectedRows == 0) {
+        result({ kind: "no_encontrado" }, null);
+        return;
+      }
+
+      console.log("miembro actualizado: ", { id: id, ...miembro });
+      result(null, { id: id, ...miembro });
+    }
+  );
+};
+
 module.exports = Miembro;
