@@ -22,4 +22,27 @@ MiembroGestionCargo.createMiembroGestionCargo= (nuevoMiembroGestionCargo, result
   };
   
   
+  //guradando las modificaciones de miembro en la base de datos
+MiembroGestionCargo.updateById = (id, miembroGestionCargo, result) => {
+  sql.query(
+    "UPDATE gestion_cargo SET fecha_inicio = ?, fecha_fin = ? WHERE id_gestion_cargo = ? ", 
+    [ miembroGestionCargo.fecha_inicio, miembroGestionCargo.fecha_fin, id],
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+
+      if (res.affectedRows == 0) {
+        result({ kind: "no_encontrado" }, null);
+        return;
+      }
+
+      console.log("gestion_cargo actualizado: ", { id: id, ...miembroGestionCargo });
+      result(null, { id: id, ...miembroGestionCargo });
+    }
+  );
+};
+
   module.exports = MiembroGestionCargo;
