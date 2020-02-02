@@ -58,7 +58,7 @@ exports.update = (req, res) => {
           });
         } else {
           res.status(500).send({
-            message: "Error actualizando evento con id" + req.params.miembroId
+            message: "Error actualizando miembro con id" + req.params.miembroId
           });
         }
       } else res.status(200).json(data);
