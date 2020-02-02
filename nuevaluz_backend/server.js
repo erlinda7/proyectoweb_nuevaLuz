@@ -39,6 +39,8 @@ require("./app/routes/liderazgo.routes.js")(app);
 
 require("./app/routes/autenticar.routes.js")(app);
 
+
+require("./app/routes/listaMiembros.routes.js")(app);
 require("./app/routes/miembro.routes.js")(app);
 
 require("./app/routes/miembroIglesiaConversion.routes")(app);  //iglesia conversion del miembro

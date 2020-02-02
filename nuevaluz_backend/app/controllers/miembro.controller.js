@@ -32,7 +32,9 @@ exports.createMiembro = (req, res) => {
     estado_civil: req.body.estado_civil,
     fecha_nac: req.body.fecha_nac,
     fecha_conversion: req.body.fecha_conversion,
+    iglesia_conversion: req.body.iglesia_conversion,
     fecha_bautizo: req.body.fecha_bautizo,
+    iglesia_bautizo: req.body.iglesia_bautizo,
     nom_completo_pastor_bautizo: req.body.nom_completo_pastor_bautizo,
   });
 
