@@ -40,7 +40,7 @@ ListaMiembros.getAll = resultado => {
 
     "FROM miembro m " +
     "LEFT JOIN fotografia f ON m.id_miembro=f.id_miembro " +
-    "LEFT JOIN cargo_lider c ON m.id_miembro=c.id_miembro " +
+    "LEFT JOIN cargo_lider c ON c.id_cargo_lider = m.id_cargo_lider " +
     "LEFT JOIN gestion_cargo g ON m.id_miembro=g.id_miembro "
 
     , (err, res) => {
