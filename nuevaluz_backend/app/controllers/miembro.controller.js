@@ -23,6 +23,7 @@ exports.createMiembro = (req, res) => {
     fecha_bautizo: req.body.fecha_bautizo,
     iglesia_bautizo: req.body.iglesia_bautizo,
     nom_completo_pastor_bautizo: req.body.nom_completo_pastor_bautizo,
+    id_cargo_lider: req.body.id_cargo_lider
   });
 
   // guardar miembro en la base de datos

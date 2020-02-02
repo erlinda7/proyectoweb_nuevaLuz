@@ -14,6 +14,7 @@ const Miembro = function (miembro) {
   this.fecha_bautizo = miembro.fecha_bautizo;
   this.iglesia_bautizo = miembro.iglesia_bautizo;
   this.nom_completo_pastor_bautizo = miembro.nom_completo_pastor_bautizo;
+  this.id_cargo_lider = miembro.id_cargo_lider;
 }
 
 
