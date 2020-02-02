@@ -67,5 +67,23 @@ exports.update = (req, res) => {
 };
 
 
+//---para eliminar un miembro por miembroId
+exports.delete = (req, res) => {
+  miembroModel.remove(req.params.miembroId, (err, data) => {
+    if (err) {
+      if (err.kind === "no_encontrado") {
+        res.status(404).send({
+          message: `Miembro no encontrado por id ${req.params.miembroId}.`
+        });
+      } else {
+        res.status(500).send({
+          message: "no se pudo eliminar el miembro con id " + req.params.miembroId
+        });
+      }
+    } else res.send({ message: `Miembro eliminado con exito!` });
+  });
+};
+
+
 
 

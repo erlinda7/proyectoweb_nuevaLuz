@@ -59,4 +59,25 @@ Miembro.updateById = (id, miembro, result) => {
   );
 };
 
+//para eliminar un miembro de la bd
+Miembro.remove = (id, result) => {
+  sql.query("DELETE FROM miembro WHERE id_miembro = ?", id, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+
+    if (res.affectedRows == 0) {
+      // not found Customer with the id
+      result({ kind: "no_encontrado" }, null);
+      return;
+    }
+
+    console.log("miembro eliminado con id: ", id);
+    result(null, res);
+  });
+};
+
+
 module.exports = Miembro;

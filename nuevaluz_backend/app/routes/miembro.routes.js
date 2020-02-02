@@ -7,4 +7,7 @@ module.exports = app => {
   // Modificar miembro por id
   app.put("/miembro/:miembroId", miembroController.update);
 
+    // Eliminar un miembro por eventoId
+    app.delete("/miembro/:miembroId", miembroController.delete);
+
 };
