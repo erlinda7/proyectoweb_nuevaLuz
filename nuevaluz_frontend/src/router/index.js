@@ -60,6 +60,7 @@ const routes = [
     name: 'AdministrarMinisterio',
     component: () => import('../views/AdministrarMinisterio.vue')
   }
+
 ]
 
 const router = new VueRouter({
