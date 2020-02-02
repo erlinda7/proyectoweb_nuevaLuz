@@ -45,7 +45,7 @@ require("./app/routes/listaMiembros.routes.js")(app); // "todos los datos" de lo
 require("./app/routes/miembro.routes.js")(app); //metodos post put delete  miembros
 require("./app/routes/miembroGestionCargo.routes")(app);  //gestion_cargo del miembro
 require("./app/routes/miembroFotografia.routes")(app);  //fotografia del miembro anciano, pastor
-
+require("./app/routes/listaCargoLider.routes")(app);  //lista de cargos 
 
 
 
