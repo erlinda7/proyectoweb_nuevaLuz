@@ -14,10 +14,10 @@ Liderazgo.getAll = resultado => {
         "SELECT m.nombre, m.apellido_paterno, f.foto, c.nombre_cargo "+
         "FROM miembro m, fotografia f, cargo_lider c, gestion_cargo g "+
         "WHERE  m.id_miembro=f.id_miembro AND "+
-        "m.id_miembro=c.id_miembro AND "+
+        "c.id_cargo_lider = m.id_cargo_lider AND "+
         "m.id_miembro=g.id_miembro AND "+
-        //pendiente getion actual
-        "year(g.fecha_fin) = YEAR(NOW())"
+        //getion actual hasta menor igual fecha_fin
+        "YEAR(NOW()) <= year(g.fecha_fin) "
         ,
         (err, res) => {
             if (err) {
