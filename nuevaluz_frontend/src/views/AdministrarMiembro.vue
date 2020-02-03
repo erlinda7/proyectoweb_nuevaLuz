@@ -2,14 +2,73 @@
   <div>
     <div id="miembros">
       <div class="container">
-        <div id="registrar row justify-content-center">
-          <h1>Registrar Miembro</h1>
+        <div id="registrar " class="row justify-content-center">
           <div class="col-sm-6">
-            
+            <h1>Registrar Miembro</h1>
+            <b-form @submit="onSubmit" v-if="show" >
+              <b-form-group id="input-group-1" label="Potada del evento" label-for="input-1">
+                <b-form-file
+                  v-model="file"
+                  :state="Boolean(file)"
+                  placeholder="Ingresa Imagen"
+                  drop-placeholder="Drop file here..."
+                ></b-form-file>
+              </b-form-group>
+
+              <b-form-group id="input-group-1" label-for="input-1">
+                <b-form inline>
+                  <b-input v-model="form.imagen" disabled></b-input>
+                  <b-button variant="primary" v-on:click="enviarImagen()">Guardar Imagen</b-button>
+                </b-form>
+              </b-form-group>
+
+              <b-form-group id="input-group-1" label="Nombre del evento:" label-for="input-1">
+                <b-form-input
+                  id="input-1"
+                  v-model="form.nombre"
+                  required
+                  placeholder="Ingresa un nombre"
+                ></b-form-input>
+              </b-form-group>
+
+              <b-form-group label="Descripcion del evento" label-for="textarea-formatter">
+                <b-form-textarea
+                  id="textarea-formatter"
+                  v-model="form.descripcion"
+                  placeholder="Ingresa la descripcion"
+                  required
+                ></b-form-textarea>
+              </b-form-group>
+
+              <b-form-group id="input-group-1" label="Lugar del evento" label-for="input-1">
+                <b-form-input
+                  id="input-1"
+                  v-model="form.lugar"
+                  required
+                  placeholder="Ingresa el lugar"
+                ></b-form-input>
+              </b-form-group>
+
+              <div class="form-group">
+                <label>Fecha del evento</label>
+                <input
+                  v-model="form.fecha"
+                  type="date"
+                  name="bday"
+                  min="1000-01-01"
+                  max="3000-12-31"
+                  class="form-control"
+                />
+              </div>
+
+              <div class="mt-3">Selecciona una opcion: {{ file ? file.name : '' }}</div>
+              <b-button type="submit" variant="primary">Submit</b-button>
+            </b-form>
           </div>
         </div>
         <div id="actualizar row justify-content-center">
           <h1>Actualizar Miembro</h1>
+          
         </div>
       </div>
 
@@ -69,7 +128,16 @@ import { mapState } from "vuex";
 export default {
   data() {
     return {
-      miembros: []
+      miembros: [],
+      form: {
+        id: "",
+        nombre: "",
+        descripcion: "",
+        lugar: "",
+        fecha: "",
+        imagen: ""
+      },
+      show: true
     };
   },
   computed: {
@@ -86,6 +154,11 @@ export default {
       } catch (error) {
         console.log("error al conectar al api : ", error);
       }
+    },
+    onSubmit(evt) {
+      evt.preventDefault();
+      alert(JSON.stringify(this.form));
+      this.enviarFormulario();
     }
   }
 };
