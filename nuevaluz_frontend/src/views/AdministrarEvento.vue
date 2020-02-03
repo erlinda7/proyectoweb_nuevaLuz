@@ -2,7 +2,7 @@
   <div class="container">
       <br>
       <h5>Registrar Evento</h5>
-      {{eventos}}
+      <!-- {{evento}} -->
       <br>
       <br>
     <!--FORMULARIO PARA CREAR EVENTO-->
@@ -41,8 +41,7 @@
             <label >Fecha del evento</label>
             <input v-model="form.fecha" type="date" name="bday" min="1000-01-01" max="3000-12-31" class="form-control">
           </div>
-  
-          <div class="mt-3">Selecciona una opcion: {{ file ? file.name : '' }}</div>
+
             <b-button type="submit" variant="primary">Submit</b-button>
         </b-form>
         
