@@ -33,6 +33,7 @@ require("./app/routes/directorio.routes.js")(app);
 
 require("./app/routes/evento.routes.js")(app);
 
+require("./app/routes/listaMinisterio.routes.js")(app); //lista todos los ministerios con reunion_ministerios
 require("./app/routes/ministerio.routes.js")(app);
 
 require("./app/routes/liderazgo.routes.js")(app);
