@@ -6,7 +6,7 @@
       <br>
       <br>
     <!--FORMULARIO PARA CREAR EVENTO-->
-    <div class="row justify-content-center">
+    <div class="row row justify-content-center">
       <div class="col-sm-6">
         <b-form @submit="onSubmit" v-if="show">
 
@@ -50,7 +50,7 @@
     </div>
     <div>
       <!--FORMULARIO DE MODIFICACION DE EVENTO-->
-      <div class="row justify-content-center">
+      <div class="row row justify-content-center">
       <div class="col-sm-6">
         <b-form @submit="onUpdate" v-if="!show">
 
