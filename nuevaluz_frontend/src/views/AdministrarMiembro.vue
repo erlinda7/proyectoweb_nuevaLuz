@@ -260,7 +260,7 @@ export default {
             fecha_bautizo: this.form.fecha_bautizo,
             iglesia_bautizo: this.form.iglesia_bautizo,
             nom_completo_pastor_bautizo: this.form.nom_completo_pastor_bautizo,
-            cargo_lider: this.form.cargo_lider.id_cargo_lider,
+            id_cargo_lider: this.form.cargo_lider.id_cargo_lider,
           }
         );
         this.obtenerMiembros();
