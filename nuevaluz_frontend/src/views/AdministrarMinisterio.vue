@@ -255,6 +255,7 @@ export default {
         );
         this.obtenerministerio();
         console.log(res.data)
+        
        } catch (e) {
         console.error(e);
         }
