@@ -16,21 +16,6 @@ const Ministerio = function (ministerio) {
 }
 
 
-Ministerio.getAll = resultado => {
-  sql.query("SELECT * FROM ministerio", (err, res) => {
-    if (err) {
-      console.log("Error al recuperar", err);
-      resultado(null, err);
-      return;
-    }
-    console.log("ministerio:", res);
-    resultado(null, res);
-
-  })
-
-
-}
-
 //guardando en la bd ministerio
 Ministerio.create = (nuevoMinisterio, result) => {
   sql.query("INSERT INTO ministerio SET ?", nuevoMinisterio, (err, res) => {
