@@ -237,12 +237,10 @@ export default {
         this.evento.titulo = event.titulo
         this.evento.descripcion = event.descripcion
         this.evento.lugar = event.lugar
-        let fecha2= new Date(event.fecha.replace(/ /g,""))
-        console.log(new Date(event.fecha.replace(/ /g,"")));
         
-        this.evento.fecha = fecha2.getFullYear()+'-'+fecha2.getMonth()+'-'+fecha2.getDate()
-        console.log(this.evento.fecha);
-        
+        let fecha2= new Date(event.fecha.split("-").reverse().join())
+        //let fecha2= new Date(event.fecha.replace(/ /g,""))
+        this.evento.fecha = fecha2.getFullYear()+'-'+(fecha2.getMonth()+1)+'-'+fecha2.getDate()
         this.evento.imagen = event.imagen
         console.log(this.evento.id);
         
