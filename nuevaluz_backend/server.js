@@ -34,7 +34,9 @@ require("./app/routes/directorio.routes.js")(app);
 require("./app/routes/evento.routes.js")(app);
 
 require("./app/routes/listaMinisterio.routes.js")(app); //lista todos los ministerios con reunion_ministerios
+//
 require("./app/routes/ministerio.routes.js")(app);
+require("./app/routes/ministerioReunion.routes.js")(app);
 
 require("./app/routes/liderazgo.routes.js")(app);
 
@@ -42,7 +44,7 @@ require("./app/routes/autenticar.routes.js")(app);
 
 
 require("./app/routes/listaMiembros.routes.js")(app); // "todos los datos" de los miembros
-
+//
 require("./app/routes/miembro.routes.js")(app); //metodos post put delete  miembros
 require("./app/routes/miembroGestionCargo.routes")(app);  //gestion_cargo del miembro
 require("./app/routes/miembroFotografia.routes")(app);  //fotografia del miembro anciano, pastor
