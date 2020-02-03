@@ -13,36 +13,8 @@ const Ministerio = function (ministerio) {
   this.foto = ministerio.foto;
   this.imagen = ministerio.imagen;
   this.id_iglesia = ministerio.id_iglesia;
-  this.id_reunion_ministerio =ministerio.id_reunion_ministerio;
-  this.dia = ministerio.dia;
-  this.hora_inicio = ministerio.hora_inicio;
-  this.hora_fin = ministerio.hora.fin;
 }
 
-
-Ministerio.getAll = resultado => {
-  sql.query(
-    "SELECT m.id_ministerio, m.nombre, m.descripcion_corta, m.descripcion, " +
-    "m.lugar, m.nombre_responsable, m.email, m.telefono, m.foto, m.imagen, m.id_iglesia, " +
-
-    "rm.id_reunion_ministerio, rm.dia, rm.hora_inicio, rm.hora_fin " +
-
-    "FROM ministerio m, reunion_ministerio rm " +
-
-    "WHERE m.id_ministerio = rm.id_ministerio "
-    , (err, res) => {
-      if (err) {
-        console.log("Error al recuperar", err);
-        resultado(null, err);
-        return;
-      }
-      console.log("ministerio:", res);
-      resultado(null, res);
-
-    })
-
-
-}
 
 //guardando en la bd ministerio
 Ministerio.create = (nuevoMinisterio, result) => {
