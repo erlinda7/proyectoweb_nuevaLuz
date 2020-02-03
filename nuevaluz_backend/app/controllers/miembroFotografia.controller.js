@@ -1,8 +1,17 @@
 const miembroFotografiaModel = require("../models/miembroFotografia.model");
-
+const miembroModel = require ("../models/miembro.model")
 
 //para crear y guardar miembro anciano
 exports.createMiembroFotografia = (req, res) => {
+
+  //-----------------------------------------------------------------------------------
+ //console.log("mostrando si funciona !!!!:", miembroModel.);
+ 
+
+  //-----------------------------------------------------------------------------------
+
+
+
   if (!req.body) {
     res.status(400).send({
       message: "El contenido del body no puede ser vacio!"
