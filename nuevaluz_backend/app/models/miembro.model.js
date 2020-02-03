@@ -27,9 +27,12 @@ Miembro.createMiembro = (nuevoMiembro, result) => {
       return;
     }
 
-    console.log("miembro creado: ", { id: res.insertId, ...nuevoMiembro });
+    console.log("miembro creado : ", { id: res.insertId, ...nuevoMiembro });
     result(null, { id: res.insertId, ...nuevoMiembro });
   });
+
+
+
 };
 
 

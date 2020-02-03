@@ -3,7 +3,8 @@
     <div id="miembros">
       <div class="container">
         
-        <div id="registrar " class="row justify-content-center">
+        <!-- para registrar nuevo miembro v-show -->
+        <div id="registrar" class="row justify-content-center">
           <div class="col-sm-6">
             <br />
             <br />
@@ -27,13 +28,13 @@
                 </b-form-input>
               </b-form-group>
               <br />
-              <!-- Estado Civil -->
+              
               <b-form-group id="input-group-0" label="Telefono o Celular" label-for="input-0" description="En caso de no contar colocar '0'">
                 <b-form-input id="input-0" v-model="form.telefono" required placeholder="Ingrese el telefono o celular del miembro">
                 </b-form-input>
               </b-form-group>
               <br />
-              <!-- telefono -->
+              
               <b-form-group id="input-group-4" label="Estado Civil" label-for="input-4">
                 <b-form-input id="input-4" v-model="form.estado_civil" required placeholder="Ingrese el Estado Civil del miembro">
                 </b-form-input>
@@ -73,54 +74,55 @@
               <br />
 
               <!-- nom_completo_pastor_bautizo -->
-              <b-form-group id="input-group-10" label="Nombre del Pastor de bautizo" label-for="input-10" description="En caso de recordar colocar 'pendiente'"
-              >
+              <b-form-group id="input-group-10" label="Nombre del Pastor de bautizo" label-for="input-10" description="En caso de recordar colocar 'pendiente'">
                 <b-form-input id="input-10" v-model="form.nom_completo_pastor_bautizo" required placeholder="Ingrese el nombre del pastor del bautizo"
                 ></b-form-input>
               </b-form-group>
               <br />
 
               <!-- nombre_cargo -->
-              <b-form-group id="input-group-11" label="Seleccione Cargo" label-for="input-11" description="En caso de no contar seleccionar 'Ninguno'"
-              >
+              <b-form-group id="input-group-11" label="Seleccione Cargo" label-for="input-11" description="En caso de no contar seleccionar 'Ninguno'">
                 <b-form-select v-model="form.cargo_lider" name="selectCargo" @change="cargoSeleccionado()">
                   <option disabled>Seleccione una opción</option>
-                  <option v-for="(cargo,index) in cargos" :key="index" :value="cargo"
-                  >{{cargo.nombre_cargo}}</option>
+                  <option v-for="(cargo,index) in cargos" :key="index" :value="cargo">{{cargo.nombre_cargo}}</option>
                 </b-form-select>
               </b-form-group>
+              <br>
  
               <!-- cuando selecciona cargo diferente de 'Ninguno' v-show -->
               <div class="cargo" v-if="gestion">
-                <label for>Gestión del cargo seleccionado:</label>
+                <label class="colorTexto">Gestión del cargo seleccionado:</label>
+                <br>
+
                 <!-- fecha_inicio -->
                 <b-form-group id="input-group-12" label="Fecha Inicio" label-for="input-12">
-                  <input v-model="form.fecha_inicio" type="date" name="bday" min="1000-01-01" max="3000-12-31" class="form-control"
-                  />
+                  <input v-model="form.fecha_inicio" type="date" name="bday" min="1000-01-01" max="3000-12-31" class="form-control"/>
                 </b-form-group>
+                <br>
+
                 <!-- fecha_fin -->
                 <b-form-group id="input-group-12" label="Fecha Fin" label-for="input-12">
-                  <input v-model="form.fecha_fin" type="date" name="bday" min="1000-01-01" max="3000-12-31" class="form-control"
-                  />
+                  <input v-model="form.fecha_fin" type="date" name="bday" min="1000-01-01" max="3000-12-31" class="form-control"/>
                 </b-form-group>
                 <br />
               </div>
 
               <!-- cuando seleciona cargo pastor o anciano v-show -->
               <div class="foto"  v-if="mostrarInputFoto()">
-                <b-form-group id="input-group-13" label="Fotografía" label-for="input-13">
-                  <b-form-file v-model="file" :state="Boolean(file)" placeholder="Seleccionar Foto" drop-placeholder="Drop file here..."
-                  ></b-form-file>
+                <label for="" ><p class="colorTexto">Fotografía</p></label>
+                <b-form-group id="input-group-13" label-for="input-13">
+                  <b-form-file v-model="file" :state="Boolean(file)" placeholder="Seleccionar Foto" drop-placeholder="Drop file here..."></b-form-file>
                 </b-form-group>
 
-                <b-form-group id="input-group-14" label-for="input-14" description="La fotografia debe ser tipo '.png' fondo transparente de tamaño 1000x1000"
-                >
+                <b-form-group id="input-group-14" label-for="input-14" description="La fotografia debe ser tipo '.png' fondo transparente de tamaño 1000x1000">
                   <b-form inline>
                     <b-input v-model="form.foto" disabled></b-input>
                     <b-button variant="primary" v-on:click="enviarImagen()">Guardar Imagen</b-button>
                   </b-form>
                 </b-form-group>
+                <br>
               </div>
+              <br>
 
               <b-button type="submit" variant="primary">Registrar</b-button>
             </b-form>
@@ -191,6 +193,7 @@ import { mapState } from "vuex";
 export default {
   data() {
     return {
+      
       gestion:false,
       file: null,
       miembros: [],
@@ -221,7 +224,6 @@ export default {
   },
   computed: {
     ...mapState(["url"]),
-    
   },
   created() {
     this.obtenerMiembros();
@@ -244,6 +246,17 @@ export default {
         console.log("error al conectar al api : ", error);
       }
     },
+    
+    async enviarImagen(){
+     const fd = new FormData();
+     fd.append('file',this.file)
+     axios.post(this.url+'/subir', fd)
+      .then(res => {
+        this.form.foto = '/images/'+res.data.filename
+        console.log(res.data)
+      })
+    },
+    
     async enviarFormulario() {
       try {
         const res = await axios.post(
@@ -263,12 +276,59 @@ export default {
             id_cargo_lider: this.form.cargo_lider.id_cargo_lider,
           }
         );
-        this.obtenerMiembros();
-        console.log(res.data)
+        console.log(res.data.id_miembro);
+     //  return this.id_miembroNuevo = res.data.id;  
+     let c=this.form.cargo_lider.nombre_cargo;
+        if( c != 'Ninguno'){
+            this.datosGestionCargo(res.data.id)  
+         }
+        if(c  =='Pastor'){
+          this.datosFotografia(res.data.id)  
+        }else{
+          if(c  =='Anciano'){
+              this.datosFotografia(res.data.id)  
+          }
+        }
        } catch (e) {
         console.error(e);
         }
       },
+
+      //para enviar en lformulario datos de la tabla gestion_cargo
+      async datosGestionCargo(id_m){
+        console.log('id_miembro:', id_m);
+        
+        try {
+        const resgc = await axios.post(
+          this.url+"/miembroGestionCargo",
+          {
+            fecha_inicio: this.form.fecha_inicio,
+            fecha_fin: this.form.fecha_fin,
+            id_miembro: id_m
+          }
+        );
+        console.log(resgc.data)
+       } catch (e) {
+        console.error(e);
+       }
+      },
+      //para enviar en lformulario datos de la tabla fotografia
+      async datosFotografia(id_m){
+         console.log('id_miembro:', id_m);
+         try {
+        const resf = await axios.post(
+          this.url+"/miembroFotografia",
+          {
+            foto: this.form.foto,
+            id_miembro: id_m
+          }
+        );
+        console.log(resf.data)
+       } catch (e) {
+        console.error(e);
+       }
+      },
+      //para v-show gestion cargo
       cargoSeleccionado() {
        let car=this.form.cargo_lider;
         if (car.nombre_cargo == 'Ninguno') {
@@ -280,6 +340,7 @@ export default {
         console.log(this.form.cargo_lider.id_cargo_lider);
         
        },
+      //para v-show fotografia
       mostrarInputFoto() {
       let car=this.form.cargo_lider;
        if(car.nombre_cargo == 'Pastor' ){
@@ -292,6 +353,8 @@ export default {
           }
         }
       },
+
+      //para registrar miembro post
       onSubmit(evt) {
         evt.preventDefault();
         alert(JSON.stringify(this.form));
@@ -311,9 +374,9 @@ export default {
   position: sticky;
   top: 0;
 }
-
-#miembros .cargo{
-  border: 1px black dashed;
-  padding: 10px;
+#miembros #registrar .colorTexto{
+  color: blue
 }
+
+
 </style>
