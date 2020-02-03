@@ -8,7 +8,7 @@
       <div class="container">
         <div class="row caja">
           <div class="col-sm">
-            <div class="card border-dark mb-3 fondocaja" style="max-width: 30rem; height:350px">
+            <div class="card border-dark mb-3 fondocaja" style="max-width: 30rem; height:400px">
               <div class="subtitulo">PASTORES</div>
               <div v-for="(pastor, index) in pastores" :key="index">
                 <p class="card-text texto">{{pastor.nombre}} {{pastor.apellido_paterno}}</p>
@@ -16,7 +16,7 @@
             </div>
           </div>
           <div class="col-sm">
-            <div class="card border-dark mb-3 fondocaja" style="max-width: 30rem; height:350px">
+            <div class="card border-dark mb-3 fondocaja" style="max-width: 30rem; height:400px">
               <div class="subtitulo">ANCIANOS</div>
               <div v-for="(pastor, index) in ancianos" :key="index">
                 <p class="card-text texto">{{pastor.nombre}} {{pastor.apellido_paterno}}</p>
@@ -26,7 +26,7 @@
         </div>
         <div class="row caja">
           <div class="col-sm">
-            <div class="card border-dark mb-3 fondocaja" style="max-width: 30rem; height:350px">
+            <div class="card border-dark mb-3 fondocaja" style="max-width: 30rem; height:400px">
               <div class="subtitulo">DIACONOS</div>
               <div v-for="(pastor, index) in diaconos" :key="index">
                 <p class="card-text texto">{{pastor.nombre}} {{pastor.apellido_paterno}}</p>
@@ -34,7 +34,7 @@
             </div>
           </div>
           <div class="col-sm">
-            <div class="card border-dark mb-3 fondocaja" style="max-width: 30rem; height:350px">
+            <div class="card border-dark mb-3 fondocaja" style="max-width: 30rem; height:400px">
               <div class="subtitulo">DIACONIZAS</div>
               <div v-for="(pastor, index) in diaconizas" :key="index">
                 <p class="card-text texto">{{pastor.nombre}} {{pastor.apellido_paterno}}</p>
@@ -44,7 +44,7 @@
         </div>
         <div class="row caja">
           <div class="col-sm">
-            <div class="card border-dark mb-3 fondocaja" style="max-width: 30rem;height:350px">
+            <div class="card border-dark mb-3 fondocaja" style="max-width: 30rem;height:400px">
               <div class="subtitulo">TESOREROS</div>
               <div v-for="(pastor, index) in tesoreros" :key="index">
                 <p class="card-text texto">{{pastor.nombre}} {{pastor.apellido_paterno}}</p>
@@ -52,7 +52,7 @@
             </div>
           </div>
           <div class="col-sm">
-            <div class="card border-dark mb-3 fondocaja" style="max-width: 30rem; height:350px">
+            <div class="card border-dark mb-3 fondocaja" style="max-width: 30rem; height:400px">
               <div class="subtitulo">SECRETARIO</div>
               <div v-for="(pastor, index) in secretarios" :key="index">
                 <p class="card-text texto">{{pastor.nombre}} {{pastor.apellido_paterno}}</p>
@@ -62,7 +62,7 @@
         </div>
         <div class="row caja">
           <div class="col-sm">
-            <div class="card border-dark mb-3 fondocaja" style="max-width: 30rem; height:350px">
+            <div class="card border-dark mb-3 fondocaja" style="max-width: 30rem; height:400px">
               <div class="subtitulo">SUPERINTENDENTES</div>
               <div v-for="(pastor, index) in superintendentes" :key="index">
                 <p class="card-text texto">{{pastor.nombre}} {{pastor.apellido_paterno}}</p>

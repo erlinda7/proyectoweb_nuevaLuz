@@ -2,7 +2,7 @@
   <div class="container">
       <br>
       <h5>Registrar Evento</h5>
-      {{evento}}
+      <!-- {{evento}} -->
       <br>
       <br>
     <!--FORMULARIO PARA CREAR EVENTO-->
@@ -41,8 +41,7 @@
             <label >Fecha del evento</label>
             <input v-model="form.fecha" type="date" name="bday" min="1000-01-01" max="3000-12-31" class="form-control">
           </div>
-  
-          <div class="mt-3">Selecciona una opcion: {{ file ? file.name : '' }}</div>
+
             <b-button type="submit" variant="primary">Submit</b-button>
         </b-form>
         
@@ -121,7 +120,6 @@
 <script>
 import axios from 'axios'
 import {mapState} from 'vuex'
-
 export default {
     data() {
       return {
@@ -142,7 +140,6 @@ export default {
           fecha: '',
           imagen: '',
           id_iglesia: 1,
-
         },
         eventos: [],
         show: true
@@ -224,13 +221,11 @@ export default {
         }
       },
       onSubmit(evt) {
-
         evt.preventDefault()
         alert(JSON.stringify(this.form))
         this.enviarFormulario();
       },
       onUpdate(evt) {
-
         evt.preventDefault()
         alert(JSON.stringify(this.evento))
         this.actualizarFormulario()
@@ -241,8 +236,10 @@ export default {
         this.evento.titulo = event.titulo
         this.evento.descripcion = event.descripcion
         this.evento.lugar = event.lugar
-        let fecha2= new Date(event.fecha.replace(/ /g,""))
-        this.evento.fecha = fecha2.getFullYear()+'-'+fecha2.getMonth()+'-'+fecha2.getDate()
+        
+        let fecha2= new Date(event.fecha.split("-").reverse().join())
+        //let fecha2= new Date(event.fecha.replace(/ /g,""))
+        this.evento.fecha = fecha2.getFullYear()+'-'+(fecha2.getMonth()+1)+'-'+fecha2.getDate()
         this.evento.imagen = event.imagen
         console.log(this.evento.id);
         
@@ -255,5 +252,4 @@ export default {
 </script>
 
 <style>
-
 </style>
