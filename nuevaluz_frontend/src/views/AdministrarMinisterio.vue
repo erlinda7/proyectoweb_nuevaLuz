@@ -68,6 +68,21 @@
                     </b-form-input>
                   </b-form-group>
 
+                  <b-form-group id="input-group-11" label="Dia que se efectua el Ministerio" label-for="input-11">
+                    <b-form-input id="input-11" v-model="form.dia" required placeholder="Ingresa el Tel o Cel">
+                    </b-form-input>
+                  </b-form-group>
+
+                  <b-form-group id="input-group-12" label="Hora de inicio" label-for="input-10" description="Usar el Formato">
+                    <b-form-input id="input-12" v-model="form.hora_inicio" required placeholder="00:00:00">
+                    </b-form-input>
+                  </b-form-group>
+
+                  <b-form-group id="input-group-13" label="Hora fin" label-for="input-13" description="Usar el Formato">
+                    <b-form-input id="input-13" v-model="form.hora_fin" required placeholder="00:00:00">
+                    </b-form-input>
+                  </b-form-group>
+
                   <div class="mt-3">Selecciona: {{ file ? file.name : '' }}</div>
                     <b-button type="submit" variant="primary">Crear Ministerio</b-button>
               </b-form>
@@ -187,7 +202,10 @@ export default {
           email:'',
           telefono:'',
           imagen: '',
-          foto: ''
+          foto: '',
+          dia: '',
+          hora_inicio: '',
+          hora_fin: ''
         },
         ministerio:{
           id_ministerio: 0,
@@ -212,7 +230,7 @@ export default {
     methods: {
         async obtenerministerio() {
         try {
-          const respuesta = await axios.get(this.url+"/ministerio");
+          const respuesta = await axios.get(this.url+"/listaMinisterios");
           this.ministerios = respuesta.data;
         } catch (error) {
           console.log("error al conectar al api: ", error);
@@ -254,8 +272,9 @@ export default {
           }
         );
         this.obtenerministerio();
+        this.agregarHorarioMinisterio()
         console.log(res.data)
-        
+
        } catch (e) {
         console.error(e);
         }
