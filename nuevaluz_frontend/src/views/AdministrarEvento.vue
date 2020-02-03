@@ -242,6 +242,8 @@ export default {
         this.evento.descripcion = event.descripcion
         this.evento.lugar = event.lugar
         let fecha2= new Date(event.fecha.replace(/ /g,""))
+        console.log(fecha2);
+        
         this.evento.fecha = fecha2.getFullYear()+'-'+fecha2.getMonth()+'-'+fecha2.getDate()
         this.evento.imagen = event.imagen
         console.log(this.evento.id);
