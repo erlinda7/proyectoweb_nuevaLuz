@@ -1,5 +1,5 @@
 <template>
-  <div class="contanier">
+  <div class="container">
     <div class="evento">
       <h1 class="titulo1">PRÓXIMOS EVENTOS</h1>
       <div class="container">

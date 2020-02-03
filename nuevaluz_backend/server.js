@@ -40,6 +40,13 @@ require("./app/routes/liderazgo.routes.js")(app);
 require("./app/routes/autenticar.routes.js")(app);
 
 
+require("./app/routes/listaMiembros.routes.js")(app); // "todos los datos" de los miembros
+
+require("./app/routes/miembro.routes.js")(app); //metodos post put delete  miembros
+require("./app/routes/miembroGestionCargo.routes")(app);  //gestion_cargo del miembro
+require("./app/routes/miembroFotografia.routes")(app);  //fotografia del miembro anciano, pastor
+require("./app/routes/listaCargoLider.routes")(app);  //lista de cargos 
+
 
 
 //prueba ruta protegida
