@@ -82,6 +82,20 @@
                 </div>
                </div>
             </div>
+            <div class="row"> 
+              <div class="col-sm-5">
+                <div class="detallesTitulo">
+                  <p style="margin: 0px">Horario:</p>
+                </div>
+              </div>
+              <div class="col-sm-7">
+                <div class="detalles">
+                  <p style="margin: 0px">{{ministerio.dia}}</p>
+                  <p style="margin: 0px"><b>De: </b>{{ministerio.hora_inicio}}<b> a </b>{{ministerio.hora_fin}}<b> Hrs. </b></p>
+                  
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -127,7 +141,7 @@ export default {
   methods: {
     async obtenerMinisterio() {
       try {
-        const respuesta = await axios.get(this.url+"/ministerio");
+        const respuesta = await axios.get(this.url+"/listaMinisterios");
         this.ministerios = respuesta.data;
       } catch (error) {
         console.log("error al conectar al api: ", error);

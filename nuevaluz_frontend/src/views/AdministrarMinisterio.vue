@@ -1,14 +1,14 @@
 <template>
   <div class="container">
       <br>
-      <h5>Gestionar Ministerio</h5>
-      {{form}}
+      <h1>Gestionar Ministerio</h1>
       <br>
       <br>
       <!--Formulario de Creacion de Nuevo Ministerio-->
       <div class="row justify-content-center">
           <div class="col-sm-6">
               <b-form @submit="onSubmit" v-if="show">
+                 <h1>Registrar Ministerio</h1>
                   <b-form-group id="input-group-1" label="Imagen de Ministerio" label-for="input-1">
                     <b-form-file  v-model="file" :state="Boolean(file)" placeholder="Ingresa Imagen" drop-placeholder="Drop file here...">
                     </b-form-file>
@@ -68,7 +68,22 @@
                     </b-form-input>
                   </b-form-group>
 
-                  <div class="mt-3">Selecciona: {{ file ? file.name : '' }}</div>
+                  <b-form-group id="input-group-11" label="Dia que se efectua el Ministerio" label-for="input-11">
+                    <b-form-input id="input-11" v-model="form.dia" required placeholder="Ingresa el Tel o Cel">
+                    </b-form-input>
+                  </b-form-group>
+
+                  <b-form-group id="input-group-12" label="Hora de inicio" label-for="input-10" description="Usar el Formato">
+                    <b-form-input id="input-12" v-model="form.hora_inicio" required placeholder="00:00:00">
+                    </b-form-input>
+                  </b-form-group>
+
+                  <b-form-group id="input-group-13" label="Hora fin" label-for="input-13" description="Usar el Formato">
+                    <b-form-input id="input-13" v-model="form.hora_fin" required placeholder="00:00:00">
+                    </b-form-input>
+                  </b-form-group>
+
+                  <!-- <div class="mt-3">Selecciona: {{ file ? file.name : '' }}</div> -->
                     <b-button type="submit" variant="primary">Crear Ministerio</b-button>
               </b-form>
           </div>
@@ -76,28 +91,29 @@
       <!--Formulario de Modificacion de Ministerio-->
       <div class="row justify-content-center">
           <div class="col-sm-6">
-              <b-form @submit="onSubmit" v-if="!show">
-                  <b-form-group id="input-group-11" label="Imagen de Ministerio" label-for="input-11">
+              <b-form @submit="onUpdate" v-if="!show">
+                <h1>Actualizar Ministerio</h1>
+                  <b-form-group id="input-group-21" label="Imagen de Ministerio" label-for="input-21">
                     <b-form-file  v-model="file" :state="Boolean(file)" placeholder="Ingresa Imagen" drop-placeholder="Drop file here...">
                     </b-form-file>
                   </b-form-group>
 
-                  <b-form-group id="input-group-12" label-for="input-12">
+                  <b-form-group id="input-group-22" label-for="input-22">
                     <b-form inline>
                       <b-form-input v-model="ministerio.imagen" required disabled ></b-form-input>
-                      <b-button variant="primary" v-on:click="enviarImagen()">Guardar Imagen</b-button>
+                      <b-button variant="primary" v-on:click="actualizarImagen()">Guardar Imagen</b-button>
                   </b-form>
                   </b-form-group>
 
-                  <b-form-group id="input-group-13" label="Foto del Responsable" label-for="input-13">
+                  <b-form-group id="input-group-23" label="Foto del Responsable" label-for="input-23">
                     <b-form-file  v-model="file2" :state="Boolean(file)" placeholder="Ingresa foto sin fondo" drop-placeholder="Drop file here...">
                     </b-form-file>
                   </b-form-group>
 
-                  <b-form-group id="input-group-14" label-for="input-14">
+                  <b-form-group id="input-group-24" label-for="input-24">
                     <b-form inline>
                       <b-form-input v-model="ministerio.foto" disabled></b-form-input>
-                      <b-button variant="primary" v-on:click="enviarFoto()">Guardar foto</b-button>
+                      <b-button variant="primary" v-on:click="actualizarFoto()">Guardar foto</b-button>
                   </b-form>
                   </b-form-group>
 
@@ -136,17 +152,32 @@
                     </b-form-input>
                   </b-form-group>
 
-                  <div class="mt-3">Selecciona: {{ file ? file.name : '' }}</div>
-                    <b-button type="submit" variant="primary">Crear Ministerio</b-button>
+                  <b-form-group id="input-group-27" label="Dia que se efectua el Ministerio" label-for="input-27">
+                    <b-form-input id="input-27" v-model="ministerio.dia" required placeholder="Ingresa el Tel o Cel">
+                    </b-form-input>
+                  </b-form-group>
+
+                  <b-form-group id="input-group-25" label="Hora de inicio" label-for="input-25" description="Usar el Formato">
+                    <b-form-input id="input-25" v-model="ministerio.hora_inicio" required placeholder="00:00:00">
+                    </b-form-input>
+                  </b-form-group>
+
+                  <b-form-group id="input-group-26" label="Hora fin" label-for="input-26" description="Usar el Formato">
+                    <b-form-input id="input-26" v-model="ministerio.hora_fin" required placeholder="00:00:00">
+                    </b-form-input>
+                  </b-form-group>
+
+                  <!-- <div class="mt-3">Selecciona: {{ file ? file.name : '' }}</div> -->
+                    <b-button type="update" variant="primary">Modificar Ministerio</b-button>
               </b-form>
           </div>
       </div>
-      <b-card class="mt-3" header="Form Data Result">
-          <pre class="m-0">{{ form }}</pre>
-        </b-card>
+      <!-- <b-card class="mt-3" header="Form Data Result">
+          <pre class="m-0">{{ ministerio }}</pre>
+        </b-card> -->
       <!--Lista de Ministerios-->
       <div>
-          <h5>Lista de Ministerios</h5>
+          <h1>Lista de Ministerios</h1>
       </div>
       <div>
       <table class="table">
@@ -160,8 +191,8 @@
         <tbody>
           <tr v-for="(ministerio,index) of ministerios" :key="index">
             <th scope="row">{{ministerio.nombre}}</th>
-            <td><button class="btn btn-warning" v-on:click="cargarDatos(ministerio)" >Modificar</button></td>
-            <td><button class="btn btn-danger" v-on:click="eliminarEvento(ministerio.id_ministerio)" >Eliminar</button></td>
+            <td><button class="btn btn-warning" v-on:click="cargarDatos(ministerio)"> Modificar</button></td>
+            <td><button class="btn btn-danger" v-on:click="eliminarMinisterio(ministerio.id_ministerio)" >Eliminar</button></td>
           </tr>
         </tbody>
       </table>
@@ -186,8 +217,11 @@ export default {
           responsable: '',
           email:'',
           telefono:'',
+          foto: '',
           imagen: '',
-          foto: ''
+          dia: '',
+          hora_inicio: '',
+          hora_fin: ''
         },
         ministerio:{
           id_ministerio: 0,
@@ -200,7 +234,11 @@ export default {
           telefono:'',
           foto:'',
           imagen: '',
-          id_iglesia: 1
+          id_iglesia: 1,
+          id_reunion_ministerio: '',
+          dia: '',
+          hora_inicio: '',
+          hora_fin: ''
         },
         ministerios: [],
         show: true
@@ -212,7 +250,7 @@ export default {
     methods: {
         async obtenerministerio() {
         try {
-          const respuesta = await axios.get(this.url+"/ministerio");
+          const respuesta = await axios.get(this.url+"/listaMinisterios");
           this.ministerios = respuesta.data;
         } catch (error) {
           console.log("error al conectar al api: ", error);
@@ -236,6 +274,24 @@ export default {
             console.log(res.data)
           })
       },
+      async actualizarImagen(){
+        const fd = new FormData();
+        fd.append('file',this.file)
+        axios.post(this.url+'/subir', fd)
+          .then(res => {
+            this.ministerio.imagen = '/images/'+res.data.filename
+            console.log(res.data)
+          })
+      },
+        async actualizarFoto(){
+        const fd = new FormData();
+        fd.append('file',this.file2)
+        axios.post(this.url+'/subir', fd)
+          .then(res => {
+            this.ministerio.foto = '/images/'+res.data.filename
+            console.log(res.data)
+          })
+      },
       async enviarFormulario() {
        try {
         const res = await axios.post(
@@ -253,19 +309,108 @@ export default {
             id_iglesia: 1
           }
         );
-        this.obtenerministerio();
         console.log(res.data)
+        this.agregarHorarioMinisterio(res.data.id)
         
        } catch (e) {
         console.error(e);
         }
       },
-        onSubmit(evt) {
+      async actualizarFormulario(){
+       try { 
+        await axios.put(
+          this.url+"/ministerio/"+this.ministerio.id_ministerio,
+          {
+            nombre: this.ministerio.nombre,
+            descripcion_corta: this.ministerio.lema,
+            descripcion: this.ministerio.descripcion,
+            lugar: this.ministerio.lugar,
+            nombre_responsable: this.ministerio.responsable,
+            email: this.ministerio.email,
+            telefono: this.ministerio.telefono,
+            foto: this.ministerio.foto,
+            imagen: this.ministerio.imagen,
+            id_iglesia: 1
+          }
+        );
+        console.log(this.id_reunion_ministerio);
+        this.actualizarHorarioMinisterio(this.ministerio.id_reunion_ministerio)
+       }catch (e){
+         console.error(e);
+       }  
+    },
+      async actualizarHorarioMinisterio(id) {
+        try {
+          const res = await axios.put(
+            this.url+"/ministerioReunion/"+id,
+            {
+              dia: this.ministerio.dia,
+              hora_inicio: this.ministerio.hora_inicio,
+              hora_fin: this.ministerio.hora_fin,
+              id_ministerio: this.ministerio.id_ministerio
+            }
+          )
+          console.log(res.data); 
+          this.obtenerministerio()
 
+        } catch (error) {
+          console.log(error);
+        }
+      },
+        async agregarHorarioMinisterio(id) {
+          try {
+            const res = await axios.post(
+              this.url+"/ministerioReunion",
+              {
+                dia: this.form.dia,
+                hora_inicio: this.form.hora_inicio,
+                hora_fin: this.form.hora_fin,
+                id_ministerio: id
+              }
+            );
+            console.log(res.data);            
+            this.obtenerministerio()
+          } catch (error) {
+            console.log(error);
+          }
+        },
+      cargarDatos(minis) {
+          this.show = false;
+          this.ministerio.id_ministerio = minis.id_ministerio,
+          this.ministerio.nombre= minis.nombre,
+          this.ministerio.lema = minis.descripcion_corta,
+          this.ministerio.descripcion = minis.descripcion,
+          this.ministerio.lugar = minis.lugar,
+          this.ministerio.responsable = minis.nombre_responsable,
+          this.ministerio.email = minis.email,
+          this.ministerio.telefono = minis.telefono,
+          this.ministerio.foto = minis.foto,
+          this.ministerio.imagen = minis.imagen,
+          this.ministerio.id_iglesia = 1,
+          this.ministerio.id_reunion_ministerio = minis.id_reunion_ministerio
+          this.ministerio.dia = minis.dia,
+          this.ministerio.hora_inicio = minis.hora_inicio,
+          this.ministerio.hora_fin = minis.hora_fin
+      },
+      async eliminarMinisterio(id){
+        try {
+          await axios.delete(this.url+'/ministerio/'+id)
+          this.obtenerministerio()
+        } catch (error) {
+          console.log(error);
+        }
+      },
+      onSubmit(evt) {
         evt.preventDefault()
         alert(JSON.stringify(this.form))
         this.enviarFormulario();
       },
+      onUpdate(evt){
+        evt.preventDefault()
+        alert(JSON.stringify(this.ministerio))
+        this.actualizarFormulario()
+        
+      }
     },
     created() {
         this.obtenerministerio();
