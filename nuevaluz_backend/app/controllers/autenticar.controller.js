@@ -33,12 +33,12 @@ exports.autenticar = (req, res) => {
           expiresIn: 1440
         });
         res.json({
-          mensaje: 'Autenticación correcta',
+          mensaje: 'correcto',
           token: token
         });
 
       } else {
-        res.json({ mensaje: "Usuario o contraseña incorrectos" })
+        res.json({ mensaje: "incorrecto" })
       }
 
     }
