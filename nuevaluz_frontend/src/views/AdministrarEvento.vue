@@ -1,15 +1,14 @@
 <template>
   <div class="container">
       <br>
-      <h5>Registrar Evento</h5>
-      <!-- {{evento}} -->
+      <h1>Gestionar Evento</h1>
       <br>
       <br>
     <!--FORMULARIO PARA CREAR EVENTO-->
     <div class="row justify-content-center">
       <div class="col-sm-6">
         <b-form @submit="onSubmit" v-if="show">
-
+          <h1>Registrar Evento</h1>
           <b-form-group id="input-group-3" label="Potada del evento" label-for="input-3">
             <b-form-file  v-model="file" :state="Boolean(file)" placeholder="Ingresa Imagen" drop-placeholder="Drop file here...">
             </b-form-file>
@@ -52,7 +51,7 @@
       <div class="row justify-content-center">
       <div class="col-sm-6">
         <b-form @submit="onUpdate" v-if="!show">
-
+            <h1>Actualizar Evento</h1>
           <b-form-group id="input-group-3" label="Potada del evento" label-for="input-3">
             <b-form-file  v-model="file" :state="Boolean(file)" placeholder="Ingresa Imagen" drop-placeholder="Drop file here...">
             </b-form-file>
@@ -88,14 +87,14 @@
           <div class="mt-3">Selecciona una opcion: {{ file ? file.name : '' }}</div>
             <b-button type="update" variant="primary">Actualizar</b-button>
         </b-form>
-        <b-card class="mt-3" header="Form Data Result">
+        <!-- <b-card class="mt-3" header="Form Data Result">
           <pre class="m-0">{{ evento }}</pre>
-        </b-card>
+        </b-card> -->
       </div>
     </div>
     <!--LISTA DE EVENTOS-->
     </div>
-    <h5>Lista de Eventos</h5>
+    <h1>Lista de Eventos</h1>
     <div>
       <table class="table">
         <thead class="thead-dark">
@@ -236,13 +235,11 @@ export default {
         this.evento.titulo = event.titulo
         this.evento.descripcion = event.descripcion
         this.evento.lugar = event.lugar
-        
         let fecha2= new Date(event.fecha.split("-").reverse().join())
         //let fecha2= new Date(event.fecha.replace(/ /g,""))
         this.evento.fecha = fecha2.getFullYear()+'-'+(fecha2.getMonth()+1)+'-'+fecha2.getDate()
         this.evento.imagen = event.imagen
         console.log(this.evento.id);
-        
       }
     },
     created() {
