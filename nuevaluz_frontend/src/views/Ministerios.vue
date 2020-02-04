@@ -43,7 +43,7 @@ export default {
   methods: {
     async obtenerMinisterio() {
       try {
-        const respuesta = await axios.get(this.url+"/ministerio");
+        const respuesta = await axios.get(this.url+"/listaMinisterios");
         this.ministerios = respuesta.data;
       } catch (error) {
         console.log("error al conectar al api: ", error);
