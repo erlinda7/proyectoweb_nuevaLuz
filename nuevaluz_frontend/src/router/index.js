@@ -91,11 +91,10 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   console.log(to.matched.some(record => record.meta.requiresAuth));
-  //let usuario = false
-  console.log(router.app.$auth.isAuthenticated(), 'consumienooooooooooo');
+  let usuario = false
   
   if(to.matched.some(record => record.meta.requiresAuth)){
-      if(router.app.$auth.isAuthenticated()){
+      if(usuario){
         next()
       }else{
         next('/Login')
@@ -107,13 +106,20 @@ router.beforeEach((to, from, next) => {
 })
 
 // router.beforeEach((to, from, next) => {
-//   if(to.name == 'callback') { // checamos si la ruta "to" es igual a "callback" y permitimos el acceso
-//     next()
-//   } else if (router.app.$auth.isAuthenticated()) { // si ya se encuetra autenticado permitimos el acceso
-//     next()
-//   } else { // desencadenamos el login de auth0
-//     router.app.$auth.login()
+//   console.log(to.matched.some(record => record.meta.requiresAuth));
+//   //let usuario = false
+//   console.log(router.app.$auth.isAuthenticated(), 'consumienooooooooooo');
+  
+//   if(to.matched.some(record => record.meta.requiresAuth)){
+//       if(router.app.$auth.isAuthenticated()){
+//         next()
+//       }else{
+//         next('/Login')
+//       }
+//   }else{
+//     next();
 //   }
+  
 // })
 
 export default router
