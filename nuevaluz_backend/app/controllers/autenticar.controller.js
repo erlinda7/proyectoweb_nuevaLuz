@@ -19,8 +19,8 @@ exports.autenticar = (req, res) => {
   ///---------
   autenticarModel.getUsuario(req.body.nombre_user, (err, data) => {
     if (err) {
-      res.status(404).send({
-        message: `Usuario no encontrado ${req.body.nombre_user}.`
+      res.status(404).json({
+        mensaje: req.body.nombre_user
       });
 
     } else {
@@ -33,12 +33,12 @@ exports.autenticar = (req, res) => {
           expiresIn: 1440
         });
         res.json({
-          mensaje: 'Autenticación correcta',
+          mensaje: 'true',
           token: token
         });
 
       } else {
-        res.json({ mensaje: "Usuario o contraseña incorrectos" })
+        res.json({ mensaje: 'false' })
       }
 
     }

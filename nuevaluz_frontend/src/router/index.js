@@ -4,6 +4,7 @@ import Inicio from '../views/Inicio.vue'
 
 Vue.use(VueRouter)
 
+
 const routes = [
   {
     path: '/',
@@ -53,7 +54,8 @@ const routes = [
   {
     path: '/AdministrarEvento',
     name: 'AdministrarEvento',
-    component: () => import('../views/AdministrarEvento.vue')
+    component: () => import('../views/AdministrarEvento.vue'),
+    meta: {requiresAuth: true}
   },
   {
     path: '/AdministrarMinisterio',
@@ -64,8 +66,12 @@ const routes = [
     path: '/AdministrarMiembro',
     name:'AdministrarMiembro',
     component: () => import('../views/AdministrarMiembro.vue')
-  }
-
+  },
+  {
+    path: '/Login',
+    name: 'Login',
+    component: () => import('../views/Login.vue')
+  },
 ]
 
 const router = new VueRouter({
@@ -74,7 +80,22 @@ const router = new VueRouter({
   routes,
   scrollBehavior () {
     return { x: 0, y: 0 }
-  }
+  },
+  
 })
+router.beforeEach((to, from, next) => {
+  
+  let usuario = true
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (usuario) {
+      next();
+    }else{
+      next('/Login');
+    }
+  } else {
+    next()
+  }
+}
+)
 
 export default router
