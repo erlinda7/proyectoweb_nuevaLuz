@@ -4,6 +4,7 @@ import Inicio from '../views/Inicio.vue'
 
 Vue.use(VueRouter)
 
+
 const routes = [
   {
     path: '/',
@@ -54,7 +55,7 @@ const routes = [
     path: '/AdministrarEvento',
     name: 'AdministrarEvento',
     component: () => import('../views/AdministrarEvento.vue'),
-    meta:{requiresAuth: true}
+    meta: {requiresAuth: true}
   },
   {
     path: '/AdministrarMinisterio',
@@ -68,11 +69,9 @@ const routes = [
   },
   {
     path: '/Login',
-    name:'Login',
-    component: () => import('../views/Login')
+    name: 'Login',
+    component: () => import('../views/Login.vue')
   },
-
-
 ]
 
 
@@ -83,43 +82,22 @@ const router = new VueRouter({
   routes,
   scrollBehavior () {
     return { x: 0, y: 0 }
-  }
+  },
   
 })
-
-
-
 router.beforeEach((to, from, next) => {
-  console.log(to.matched.some(record => record.meta.requiresAuth));
-  let usuario = false
   
-  if(to.matched.some(record => record.meta.requiresAuth)){
-      if(usuario){
-        next()
-      }else{
-        next('/Login')
-      }
-  }else{
-    next();
+  let usuario = true
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (usuario) {
+      next();
+    }else{
+      next('/Login');
+    }
+  } else {
+    next()
   }
-  
-})
-
-// router.beforeEach((to, from, next) => {
-//   console.log(to.matched.some(record => record.meta.requiresAuth));
-//   //let usuario = false
-//   console.log(router.app.$auth.isAuthenticated(), 'consumienooooooooooo');
-  
-//   if(to.matched.some(record => record.meta.requiresAuth)){
-//       if(router.app.$auth.isAuthenticated()){
-//         next()
-//       }else{
-//         next('/Login')
-//       }
-//   }else{
-//     next();
-//   }
-  
-// })
+}
+)
 
 export default router

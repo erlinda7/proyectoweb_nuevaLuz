@@ -1,9 +1,15 @@
 <template>
   <div>
-    <br><br>
-    <h1>Gestionar Miembros</h1>
-    <br><br>
+    <br>
     <div id="miembros">
+      <div class="row">
+        <div class="col-sm">
+          <router-link to="/AdministrarEvento"><button class="btn btn-primary">Ir al formulario de Evento</button></router-link>
+        </div>
+        <div class="col-sm">
+          <router-link to="/AdministrarMinisterio"><button class="btn btn-primary">Ir al formulario de Ministerio</button></router-link>
+        </div>
+      </div>
       <div class="container">
         <!-- para registrar nuevo miembro v-show -->
         <div id="registrar" class="row justify-content-center" v-if="show">

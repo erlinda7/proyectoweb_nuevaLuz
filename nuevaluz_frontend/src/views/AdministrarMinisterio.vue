@@ -1,8 +1,14 @@
 <template>
   <div class="container">
       <br>
-      <h1>Gestionar Ministerio</h1>
-      <br>
+      <div class="row">
+        <div class="col-sm">
+          <router-link to="/AdministrarMiembro"><button class="btn btn-primary">Ir al formulario de Miembro</button></router-link>
+        </div>
+        <div class="col-sm">
+          <router-link to="/AdministrarEvento"><button class="btn btn-primary">Ir al formulario de Evento</button></router-link>
+        </div>
+      </div>
       <br>
       <!--Formulario de Creacion de Nuevo Ministerio-->
       <div class="row justify-content-center">
@@ -203,6 +209,7 @@
 <script>
 import axios from 'axios'
 import {mapState} from 'vuex'
+
 
 export default {
     data() {
