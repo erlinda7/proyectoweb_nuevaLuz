@@ -33,6 +33,7 @@ exports.autenticar = (req, res) => {
           expiresIn: 1440
         });
         res.json({
+          id_usuario: data.id_usuario,
           mensaje: 'true',
           token: token
         });
