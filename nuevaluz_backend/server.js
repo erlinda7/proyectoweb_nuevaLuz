@@ -41,6 +41,7 @@ require("./app/routes/ministerioReunion.routes.js")(app);
 require("./app/routes/liderazgo.routes.js")(app);
 
 require("./app/routes/autenticar.routes.js")(app);
+require("./app/routes/estado.routes.js")(app);
 
 
 require("./app/routes/listaMiembros.routes.js")(app); // "todos los datos" de los miembros
