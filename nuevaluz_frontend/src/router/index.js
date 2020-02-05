@@ -87,9 +87,9 @@ const router = new VueRouter({
 })
 router.beforeEach((to, from, next) => {
   
-  let usuario = true
+  //let usuario = true
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (usuario) {
+    if (router.app.$auth.isAuthenticated()) {
       next();
     }else{
       next('/Login');

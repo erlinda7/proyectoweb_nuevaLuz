@@ -79,6 +79,7 @@ export default {
         this.form.contrasenia = ''
       }
     },
+    
     onSubmit(evt) {
       evt.preventDefault();
       this.autentificacion();
