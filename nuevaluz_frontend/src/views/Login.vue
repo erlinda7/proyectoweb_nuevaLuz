@@ -32,14 +32,18 @@ export default {
         usuario: "",
         contrasenia: ""
       },
-      show: true
+      show: true,
+      estadouser:false
     };
   },
   methods: {
     onSubmit(evt) {
       evt.preventDefault();
       alert(JSON.stringify(this.form));
-      //boton iniciar sesion
+      this.login();
+    },
+    login(){
+        //router.logear(this.estadouser)
     },
     onReset(evt) {
       evt.preventDefault();
@@ -54,6 +58,7 @@ export default {
     }
   }
 };
+
 </script>
 <style>
 .loginadmin {

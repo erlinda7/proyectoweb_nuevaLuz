@@ -53,7 +53,8 @@ const routes = [
   {
     path: '/AdministrarEvento',
     name: 'AdministrarEvento',
-    component: () => import('../views/AdministrarEvento.vue')
+    component: () => import('../views/AdministrarEvento.vue'),
+    meta:{requiresAuth: true}
   },
   {
     path: '/AdministrarMinisterio',
@@ -64,9 +65,17 @@ const routes = [
     path: '/AdministrarMiembro',
     name:'AdministrarMiembro',
     component: () => import('../views/AdministrarMiembro.vue')
-  }
+  },
+  {
+    path: '/Login',
+    name:'Login',
+    component: () => import('../views/Login')
+  },
+
 
 ]
+
+
 
 const router = new VueRouter({
 //  mode: 'history',
@@ -75,6 +84,36 @@ const router = new VueRouter({
   scrollBehavior () {
     return { x: 0, y: 0 }
   }
+  
 })
+
+
+
+router.beforeEach((to, from, next) => {
+  console.log(to.matched.some(record => record.meta.requiresAuth));
+  //let usuario = false
+  console.log(router.app.$auth.isAuthenticated(), 'consumienooooooooooo');
+  
+  if(to.matched.some(record => record.meta.requiresAuth)){
+      if(router.app.$auth.isAuthenticated()){
+        next()
+      }else{
+        next('/Login')
+      }
+  }else{
+    next();
+  }
+  
+})
+
+// router.beforeEach((to, from, next) => {
+//   if(to.name == 'callback') { // checamos si la ruta "to" es igual a "callback" y permitimos el acceso
+//     next()
+//   } else if (router.app.$auth.isAuthenticated()) { // si ya se encuetra autenticado permitimos el acceso
+//     next()
+//   } else { // desencadenamos el login de auth0
+//     router.app.$auth.login()
+//   }
+// })
 
 export default router
