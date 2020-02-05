@@ -1,8 +1,14 @@
 <template>
   <div class="container">
       <br>
-      <h1>Gestionar Evento</h1>
-      <br>
+      <div class="row">
+        <div class="col-sm">
+          <router-link to="/AdministrarMiembro"><button class="btn btn-primary">Ir al formulario de Miembro</button></router-link>
+        </div>
+        <div class="col-sm">
+          <router-link to="/AdministrarMinisterio"><button class="btn btn-primary">Ir al formulario de Ministerio</button></router-link>
+        </div>
+      </div>
       <br>
     <!--FORMULARIO PARA CREAR EVENTO-->
     <div class="row justify-content-center">
