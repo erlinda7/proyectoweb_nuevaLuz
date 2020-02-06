@@ -20,7 +20,7 @@ exports.autenticar = (req, res) => {
   autenticarModel.getUsuario(req.body.nombre_user, (err, data) => {
     if (err) {
       res.status(404).json({
-        mensaje: req.body.nombre_user
+        mensaje: 'false'
       });
 
     } else {
@@ -33,6 +33,7 @@ exports.autenticar = (req, res) => {
           expiresIn: 1440
         });
         res.json({
+          id_usuario: data.id_usuario,
           mensaje: 'true',
           token: token
         });

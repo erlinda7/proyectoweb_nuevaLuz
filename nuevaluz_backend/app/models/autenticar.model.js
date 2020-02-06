@@ -2,6 +2,7 @@ const sql = require("./db.js");
 
 // constructor
 const Usuario = function (usuario) {
+  this.id_usuario = usuario.id_usuario;
   this.nombre_user = usuario.nombre_user;
   this.contrasenia = usuario.contrasenia;
 };
