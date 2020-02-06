@@ -55,17 +55,19 @@ const routes = [
     path: '/AdministrarEvento',
     name: 'AdministrarEvento',
     component: () => import('../views/AdministrarEvento.vue'),
-    meta: {requiresAuth: true}
+    meta: { requiresAuth: true }
   },
   {
     path: '/AdministrarMinisterio',
     name: 'AdministrarMinisterio',
-    component: () => import('../views/AdministrarMinisterio.vue')
+    component: () => import('../views/AdministrarMinisterio.vue'),
+    meta: { requiresAuth: true }
   },
   {
     path: '/AdministrarMiembro',
-    name:'AdministrarMiembro',
-    component: () => import('../views/AdministrarMiembro.vue')
+    name: 'AdministrarMiembro',
+    component: () => import('../views/AdministrarMiembro.vue'),
+    meta: { requiresAuth: true }
   },
   {
     path: '/Login',
@@ -77,27 +79,49 @@ const routes = [
 
 
 const router = new VueRouter({
-//  mode: 'history',
+  //  mode: 'history',
   base: process.env.BASE_URL,
   routes,
-  scrollBehavior () {
+  scrollBehavior() {
     return { x: 0, y: 0 }
   },
-  
+
 })
+
+// router.beforeEach((to, from, next) => {
+
+//   let usuario = router.app.$auth.isAuthenticated()
+//   let autorizacion = to.matched.some(record => record.meta.requiresAuth)
+//   if (autorizacion && !usuario) {
+//     next('/Login');
+//   } else {
+//     next();
+//   }
+// }
+// )
+
+
 router.beforeEach((to, from, next) => {
-  
-  //let usuario = true
-  if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (router.app.$auth.isAuthenticated()) {
-      next();
-    }else{
-      next('/Login');
+  let usuario = router.app.$auth.isAuthenticated() //true si existe usuario
+  console.log(usuario, 'user en beforeEach router');
+  if (to.matched.some(record => record.meta.requiresAuth)) {  //true entra a la ruta
+    console.log(to.matched.some(record => record.meta.requiresAuth), 'meta');
+    if (usuario) { //true
+      next()  //deja
+    } else {
+      next({
+        path: '/Login',
+        query: { redirect: to.fullPath },
+      })
+      console.log('logeesse', usuario);
     }
-  } else {
+  } else { //meta=false
     next()
+    console.log('meta',to.matched.some(record => record.meta.requiresAuth));
+    
   }
-}
-)
+})
+
+
 
 export default router
