@@ -1,11 +1,10 @@
 <template>
-  <div class="contanier">
+  <div class="container">
     <h1 class="titulo">
       OFICIALIA DE LA IGLESIA
       <span>"NUEVA LUZ"</span>
     </h1>
     <div class="directorio">
-      <div class="container">
         <div class="row caja">
           <div class="col-sm">
             <div class="card border-dark mb-3 fondocaja" style="max-width: 30rem; height:400px">
@@ -70,7 +69,6 @@
             </div>
           </div>
         </div>
-      </div>
     </div>
   </div>
 </template>
