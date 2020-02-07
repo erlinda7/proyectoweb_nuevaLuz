@@ -2,11 +2,9 @@
   <div class="container">
       <br>
       <div class="row">
-        <div class="col-sm">
-          <router-link to="/AdministrarMiembro"><button class="btn btn-primary">Ir al formulario de Miembro</button></router-link>
-        </div>
-        <div class="col-sm">
-          <router-link to="/AdministrarMinisterio"><button class="btn btn-primary">Ir al formulario de Ministerio</button></router-link>
+        <div  class="col-sm">
+          <button style="float: right" class="btn btn-danger">Cerrar Sesion</button>
+          <router-link to="/Administrar"><button style="float: right" class="btn btn-primary">Atras</button></router-link>
         </div>
       </div>
       <br>

@@ -1,21 +1,18 @@
 <template>
   <div>
     <br>
-    <div id="miembros">
-      <div class="row">
-        <div class="col-sm">
-          <router-link to="/AdministrarEvento"><button class="btn btn-primary">Ir al formulario de Evento</button></router-link>
-        </div>
-        <div class="col-sm">
-          <router-link to="/AdministrarMinisterio"><button class="btn btn-primary">Ir al formulario de Ministerio</button></router-link>
+    <div class="row">
+        <div  class="col-sm">
+          <button style="float: right" class="btn btn-danger">Cerrar Sesion</button>
+          <router-link to="/Administrar"><button style="float: right" class="btn btn-primary">Atras</button></router-link>
         </div>
       </div>
+    <br>
+    <div id="miembros">
       <div class="container">
         <!-- para registrar nuevo miembro v-show -->
         <div id="registrar" class="row justify-content-center" v-if="show">
           <div class="col-sm-6">
-            <br />
-            <br />
             <h1>Registrar Miembro</h1>
             <b-form @submit="onSubmit">
               <br />

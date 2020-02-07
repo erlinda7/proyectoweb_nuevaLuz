@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <br />
-    <div v-if="show">
+    <div>
       <!----->
       <h4>
         <b>Login</b>
@@ -27,32 +27,19 @@
             required
           ></b-input>
           <br />
-          <b-button type="submit" variant="primary" class="boton">Iniciar Sesión</b-button>
-          <b-button type="reset" variant="danger" class="boton">Limpiar</b-button>
+          <div v-if="ir">
+            <b-button type="submit" variant="primary" class="boton">Iniciar Sesión</b-button>
+            <b-button type="reset" variant="danger" class="boton">Limpiar</b-button>
+          </div>
+          <div  v-if="!ir">
+            <h5>Autentificacion Correcta</h5>
+            <router-link to= "/Administrar" ><button class="btn btn-primary">Ir a Gestionar</button></router-link>
+          </div>
         </b-form>
       </div>
     </div>
-    <div v-if="!show">
+    <div>
       <!---->
-      <h4>Seleccione una Opcion</h4>
-      <br />
-      <div class="row">
-        <div class="col-sm">
-          <router-link to="/AdministrarMiembro">
-            <button class="btn btn-primary">Ir al formulario Miembro</button>
-          </router-link>
-        </div>
-        <div class="col-sm">
-          <router-link to="/AdministrarMinisterio">
-            <button class="btn btn-primary">Ir al formulario de Ministerio</button>
-          </router-link>
-        </div>
-        <div class="col-sm">
-          <router-link to="/AdministrarEvento">
-            <button class="btn btn-primary">Ir al formulario de Evento</button>
-          </router-link>
-        </div>
-      </div>
     </div>
     <br />
     <br />
@@ -72,7 +59,8 @@ export default {
         contrasenia: ""
       },
       show: true,
-      estadouser: false
+      estadouser: false,
+      ir: true
     };
   },
   computed: {
@@ -89,7 +77,7 @@ export default {
         console.log(res.data.mensaje, '  res_data_mensaje');
         
         if (res.data.mensaje) {
-          this.show = false;
+          this.ir = false;
         }
       } catch (error) {
         console.log(error);
