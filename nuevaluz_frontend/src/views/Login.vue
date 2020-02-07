@@ -6,7 +6,7 @@
       <h4>
         <b>Login</b>
       </h4>
-      <div class="loginadmin">
+      <div class="loginadmin" v-if="ir">
         <b-form @submit.stop.prevent @submit="onSubmit" @reset="onReset" v-if="show">
           <b-form-group id="input-group-2" label="Usuario:" label-for="input-2">
             <b-form-input
@@ -27,16 +27,18 @@
             required
           ></b-input>
           <br />
-          <div v-if="ir">
+          <div >
             <b-button type="submit" variant="primary" class="boton">Iniciar Sesión</b-button>
             <b-button type="reset" variant="danger" class="boton">Limpiar</b-button>
           </div>
-          <div  v-if="!ir">
+          
+        </b-form>
+        
+      </div>
+      <div  v-if="!ir">
             <h5>Autentificacion Correcta</h5>
             <router-link to= "/Administrar" ><button class="btn btn-primary">Ir a Gestionar</button></router-link>
           </div>
-        </b-form>
-      </div>
     </div>
     <div>
       <!---->
@@ -74,6 +76,7 @@ export default {
           contrasenia: this.form.contrasenia
         });
         router.app.$auth.token(res.data.mensaje); //true
+        router.app.$auth.guardarIdUsuario(res.data.id_usuario);
         console.log(res.data.mensaje, '  res_data_mensaje');
         
         if (res.data.mensaje) {

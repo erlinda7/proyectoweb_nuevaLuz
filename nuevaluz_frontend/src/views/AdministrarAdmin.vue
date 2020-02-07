@@ -1,11 +1,19 @@
 <template>
   <div class="container">
-      <div class="adminUser">
+      <br>
+      <div class="row">
+        <div  class="col-sm">
+          <router-link to="/Login"><button style="float: right" class="btn btn-danger" v-on:click="cerrarSesion()">Cerrar Sesion</button></router-link>
+          <router-link to="/Administrar"><button style="float: right" class="btn btn-primary">Atras</button></router-link>
+        </div>
+      </div>
+      <br>
+      <div class="adminUser" v-if="irGestionar">
         <b-form @submit.stop.prevent @submit="onSubmit" @reset="onReset">
           <b-form-group id="input-group-2" label="Usuario:" label-for="input-2">
             <b-form-input
               id="input-2"
-              v-model="form.usuario"
+              v-model="form.nombre_user"
               required
               placeholder="Ingrese Usuario"
             ></b-form-input>
@@ -39,6 +47,10 @@
           
         </b-form>
       </div>
+      <div  v-if="!irGestionar">
+            <h5>Usuario Creado Exitosamente</h5>
+            <router-link to= "/Login" ><button class="btn btn-primary">Ir a Login</button></router-link>
+          </div>
       <div>
           <h1>Lista de Usuarios</h1>
           <br>
@@ -57,7 +69,7 @@
         <tbody>
           <tr v-for="(usuario,index) of usuarios" :key="index">
             <th scope="row">{{usuario.nombre_user}}</th>
-            <td><button class="btn btn-danger" v-on:click="eliminarMinisterio(usuario.id_usuario)" >Eliminar</button></td>
+            <td><button class="btn btn-danger" v-on:click="eliminarUsuario(usuario.id_usuario)" >Eliminar</button></td>
           </tr>
         </tbody>
       </table>
@@ -68,15 +80,17 @@
 <script>
 import axios from 'axios'
 import {mapState} from 'vuex'
+import router from "../router/index";
 export default {
     data(){
         return{
             form:{
-                usuario:'',
+                nombre_user:'',
                 contrasenia:'',
                 contraseniaC:''
             },
-            usuarios:[]
+            usuarios:[],
+            irGestionar: true
         }
     },
     computed: {
@@ -85,15 +99,49 @@ export default {
     methods: {
     async obtenerUsuarios() {
       try {
-        const respuesta = await axios.get(this.url + "/usuario/1");// mandar Id
+        const respuesta = await axios.get(this.url + "/usuario/"+router.app.$auth.obtenerIdUsuario());// mandar Id
         this.usuarios = respuesta.data;
       } catch (error) {
         console.log("error al conectar al api : ", error);
       }
     },
+    async enviarUsuario() {
+      try {
+        const resf = await axios.post(this.url + "/usuario", {
+          nombre_user: this.form.nombre_user,
+          contrasenia: this.form.contrasenia
+        });
+        console.log(resf.data);
+        alert('Usuario Creado Exitosamente')
+        this.irGestionar = false
+      } catch (e) {
+        console.error(e);
+      }
+    },
+    async eliminarUsuario(id) {
+      try {
+        await axios.delete(this.url + "/usuario/" + id);
+        alert('<button class="btn btn-primary" @click="obtenerUsuarios()">Ver usuarios</button>')
+        this.obtenerUsuarios();
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    cerrarSesion(){
+      //console.log('cerrarSesion');
+      router.app.$auth.token(false)
+    },
     onSubmit(evt) {
       evt.preventDefault();
-      this.autentificacion();
+      if (this.form.contrasenia === this.form.contraseniaC) {
+          console.log('creado');
+          
+          this.enviarUsuario()
+      } else {
+          alert('Las contraseñas no coinciden')
+          this.form.contrasenia = ''
+          this.form.contraseniaC = ''
+      }
       //boton iniciar sesion
     },
     onReset(evt) {

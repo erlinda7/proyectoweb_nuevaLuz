@@ -3,7 +3,7 @@
     <br>
     <div class="row">
         <div  class="col-sm">
-          <button style="float: right" class="btn btn-danger">Cerrar Sesion</button>
+          <router-link to="/Login"><button style="float: right" class="btn btn-danger" v-on:click="cerrarSesion()">Cerrar Sesion</button></router-link>
           <router-link to="/Administrar"><button style="float: right" class="btn btn-primary">Atras</button></router-link>
         </div>
       </div>
@@ -603,6 +603,9 @@
 <script>
 import axios from "axios";
 import { mapState } from "vuex";
+import router from "../router/index";
+
+
 export default {
   data() {
     return {
@@ -656,7 +659,8 @@ export default {
     };
   },
   computed: {
-    ...mapState(["url"])
+    ...mapState(["url"]),
+    
   },
   created() {
     this.obtenerMiembros();
@@ -772,11 +776,14 @@ export default {
         }
       }
     },
-
+    cerrarSesion(){
+      //console.log('cerrarSesion');
+      router.app.$auth.token(false)
+    },
     //para registrar miembro post
     onSubmit(evt) {
       evt.preventDefault();
-      alert(JSON.stringify(this.form));
+      alert('Miembro Creado Exitosamente')
       this.enviarFormulario();
     },
     //actualizar miembro---------------------------------------------
@@ -896,7 +903,7 @@ export default {
     },
     onUpdate(evt) {
       evt.preventDefault();
-      alert(JSON.stringify(this.miembro));
+      alert('Miembro Actualizado Exitosamente')
       this.actualizarFormulario();
     },
     async eliminarMiembro(id) {

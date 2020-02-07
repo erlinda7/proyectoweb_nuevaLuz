@@ -3,7 +3,8 @@ import Vue from 'vue'
 let auth = new Vue({
     data(){
         return{
-            estado:false   //existe o no existe
+            estado:false ,  //existe o no existe
+            id_usuario: 2
         }
     },
     methods: {
@@ -12,7 +13,14 @@ let auth = new Vue({
         },
         token(mensaje){
             this.estado= mensaje
-           //console.log(this.estado, "-----mensaje desde login");
+           console.log(this.estado, "-----mensaje desde login");
+           
+        },
+        guardarIdUsuario(id_usuario){
+            this.id_usuario = id_usuario
+        },
+        obtenerIdUsuario(){
+            return this.id_usuario
         }
     }
 

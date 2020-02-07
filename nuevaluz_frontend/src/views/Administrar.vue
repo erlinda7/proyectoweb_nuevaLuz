@@ -2,6 +2,14 @@
 <div class="container">
     <h4>Gestionar</h4>
     <br>
+    <div class="row">
+        <div  class="col-sm">
+          <router-link to="/Login"><button style="float: right" class="btn btn-danger" v-on:click="cerrarSesion()">Cerrar Sesion</button></router-link>
+          <router-link to="/Administrar"><button style="float: right" class="btn btn-primary">Atras</button></router-link>
+        </div>
+      </div>
+    <br>
+    <br>
     <br>
   <div class="row">
       <div class="col-sm">
@@ -47,8 +55,14 @@
 </template>
 
 <script>
+import router from '../router/index'
 export default {
-
+    methods:{
+     cerrarSesion(){
+      //console.log('cerrarSesion');
+      router.app.$auth.token(false)
+     },
+    }
 }
 </script>
 

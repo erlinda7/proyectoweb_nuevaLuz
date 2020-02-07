@@ -3,7 +3,7 @@
       <br>
       <div class="row">
         <div  class="col-sm">
-          <button style="float: right" class="btn btn-danger">Cerrar Sesion</button>
+          <router-link to="/Login"><button style="float: right" class="btn btn-danger" v-on:click="cerrarSesion()">Cerrar Sesion</button></router-link>
           <router-link to="/Administrar"><button style="float: right" class="btn btn-primary">Atras</button></router-link>
         </div>
       </div>
@@ -123,6 +123,8 @@
 <script>
 import axios from 'axios'
 import {mapState} from 'vuex'
+import router from "../router/index";
+
 export default {
     data() {
       return {
@@ -225,12 +227,12 @@ export default {
       },
       onSubmit(evt) {
         evt.preventDefault()
-        alert(JSON.stringify(this.form))
+        alert('Evento Creado Exitosamente')
         this.enviarFormulario();
       },
       onUpdate(evt) {
         evt.preventDefault()
-        alert(JSON.stringify(this.evento))
+        alert('Evento Actualizado Exitosamente')
         this.actualizarFormulario()
       },
       cargarDatos(event) {
@@ -244,7 +246,11 @@ export default {
         this.evento.fecha = fecha2.getFullYear()+'-'+(fecha2.getMonth()+1)+'-'+fecha2.getDate()
         this.evento.imagen = event.imagen
         console.log(this.evento.id);
-      }
+      },
+      cerrarSesion(){
+      //console.log('cerrarSesion');
+      router.app.$auth.token(false)
+      },
     },
     created() {
         this.obtenerevento();
