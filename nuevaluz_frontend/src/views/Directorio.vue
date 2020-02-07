@@ -1,14 +1,13 @@
 <template>
-  <div class="contanier">
+  <div class="container">
     <h1 class="titulo">
       OFICIALIA DE LA IGLESIA
       <span>"NUEVA LUZ"</span>
     </h1>
     <div class="directorio">
-      <div class="container">
         <div class="row caja">
           <div class="col-sm">
-            <div class="card border-dark mb-3 fondocaja" style="max-width: 30rem; height:350px">
+            <div class="card border-dark mb-3 fondocaja" style="max-width: 30rem; height:400px">
               <div class="subtitulo">PASTORES</div>
               <div v-for="(pastor, index) in pastores" :key="index">
                 <p class="card-text texto">{{pastor.nombre}} {{pastor.apellido_paterno}}</p>
@@ -16,7 +15,7 @@
             </div>
           </div>
           <div class="col-sm">
-            <div class="card border-dark mb-3 fondocaja" style="max-width: 30rem; height:350px">
+            <div class="card border-dark mb-3 fondocaja" style="max-width: 30rem; height:400px">
               <div class="subtitulo">ANCIANOS</div>
               <div v-for="(pastor, index) in ancianos" :key="index">
                 <p class="card-text texto">{{pastor.nombre}} {{pastor.apellido_paterno}}</p>
@@ -26,7 +25,7 @@
         </div>
         <div class="row caja">
           <div class="col-sm">
-            <div class="card border-dark mb-3 fondocaja" style="max-width: 30rem; height:350px">
+            <div class="card border-dark mb-3 fondocaja" style="max-width: 30rem; height:400px">
               <div class="subtitulo">DIACONOS</div>
               <div v-for="(pastor, index) in diaconos" :key="index">
                 <p class="card-text texto">{{pastor.nombre}} {{pastor.apellido_paterno}}</p>
@@ -34,7 +33,7 @@
             </div>
           </div>
           <div class="col-sm">
-            <div class="card border-dark mb-3 fondocaja" style="max-width: 30rem; height:350px">
+            <div class="card border-dark mb-3 fondocaja" style="max-width: 30rem; height:400px">
               <div class="subtitulo">DIACONIZAS</div>
               <div v-for="(pastor, index) in diaconizas" :key="index">
                 <p class="card-text texto">{{pastor.nombre}} {{pastor.apellido_paterno}}</p>
@@ -44,7 +43,7 @@
         </div>
         <div class="row caja">
           <div class="col-sm">
-            <div class="card border-dark mb-3 fondocaja" style="max-width: 30rem;height:350px">
+            <div class="card border-dark mb-3 fondocaja" style="max-width: 30rem;height:400px">
               <div class="subtitulo">TESOREROS</div>
               <div v-for="(pastor, index) in tesoreros" :key="index">
                 <p class="card-text texto">{{pastor.nombre}} {{pastor.apellido_paterno}}</p>
@@ -52,7 +51,7 @@
             </div>
           </div>
           <div class="col-sm">
-            <div class="card border-dark mb-3 fondocaja" style="max-width: 30rem; height:350px">
+            <div class="card border-dark mb-3 fondocaja" style="max-width: 30rem; height:400px">
               <div class="subtitulo">SECRETARIO</div>
               <div v-for="(pastor, index) in secretarios" :key="index">
                 <p class="card-text texto">{{pastor.nombre}} {{pastor.apellido_paterno}}</p>
@@ -62,7 +61,7 @@
         </div>
         <div class="row caja">
           <div class="col-sm">
-            <div class="card border-dark mb-3 fondocaja" style="max-width: 30rem; height:350px">
+            <div class="card border-dark mb-3 fondocaja" style="max-width: 30rem; height:400px">
               <div class="subtitulo">SUPERINTENDENTES</div>
               <div v-for="(pastor, index) in superintendentes" :key="index">
                 <p class="card-text texto">{{pastor.nombre}} {{pastor.apellido_paterno}}</p>
@@ -70,13 +69,13 @@
             </div>
           </div>
         </div>
-      </div>
     </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import {mapState} from "vuex"
 export default {
   data: () => ({
     directorios: [],
@@ -88,13 +87,16 @@ export default {
     secretarios: [],
     superintendentes: []
   }),
+  computed: {
+    ...mapState(['url'])
+  },
   created() {
     this.obtenerdirectorio();
   },
   methods: {
     async obtenerdirectorio() {
       try {
-        const respuesta = await axios.get("http://localhost:3000/directorio");
+        const respuesta = await axios.get(this.url+"/directorio");
         this.directorios = respuesta.data;
       } catch (error) {
         console.log("error al conectar al api: ", error);
@@ -110,37 +112,37 @@ export default {
 
     filtrarPastor() {
       this.pastores = this.directorios.filter(
-        directorio => directorio.nombre_cargo === "pastor"
+        directorio => directorio.nombre_cargo === "Pastor"
       );
     },
     filtrarAnciano() {
       this.ancianos = this.directorios.filter(
-        directorio => directorio.nombre_cargo === "anciano"
+        directorio => directorio.nombre_cargo === "Anciano"
       );
     },
     filtrarDiacono() {
       this.diaconos = this.directorios.filter(
-        directorio => directorio.nombre_cargo === "diacono"
+        directorio => directorio.nombre_cargo === "Diacono"
       );
     },
     filtrarDiaconiza() {
       this.diaconizas = this.directorios.filter(
-        directorio => directorio.nombre_cargo === "diaconiza"
+        directorio => directorio.nombre_cargo === "Diaconiza"
       );
     },
     filtrarTesorero() {
       this.tesoreros = this.directorios.filter(
-        directorio => directorio.nombre_cargo === "tesorero"
+        directorio => directorio.nombre_cargo === "Tesorero"
       );
     },
     filtrarSecretario() {
       this.secretarios = this.directorios.filter(
-        directorio => directorio.nombre_cargo === "secretario"
+        directorio => directorio.nombre_cargo === "Secretario"
       );
     },
     filtrarsuperintendente() {
       this.superintendentes = this.directorios.filter(
-        directorio => directorio.nombre_cargo === "superintendente"
+        directorio => directorio.nombre_cargo === "Superintendente"
       );
     }
   }

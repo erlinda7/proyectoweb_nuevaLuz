@@ -4,19 +4,12 @@ import Inicio from '../views/Inicio.vue'
 
 Vue.use(VueRouter)
 
+
 const routes = [
   {
     path: '/',
     name: 'Inicio',
     component: Inicio
-  },
-  {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
     path: '/NuevaLuz_Historia',
@@ -39,49 +32,9 @@ const routes = [
     component: () => import('../views/Ministerios.vue')
   },
   {
-    path: '/Ministerio_Femenil',
-    name: 'Ministerio_Femenil',
-    component: () => import('../views/Ministerio_Femenil.vue')
-  },
-  {
-    path: '/Ministerio_Juvenil',
-    name: 'Ministerio_Juvenil',
-    component: () => import('../views/Ministerio_Juvenil.vue')
-  },
-  {
-    path: '/Ministerio_Prejuvenil',
-    name: 'Ministerio_Prejuvenil',
-    component: () => import('../views/Ministerio_Prejuvenil.vue')
-  },
-  {
-    path: '/Ministerio_Misioneros',
-    name: 'Ministerio_Misioneros',
-    component: () => import('../views/Ministerio_Misioneros.vue')
-  },
-  {
-    path: '/Ministerio_Evangelistas',
-    name: 'Ministerio_Evangelistas',
-    component: () => import('../views/Ministerio_Evangelistas.vue')
-  },
-  {
-    path: '/Ministerio_Tesoritos',
-    name: 'Ministerio_Tesoritos',
-    component: () => import('../views/Ministerio_Tesoritos.vue')
-  },
-  {
-    path: '/Ministerio_Joyitas',
-    name: 'Ministerio_Joyitas',
-    component: () => import('../views/Ministerio_Joyitas.vue')
-  },
-  {
-    path: '/Ministerio_HoritaFeliz',
-    name: 'Ministerio_HoritaFeliz',
-    component: () => import('../views/Ministerio_HoritaFeliz.vue')
-  },
-  {
-    path: '/Ministerio_Oanza',
-    name: 'Ministerio_Oanza',
-    component: () => import('../views/Ministerio_Oanza.vue')
+    path: '/Ministerio_Descripcion/:id',
+    name: 'Ministerio_Descripcion',
+    component: () => import('../views/Ministerio_Descripcion.vue')
   },
   {
     path: '/Directorio',
@@ -97,13 +50,90 @@ const routes = [
     path: '/Contacto',
     name: 'Contacto',
     component: () => import('../views/Contacto.vue')
-  }
+  },
+  {
+    path: '/AdministrarEvento',
+    name: 'AdministrarEvento',
+    component: () => import('../views/AdministrarEvento.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/AdministrarMinisterio',
+    name: 'AdministrarMinisterio',
+    component: () => import('../views/AdministrarMinisterio.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/AdministrarMiembro',
+    name: 'AdministrarMiembro',
+    component: () => import('../views/AdministrarMiembro.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/AdministrarAdmin',
+    name: 'AdministrarAdmin',
+    component: () => import('../views/AdministrarAdmin.vue'),
+    meta: { requiresAuth: true}
+  },
+  {
+    path: '/Administrar',
+    name: 'Administrar',
+    component: () => import('../views/Administrar.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/Login',
+    name: 'Login',
+    component: () => import('../views/Login.vue')
+  },
 ]
 
+
+
 const router = new VueRouter({
-//  mode: 'history',
+  //  mode: 'history',
   base: process.env.BASE_URL,
-  routes
+  routes,
+  scrollBehavior() {
+    return { x: 0, y: 0 }
+  },
+
 })
+
+// router.beforeEach((to, from, next) => {
+
+//   let usuario = router.app.$auth.isAuthenticated()
+//   let autorizacion = to.matched.some(record => record.meta.requiresAuth)
+//   if (autorizacion && !usuario) {
+//     next('/Login');
+//   } else {
+//     next();
+//   }
+// }
+// )
+
+
+router.beforeEach((to, from, next) => {
+  let usuario = router.app.$auth.isAuthenticated() //true si existe usuario
+  console.log(usuario, 'user en beforeEach router');
+  if (to.matched.some(record => record.meta.requiresAuth)) {  //true entra a la ruta
+    console.log(to.matched.some(record => record.meta.requiresAuth), 'meta');
+    if (usuario) { //true
+      next()  //deja
+    } else {
+      next({
+        path: '/Login',
+        query: { redirect: to.fullPath },
+      })
+      console.log('logeesse', usuario);
+    }
+  } else { //meta=false
+    next()
+    console.log('meta',to.matched.some(record => record.meta.requiresAuth));
+    
+  }
+})
+
+
 
 export default router

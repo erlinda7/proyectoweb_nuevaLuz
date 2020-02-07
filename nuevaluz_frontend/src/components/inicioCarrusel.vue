@@ -6,7 +6,7 @@
           <img id="bordeCir" src="@/assets/Carrusel_Inicio1.jpeg" class="d-block w-100" alt="..." height="500px"/>
         </div>
         <div class="carousel-item" data-interval="2000">
-          <img id="bordeCir" src="@/assets/Carrusel_Inicio2.jpeg" class="d-block w-100" alt="..." height="500px"/>
+          <img id="bordeCir" src="@/assets/Carrusel_Inicio2.png" class="d-block w-100" alt="..." height="500px"/>
         </div>
         <div class="carousel-item">
           <img id="bordeCir" src="@/assets/Carrusel_Inicio3.jpeg" class="d-block w-100" alt="..." height="500px"/>
@@ -30,6 +30,6 @@ export default {};
 
 <style>
 #bordeCir{
-  border-radius: 20px
+  border-radius: 5px
 }
 </style>

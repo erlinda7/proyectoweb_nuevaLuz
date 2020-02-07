@@ -9,7 +9,8 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import 'bootstrap'
 
-
+import auth from '@/auth'
+Vue.use(auth)
 
 Vue.use(VueAxios, axios)
 // Install BootstrapVue
@@ -24,3 +25,4 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount('#app')
+

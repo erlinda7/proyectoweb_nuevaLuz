@@ -1,11 +1,12 @@
 <template>
-  <div class="contanier">
+  <div class="container">
     <div class="evento">
       <h1 class="titulo1">PRÓXIMOS EVENTOS</h1>
       <div class="container">
         <div class="row caja" v-for="(evento,index) in eventos" :key="index">
           <div class="col-sm">
-            <img class="foto" :src="require('@/eventos/' + evento.imagen)" alt="imagen" width="100%" />
+            <img class="foto" :src="url+`${evento.imagen}`" alt="imagen" width="100%" />
+           
           </div>
           <div class="col-sm">
             <h2 class="titulo2">{{evento.titulo}}</h2>
@@ -19,31 +20,33 @@
         </div>
       </div>
     </div>
+   
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import {mapState} from "vuex";
 
 export default {
   data: () => ({
     eventos: []
   }),
+  computed: {
+    ...mapState(['url'])
+  },
   created() {
     this.obtenerevento();
   },
   methods: {
     async obtenerevento() {
       try {
-        const respuesta = await axios.get("http://localhost:3000/evento");
+        const respuesta = await axios.get(this.url+"/evento");
         this.eventos = respuesta.data;
       } catch (error) {
         console.log("error al conectar al api: ", error);
       }
     },
-    getImg() {
-      return "../eventos/culto.jpg";
-    }
   }
 };
 </script>
