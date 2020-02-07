@@ -51,6 +51,8 @@ require("./app/routes/miembroFotografia.routes")(app);  //fotografia del miembro
 require("./app/routes/listaCargoLider.routes")(app);  //lista de cargos 
 
 
+//
+require("./app/routes/usuario.routes")(app)
 
 //prueba ruta protegida
 require("./app/routes/pruebaRutaProtegida.routes.js")(app);
