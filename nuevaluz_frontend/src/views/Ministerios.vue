@@ -7,9 +7,9 @@
     <div class="row row-cols-1 row-cols-md-2">
       <div  v-for="(ministerio,index) in ministerios" :key="index">
         <div class="col mb-4">
-          <div class="card" style="max-width: 20rem; margin:auto; margin-bottom: 100px">
+          <div class="card" style="max-width: 30rem; margin:auto; margin-bottom: 100px">
             <router-link style="text-decoration: none" :to="{name:'Ministerio_Descripcion', params:{id:ministerio.id_ministerio}}">
-              <img :src="url+`${ministerio.imagen}`" class="card-img-top" alt="imagen" height="280px"/>
+              <img :src="url+`${ministerio.imagen}`" class="card-img-top" alt="imagen" height="350px"/>
               <div class="card-img-overlay">
                 <h5 id="diseñoSuperior" class="card-title">{{ministerio.nombre}}</h5> 
               </div>
@@ -85,7 +85,7 @@ export default {
 }
 #diseñoInferior1{
   background-color: rgb(0, 31, 58);
-  color:  wheat;
+  color:  white;
   font-family: 'Times New Roman', Times, serif;
   height: 140px;
 }
@@ -97,7 +97,7 @@ export default {
 #diseñoInferior1 #texto{
   font-size: 17px;
   text-align: center;
-  color: greenyellow
+  color: wheat
 }
 
 </style>

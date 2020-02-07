@@ -2,11 +2,9 @@
   <div class="container">
       <br>
       <div class="row">
-        <div class="col-sm">
-          <router-link to="/AdministrarMiembro"><button class="btn btn-primary">Ir al formulario de Miembro</button></router-link>
-        </div>
-        <div class="col-sm">
-          <router-link to="/AdministrarEvento"><button class="btn btn-primary">Ir al formulario de Evento</button></router-link>
+        <div  class="col-sm">
+          <router-link to="/Login"><button style="float: right" class="btn btn-danger" v-on:click="cerrarSesion()">Cerrar Sesion</button></router-link>
+          <router-link to="/Administrar"><button style="float: right" class="btn btn-primary">Atras</button></router-link>
         </div>
       </div>
       <br>
@@ -198,7 +196,16 @@
           <tr v-for="(ministerio,index) of ministerios" :key="index">
             <th scope="row">{{ministerio.nombre}}</th>
             <td><button class="btn btn-warning" v-on:click="cargarDatos(ministerio)"> Modificar</button></td>
-            <td><button class="btn btn-danger" v-on:click="eliminarMinisterio(ministerio.id_ministerio)" >Eliminar</button></td>
+            <td>
+              <b-button variant="danger" id="show-btn" @click="showModal(index)">Eliminar</b-button>
+                <b-modal :ref="'modal_'+index" hide-footer title="Seguro de Eliminar el Ministerio:">
+                <div class="d-block text-center">
+                 <h3>{{ministerio.nombre}}</h3>
+                </div>
+                <b-button class="mt-3" variant="danger" block @click="eliminarMinisterio(ministerio.id_ministerio)">Eliminar</b-button>
+                <b-button class="mt-3" variant="primary" block @click="hideModal(index)" >Cancelar</b-button>
+               </b-modal>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -209,7 +216,7 @@
 <script>
 import axios from 'axios'
 import {mapState} from 'vuex'
-
+import router from "../router/index";
 
 export default {
     data() {
@@ -255,6 +262,14 @@ export default {
         ...mapState(['url'])
     },
     methods: {
+      showModal(index) {
+        let modal_id = "modal_"+index
+        this.$refs[modal_id][0].show()
+      },
+      hideModal(index) {
+        let modal_id = "modal_"+index
+        this.$refs[modal_id][0].hide()
+      },
         async obtenerministerio() {
         try {
           const respuesta = await axios.get(this.url+"/listaMinisterios");
@@ -407,14 +422,18 @@ export default {
           console.log(error);
         }
       },
+      cerrarSesion(){
+      //console.log('cerrarSesion');
+      router.app.$auth.token(false)
+    },
       onSubmit(evt) {
         evt.preventDefault()
-        alert(JSON.stringify(this.form))
+        alert('Ministerio Creado Exitosamente')
         this.enviarFormulario();
       },
       onUpdate(evt){
         evt.preventDefault()
-        alert(JSON.stringify(this.ministerio))
+        alert('Ministerio Actualizado Exitosamente')
         this.actualizarFormulario()
         
       }

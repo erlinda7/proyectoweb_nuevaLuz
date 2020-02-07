@@ -1,21 +1,18 @@
 <template>
   <div>
     <br>
-    <div id="miembros">
-      <div class="row">
-        <div class="col-sm">
-          <router-link to="/AdministrarEvento"><button class="btn btn-primary">Ir al formulario de Evento</button></router-link>
-        </div>
-        <div class="col-sm">
-          <router-link to="/AdministrarMinisterio"><button class="btn btn-primary">Ir al formulario de Ministerio</button></router-link>
+    <div class="row">
+        <div  class="col-sm">
+          <router-link to="/Login"><button style="float: right" class="btn btn-danger" v-on:click="cerrarSesion()">Cerrar Sesion</button></router-link>
+          <router-link to="/Administrar"><button style="float: right" class="btn btn-primary">Atras</button></router-link>
         </div>
       </div>
+    <br>
+    <div id="miembros">
       <div class="container">
         <!-- para registrar nuevo miembro v-show -->
         <div id="registrar" class="row justify-content-center" v-if="show">
           <div class="col-sm-6">
-            <br />
-            <br />
             <h1>Registrar Miembro</h1>
             <b-form @submit="onSubmit">
               <br />
@@ -589,10 +586,18 @@
                   <button class="btn btn-warning" v-on:click="cargarDatos(miembro)">Modificar</button>
                 </td>
                 <td>
-                  <button
+                  <b-button variant="danger" id="show-btn" @click="showModal(index)">Eliminar</b-button>
+                  <b-modal :ref="'modal_'+index" hide-footer title="Seguro de Eliminar al Miembro">
+                  <div class="d-block text-center">
+                   <h3>{{miembro.nombre}} {{miembro.apellido_paterno}} {{miembro.apellido_materno}}</h3>
+                  </div>
+                  <b-button class="mt-3" variant="danger" block @click="eliminarMiembro(miembro.id_miembro)">Eliminar</b-button>
+                  <b-button class="mt-3" variant="primary" block @click="hideModal(index)" >Cancelar</b-button>
+                 </b-modal>
+                  <!-- <button
                     class="btn btn-danger"
                     v-on:click="eliminarMiembro(miembro.id_miembro)"
-                  >Eliminar</button>
+                  >Eliminar</button> -->
                 </td>
               </tr>
             </tbody>
@@ -606,6 +611,9 @@
 <script>
 import axios from "axios";
 import { mapState } from "vuex";
+import router from "../router/index";
+
+
 export default {
   data() {
     return {
@@ -659,13 +667,22 @@ export default {
     };
   },
   computed: {
-    ...mapState(["url"])
+    ...mapState(["url"]),
+    
   },
   created() {
     this.obtenerMiembros();
     this.obtenerCargos();
   },
   methods: {
+    showModal(index) {
+        let modal_id = "modal_"+index
+        this.$refs[modal_id][0].show()
+      },
+      hideModal(index) {
+        let modal_id = "modal_"+index
+        this.$refs[modal_id][0].hide()
+      },
     async obtenerMiembros() {
       try {
         const respuesta = await axios.get(this.url + "/listaMiembros");
@@ -775,11 +792,14 @@ export default {
         }
       }
     },
-
+    cerrarSesion(){
+      //console.log('cerrarSesion');
+      router.app.$auth.token(false)
+    },
     //para registrar miembro post
     onSubmit(evt) {
       evt.preventDefault();
-      alert(JSON.stringify(this.form));
+      alert('Miembro Creado Exitosamente')
       this.enviarFormulario();
     },
     //actualizar miembro---------------------------------------------
@@ -899,7 +919,7 @@ export default {
     },
     onUpdate(evt) {
       evt.preventDefault();
-      alert(JSON.stringify(this.miembro));
+      alert('Miembro Actualizado Exitosamente')
       this.actualizarFormulario();
     },
     async eliminarMiembro(id) {

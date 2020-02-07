@@ -2,11 +2,9 @@
   <div class="container">
       <br>
       <div class="row">
-        <div class="col-sm">
-          <router-link to="/AdministrarMiembro"><button class="btn btn-primary">Ir al formulario de Miembro</button></router-link>
-        </div>
-        <div class="col-sm">
-          <router-link to="/AdministrarMinisterio"><button class="btn btn-primary">Ir al formulario de Ministerio</button></router-link>
+        <div  class="col-sm">
+          <router-link to="/Login"><button style="float: right" class="btn btn-danger" v-on:click="cerrarSesion()">Cerrar Sesion</button></router-link>
+          <router-link to="/Administrar"><button style="float: right" class="btn btn-primary">Atras</button></router-link>
         </div>
       </div>
       <br>
@@ -114,7 +112,17 @@
           <tr v-for="(evento,index) of eventos" :key="index">
             <th scope="row">{{evento.titulo}}</th>
             <td><button class="btn btn-warning" v-on:click="cargarDatos(evento)" >Modificar</button></td>
-            <td><button class="btn btn-danger" v-on:click="eliminarEvento(evento.id_evento)" >Eliminar</button></td>
+            <td>
+              <b-button variant="danger" id="show-btn" @click="showModal(index)">Eliminar</b-button>
+                <b-modal :ref="'modal_'+index" hide-footer title="Seguro de Eliminar el Evento:">
+                <div class="d-block text-center">
+                 <h3>{{evento.titulo}}</h3>
+                </div>
+                <b-button class="mt-3" variant="danger" block @click="eliminarEvento(evento.id_evento)">Eliminar</b-button>
+                <b-button class="mt-3" variant="primary" block @click="hideModal(index)" >Cancelar</b-button>
+               </b-modal>
+            </td>
+            <!-- <td><button class="btn btn-danger" v-on:click="eliminarEvento(evento.id_evento)" >Eliminar</button></td> -->
           </tr>
         </tbody>
       </table>
@@ -125,6 +133,8 @@
 <script>
 import axios from 'axios'
 import {mapState} from 'vuex'
+import router from "../router/index";
+
 export default {
     data() {
       return {
@@ -154,6 +164,14 @@ export default {
       ...mapState(['url'])
     },
     methods: {
+      showModal(index) {
+        let modal_id = "modal_"+index
+        this.$refs[modal_id][0].show()
+      },
+      hideModal(index) {
+        let modal_id = "modal_"+index
+        this.$refs[modal_id][0].hide()
+      },
       async obtenerevento() {
         try {
           const respuesta = await axios.get(this.url+"/evento");
@@ -227,12 +245,12 @@ export default {
       },
       onSubmit(evt) {
         evt.preventDefault()
-        alert(JSON.stringify(this.form))
+        alert('Evento Creado Exitosamente')
         this.enviarFormulario();
       },
       onUpdate(evt) {
         evt.preventDefault()
-        alert(JSON.stringify(this.evento))
+        alert('Evento Actualizado Exitosamente')
         this.actualizarFormulario()
       },
       cargarDatos(event) {
@@ -246,7 +264,11 @@ export default {
         this.evento.fecha = fecha2.getFullYear()+'-'+(fecha2.getMonth()+1)+'-'+fecha2.getDate()
         this.evento.imagen = event.imagen
         console.log(this.evento.id);
-      }
+      },
+      cerrarSesion(){
+      //console.log('cerrarSesion');
+      router.app.$auth.token(false)
+      },
     },
     created() {
         this.obtenerevento();
