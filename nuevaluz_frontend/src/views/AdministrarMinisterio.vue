@@ -196,7 +196,16 @@
           <tr v-for="(ministerio,index) of ministerios" :key="index">
             <th scope="row">{{ministerio.nombre}}</th>
             <td><button class="btn btn-warning" v-on:click="cargarDatos(ministerio)"> Modificar</button></td>
-            <td><button class="btn btn-danger" v-on:click="eliminarMinisterio(ministerio.id_ministerio)" >Eliminar</button></td>
+            <td>
+              <b-button variant="danger" id="show-btn" @click="showModal(index)">Eliminar</b-button>
+                <b-modal :ref="'modal_'+index" hide-footer title="Seguro de Eliminar el Ministerio:">
+                <div class="d-block text-center">
+                 <h3>{{ministerio.nombre}}</h3>
+                </div>
+                <b-button class="mt-3" variant="danger" block @click="eliminarMinisterio(ministerio.id_ministerio)">Eliminar</b-button>
+                <b-button class="mt-3" variant="primary" block @click="hideModal(index)" >Cancelar</b-button>
+               </b-modal>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -253,6 +262,14 @@ export default {
         ...mapState(['url'])
     },
     methods: {
+      showModal(index) {
+        let modal_id = "modal_"+index
+        this.$refs[modal_id][0].show()
+      },
+      hideModal(index) {
+        let modal_id = "modal_"+index
+        this.$refs[modal_id][0].hide()
+      },
         async obtenerministerio() {
         try {
           const respuesta = await axios.get(this.url+"/listaMinisterios");

@@ -586,10 +586,18 @@
                   <button class="btn btn-warning" v-on:click="cargarDatos(miembro)">Modificar</button>
                 </td>
                 <td>
-                  <button
+                  <b-button variant="danger" id="show-btn" @click="showModal(index)">Eliminar</b-button>
+                  <b-modal :ref="'modal_'+index" hide-footer title="Seguro de Eliminar al Miembro">
+                  <div class="d-block text-center">
+                   <h3>{{miembro.nombre}} {{miembro.apellido_paterno}} {{miembro.apellido_materno}}</h3>
+                  </div>
+                  <b-button class="mt-3" variant="danger" block @click="eliminarMiembro(miembro.id_miembro)">Eliminar</b-button>
+                  <b-button class="mt-3" variant="primary" block @click="hideModal(index)" >Cancelar</b-button>
+                 </b-modal>
+                  <!-- <button
                     class="btn btn-danger"
                     v-on:click="eliminarMiembro(miembro.id_miembro)"
-                  >Eliminar</button>
+                  >Eliminar</button> -->
                 </td>
               </tr>
             </tbody>
@@ -667,6 +675,14 @@ export default {
     this.obtenerCargos();
   },
   methods: {
+    showModal(index) {
+        let modal_id = "modal_"+index
+        this.$refs[modal_id][0].show()
+      },
+      hideModal(index) {
+        let modal_id = "modal_"+index
+        this.$refs[modal_id][0].hide()
+      },
     async obtenerMiembros() {
       try {
         const respuesta = await axios.get(this.url + "/listaMiembros");

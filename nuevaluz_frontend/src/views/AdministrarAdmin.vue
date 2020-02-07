@@ -69,7 +69,16 @@
         <tbody>
           <tr v-for="(usuario,index) of usuarios" :key="index">
             <th scope="row">{{usuario.nombre_user}}</th>
-            <td><button class="btn btn-danger" v-on:click="eliminarUsuario(usuario.id_usuario)" >Eliminar</button></td>
+            <td>
+                <b-button variant="danger" id="show-btn" @click="showModal(index)">Eliminar</b-button>
+                <b-modal :ref="'modal_'+index" hide-footer title="Seguro de Eliminar el Usuario:">
+                <div class="d-block text-center">
+                 <h3>{{usuario.nombre_user}}</h3>
+                </div>
+                <b-button class="mt-3" variant="danger" block @click="eliminarUsuario(usuario.id_usuario)">Eliminar</b-button>
+                <b-button class="mt-3" variant="primary" block @click="hideModal(index)" >Cancelar</b-button>
+               </b-modal>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -81,6 +90,8 @@
 import axios from 'axios'
 import {mapState} from 'vuex'
 import router from "../router/index";
+//import Modal from "../components/Modal";
+
 export default {
     data(){
         return{
@@ -97,6 +108,15 @@ export default {
         ...mapState(['url'])
     },
     methods: {
+        showModal(index) {
+        let modal_id = "modal_"+index
+        this.$refs[modal_id][0].show()
+      },
+      hideModal(index) {
+        let modal_id = "modal_"+index
+        this.$refs[modal_id][0].hide()
+      },
+      //<------------------------------------------------>
     async obtenerUsuarios() {
       try {
         const respuesta = await axios.get(this.url + "/usuario/"+router.app.$auth.obtenerIdUsuario());// mandar Id
@@ -121,7 +141,6 @@ export default {
     async eliminarUsuario(id) {
       try {
         await axios.delete(this.url + "/usuario/" + id);
-        alert('<button class="btn btn-primary" @click="obtenerUsuarios()">Ver usuarios</button>')
         this.obtenerUsuarios();
       } catch (error) {
         console.log(error);
