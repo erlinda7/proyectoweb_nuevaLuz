@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static('app'))
 //routes para ejemplo si levante
 app.get("/", (req, res) => {
-    res.json({ message: "Binvenido a la aplicacion rest api nodejs mysql" });
+    res.json({ message: "Binvenido a la aplicacion rest api nodejs postgresSql" });
 });
 
 

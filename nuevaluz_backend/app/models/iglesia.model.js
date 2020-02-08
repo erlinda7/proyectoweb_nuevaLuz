@@ -16,8 +16,8 @@ Iglesia.getAll = resultado => {         //Iglesia es como una clase objeto a ese
       resultado(null, err); //devuelve hasta el controlador
       return;
     }
-    console.log("iglesia: ", res);
-    resultado(null, res);   //devuelve hasta el controlador
+    console.log("iglesia: ", res.rows);
+    resultado(null, res.rows);   //devuelve hasta el controlador
     
   })
 

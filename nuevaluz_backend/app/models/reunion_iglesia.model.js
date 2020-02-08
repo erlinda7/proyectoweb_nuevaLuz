@@ -10,14 +10,14 @@ const ReunionIglesia = function (reunioniglesia) {
 
 //recuperar reunion_iglesia de la base de datos
 ReunionIglesia.getAll = resultado => {        
-    sql.query("SELECT id_reunion_iglesia, titulo, dia, time_format(hora_inicio,'%H:%i') as hora_inicio, time_format(hora_fin,'%H:%i') as hora_fin FROM reunion_iglesia", (err, res) => {
+    sql.query("SELECT id_reunion_iglesia, titulo, dia, to_char(hora_inicio, 'HH24:MI')hora_inicio, to_char(hora_fin, 'HH24:MI') hora_fin FROM reunion_iglesia", (err, res) => {
       if (err) {
         console.log("Error al recuperar", err);
         resultado(null, err); 
         return;
       }
-      console.log("reunion_iglesia: ", res);
-      resultado(null, res);  
+      console.log("reunion_iglesia: ", res.rows);
+      resultado(null, res.rows);  
       
     })
   
