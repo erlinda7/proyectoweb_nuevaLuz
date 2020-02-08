@@ -87,7 +87,7 @@ CREATE TABLE evento (
 --
 
 INSERT INTO evento (id_evento, titulo, descripcion, lugar, fecha, imagen, id_iglesia) VALUES
-(1, 'CAMPAMENTO JUVENIL ', 'Campamento juvenil de la zonal Quillacollo con el Tema \"Dejando Huellas en el camino\".\r\nNo te lo pierdas 4 dias de bendición.', 'Ivirgarzama - Tropico de Cochabamba ', '2020-01-30', '/images/campamento.jpg', 1);
+(1, 'CAMPAMENTO JUVENIL ', 'Campamento juvenil de la zonal Quillacollo con el Tema "Dejando Huellas en el camino". No te lo pierdas 4 dias de bendición.', 'Ivirgarzama - Tropico de Cochabamba ', '2020-01-30', '/images/campamento.jpg', 1);
 
 -- --------------------------------------------------------
 

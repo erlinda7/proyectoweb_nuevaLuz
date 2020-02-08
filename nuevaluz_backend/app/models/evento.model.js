@@ -13,14 +13,14 @@ const Evento = function (evento) {
 
 
 Evento.getAll = resultado => {
-  sql.query("SELECT id_evento, titulo, descripcion, lugar, DATE_FORMAT(fecha, '%d-%m-%Y') fecha, imagen FROM evento", (err, res) => {
+  sql.query("SELECT id_evento, titulo, descripcion, lugar,  to_char(fecha,'DD-MM-YYYY') fecha, imagen FROM evento", (err, res) => {
     if (err) {
       console.log("Error al recuperar", err);
       resultado(null, err);
       return;
     }
-    console.log("evento:", res);
-    resultado(null, res);
+    console.log("evento:", res.rows);
+    resultado(null, res.rows);
 
   })
 
