@@ -10,21 +10,21 @@ const Directorio = function (directorio) {
 
 
 Directorio.getAll = resultado => {       
-    sql.query("SELECT nombre, apellido_paterno, nombre_cargo " +
-        "FROM miembro m, cargo_lider c, gestion_cargo g  " +
-        "WHERE  c.id_cargo_lider = m.id_cargo_lider AND m.id_miembro = g.id_miembro " +
-        "AND (c.nombre_cargo = 'pastor' OR c.nombre_cargo = 'anciano' OR c.nombre_cargo = 'diacono' "+ 
-        "OR c.nombre_cargo = 'diaconiza' OR c.nombre_cargo = 'tesorero' OR c.nombre_cargo = 'secretario' OR c.nombre_cargo = 'superintendente')"+
-        // gestion actual hasta menor igual fechaFin "2025"
-        "AND  YEAR(NOW()) <= year(g.fecha_fin)",
+    sql.query("SELECT m.nombre, m.apellido_paterno, c.nombre_cargo "+
+    "FROM miembro m, cargo_lider c, gestion_cargo g  "+
+    "WHERE  c.id_cargo_lider = m.id_cargo_lider AND m.id_miembro = g.id_miembro "+
+    "AND (c.nombre_cargo = 'Pastor' OR c.nombre_cargo = 'Anciano' OR c.nombre_cargo = 'Diacono'  "+
+    "OR c.nombre_cargo = 'Diaconiza' OR c.nombre_cargo = 'Tesorero' OR c.nombre_cargo = 'Secretario' OR c.nombre_cargo = 'Superintendente') "+
+    
+    "AND extract(year from now())<= extract(year from g.fecha_fin) ",
         (err, res) => {
             if (err) {
                 console.log("Error al recuperar", err);
                 resultado(null, err); 
                 return;
             }
-            console.log("directorio:", res);
-            resultado(null, res);   
+            console.log("directorio:", res.rows);
+            resultado(null, res.rows);   
 
         })
 
