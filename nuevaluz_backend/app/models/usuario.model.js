@@ -16,14 +16,14 @@ Usuario.findById = (usuarioId, result) => {
         return;
       }
   
-      if (res.length) {
-        console.log("found usuario: ", res);
-        result(null, res);
+      if (res.rows.length) {
+        console.log("found usuario: ", res.rows);
+        result(null, res.rows);
         return;
       }
   
       // not found Customer with the id
-      result(null, res);
+      result(null, res.rows);
     });
   };
 
