@@ -36,8 +36,8 @@ ListaMinisterio.getAll = resultado => {
         resultado(null, err);
         return;
       }
-      console.log("ministerios:", res);
-      resultado(null, res);
+      console.log("ministerios:", res.rows);
+      resultado(null, res.rows);
 
     })
 
