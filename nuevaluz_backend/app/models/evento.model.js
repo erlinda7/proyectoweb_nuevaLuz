@@ -29,15 +29,16 @@ Evento.getAll = resultado => {
 
 //guardando en la bd evento
 Evento.create = (nuevoEvento, result) => {
-  sql.query("INSERT INTO evento SET ?", nuevoEvento, (err, res) => {
+  sql.query("INSERT INTO evento (titulo, descripcion, lugar, fecha, imagen, id_iglesia ) VALUES ($1, $2, $3, $4, $5, $6) returning id_evento", 
+  [nuevoEvento.titulo, nuevoEvento.descripcion, nuevoEvento.lugar, nuevoEvento.fecha, nuevoEvento.imagen, nuevoEvento.id_iglesia], (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
       return;
     }
 
-    console.log("evento creado: ", { id: res.insertId, ...nuevoEvento });
-    result(null, { id: res.insertId, ...nuevoEvento });
+    console.log("evento creado: ", { id: res.rows[0].id_evento, ...nuevoEvento });
+    result(null, {  id: res.rows[0].id_evento, ...nuevoEvento });
   });
 };
 
