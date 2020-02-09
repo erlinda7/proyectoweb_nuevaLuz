@@ -5,11 +5,14 @@
         <div v-if="ministerio.id_ministerio==$route.params.id">
           MINISTERIO DE LA IGLESIA
           <span>"NUEVA LUZ"</span>
-          <br>
+          <br><br>
           {{ministerio.nombre}}
+          
         </div>
+        
       </div>
     </h1>
+    
     <div class="row">
       <div class="col-sm-5">
         

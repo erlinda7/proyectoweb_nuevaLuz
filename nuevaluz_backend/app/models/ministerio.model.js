@@ -35,18 +35,12 @@ Ministerio.create = (nuevoMinisterio, result) => {
 //guardando las modificaciones de ministerio en la base de datos
 Ministerio.updateById = (id, ministerio, result) => {
   sql.query(
-    "UPDATE ministerio SET nombre = ?, descripcion_corta = ?, descripcion = ?, lugar = ?, nombre_responsable = ?, email = ?, telefono = ?, foto = ?, imagen = ?, id_iglesia = ? WHERE id_ministerio = ?",
+    "UPDATE ministerio SET nombre = $1, descripcion_corta = $2, descripcion = $3, lugar = $4, nombre_responsable = $5, email = $6, telefono = $7, foto = $8, imagen = $9, id_iglesia = $10 WHERE id_ministerio = $11",
     [ministerio.nombre, ministerio.descripcion_corta, ministerio.descripcion, ministerio.lugar, ministerio.nombre_responsable, ministerio.email, ministerio.telefono, ministerio.foto, ministerio.imagen, ministerio.id_iglesia, id],
     (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(null, err);
-        return;
-      }
-
-      if (res.affectedRows == 0) {
-        // evento no encontrado por id
-        result({ kind: "no_encontrado" }, null);
         return;
       }
 
@@ -59,20 +53,15 @@ Ministerio.updateById = (id, ministerio, result) => {
 
 //para eliminar un evento de la bd
 Ministerio.remove = (id, result) => {
-  sql.query("DELETE FROM ministerio WHERE id_ministerio = ?", id, (err, res) => {
+  sql.query("DELETE FROM ministerio WHERE id_ministerio = $1", [id], (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
       return;
     }
 
-    if (res.affectedRows == 0) {
-      result({ kind: "no_encontrado" }, null);
-      return;
-    }
-
     console.log("ministerio eliminado con id: ", id);
-    result(null, res);
+    result(null, res.rows);
   });
 };
 

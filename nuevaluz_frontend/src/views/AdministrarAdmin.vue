@@ -143,6 +143,7 @@ export default {
       try {
         await axios.delete(this.url + "/usuario/" + id);
         this.obtenerUsuarios();
+        alert('Usuario Eliminado')
       } catch (error) {
         console.log(error);
       }
@@ -155,7 +156,6 @@ export default {
       evt.preventDefault();
       if (this.form.contrasenia === this.form.contraseniaC) {
           console.log('creado');
-          
           this.enviarUsuario()
       } else {
           alert('Las contraseñas no coinciden')

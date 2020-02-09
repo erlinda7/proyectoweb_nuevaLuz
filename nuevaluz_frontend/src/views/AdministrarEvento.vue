@@ -240,6 +240,7 @@ export default {
             this.form.imagen = '/images/'+res.data.filename
             console.log(res.data)
           })
+          alert('Imagen guardada')
       },
       async actualizarImagen(){
         const fd = new FormData();
@@ -249,6 +250,7 @@ export default {
             this.evento.imagen = '/images/'+res.data.filename
             console.log(res.data)
           })
+          alert('Imagen actualizada')
       },
       async enviarFormulario() {
        try {
@@ -291,6 +293,7 @@ export default {
         try {
           await axios.delete(this.url+'/evento/'+id);
           this.obtenerevento()
+          alert('Evento Eliminado')
         } catch (error) {
           console.log(error);
         }
@@ -305,12 +308,14 @@ export default {
           this.form.lugar= ""
           this.form.fecha= ""
           this.form.imagen= ""
+          alert('Evento Creado')
       },
       onUpdate(evt) {
         evt.preventDefault()
         alert('Evento Actualizado Exitosamente')
         this.actualizarFormulario()
         this.show=true;
+        alert('Evento Actualizado')
       },
       cargarDatos(event) {
         this.show = false;

@@ -43,7 +43,7 @@
                     <b-form-input id="input-5" v-model="form.nombre" required placeholder="Ingresa un nombre">
                     </b-form-input>
                   </b-form-group>
-<br>
+                  <br>
                   <b-form-group id="input-group-6" label="Lema del ministerio" label-for="input-6" description="El lema no debe contener mas de 10 palabras">
                     <b-form-input id="input-6" v-model="form.lema" required placeholder="Ingresa un lema" >
                     </b-form-input>
@@ -100,82 +100,84 @@
           <div class="col-sm-6">
               <b-form @submit="onUpdate" v-if="!show">
                 <h1>Actualizar Ministerio</h1>
-                  <b-form-group id="input-group-21" label="Imagen de Ministerio" label-for="input-21">
-                    <b-form-file  v-model="file" :state="Boolean(file)" placeholder="Ingresa Imagen" drop-placeholder="Drop file here...">
+                <br>
+                  <b-form-group id="input-group-21" label="Imagen de Ministerio" label-for="input-21" >
+                    <b-form-file  v-model="file" :state="Boolean(file)" placeholder="Selecciona Imagen" drop-placeholder="Drop file here...">
                     </b-form-file>
                   </b-form-group>
 
-                  <b-form-group id="input-group-22" label-for="input-22">
+                  <b-form-group id="input-group-22" label-for="input-22" description="La fotografia debe representar al ministerio 'una foto del ministerio'">
                     <b-form inline>
                       <b-form-input v-model="ministerio.imagen" required disabled ></b-form-input>
                       <b-button variant="primary" v-on:click="actualizarImagen()">Guardar Imagen</b-button>
                   </b-form>
                   </b-form-group>
-
+                    <br>
                   <b-form-group id="input-group-23" label="Foto del Responsable" label-for="input-23">
-                    <b-form-file  v-model="file2" :state="Boolean(file)" placeholder="Ingresa foto sin fondo" drop-placeholder="Drop file here...">
+                    <b-form-file  v-model="file2" :state="Boolean(file)" placeholder="Selecciona foto sin fondo" drop-placeholder="Drop file here...">
                     </b-form-file>
                   </b-form-group>
-
-                  <b-form-group id="input-group-24" label-for="input-24">
+                    
+                  <b-form-group id="input-group-24" label-for="input-24" description="La fotografia debe ser tipo '.png' fondo transparente de tamaño 1000x1000 'cuerpo entero de perfil'">
                     <b-form inline>
-                      <b-form-input v-model="ministerio.foto" disabled></b-form-input>
+                      <b-form-input v-model="ministerio.foto" required disabled></b-form-input>
                       <b-button variant="primary" v-on:click="actualizarFoto()">Guardar foto</b-button>
                   </b-form>
                   </b-form-group>
-
+                    <br>
                   <b-form-group id="input-group-15" label="Nombre del Ministerio" label-for="input-15">
                     <b-form-input id="input-15" v-model="ministerio.nombre" required placeholder="Ingresa un nombre">
                     </b-form-input>
                   </b-form-group>
-
+                    <br>
                   <b-form-group id="input-group-16" label="Lema del ministerio" label-for="input-16" description="El lema no debe contener mas de 10 palabras">
                     <b-form-input id="input-16" v-model="ministerio.lema" required placeholder="Ingresa un lema" >
                     </b-form-input>
                   </b-form-group>   
-
+                  <br>
                   <b-form-group label="Descripcion del Ministerio" label-for="textarea-formatter" description="La descripcion debe contener entre 4 a 6 filas">
                      <b-form-textarea id="textarea-formatter" v-model="ministerio.descripcion" placeholder="Ingresa la descripcion" required>
                      </b-form-textarea>
                   </b-form-group>
-
+                  <br>
                   <b-form-group id="input-group-17" label="Ubicacion del ministerio" label-for="input-17">
                     <b-form-input id="input-17" v-model="ministerio.lugar" required placeholder="Ingresa la ubicacion">
                     </b-form-input>
                   </b-form-group>
-                  
+                  <br>
                   <b-form-group id="input-group-18" label="Nombre completo del Responsable" label-for="input-18">
                     <b-form-input id="input-18" v-model="ministerio.responsable" required placeholder="Ingresa el nombre completo">
                     </b-form-input>
                   </b-form-group>
-
+                    <br>
                   <b-form-group id="input-group-19" label="E-mail del Responsable" label-for="input-19" description="En caso de no tener colocar 'sin correo'">
                     <b-form-input id="input-19" v-model="ministerio.email" required placeholder="Ingresa el E-mail">
                     </b-form-input>
                   </b-form-group>
-
+                  <br>
                   <b-form-group id="input-group-20" label="Telefono o Celular del Responsable" label-for="input-20">
                     <b-form-input id="input-20" v-model="ministerio.telefono" required placeholder="Ingresa el Tel o Cel">
                     </b-form-input>
                   </b-form-group>
-
+                  <br>
                   <b-form-group id="input-group-27" label="Dia que se efectua el Ministerio" label-for="input-27">
                     <b-form-input id="input-27" v-model="ministerio.dia" required placeholder="Ingresa el Tel o Cel">
                     </b-form-input>
                   </b-form-group>
-
-                  <b-form-group id="input-group-25" label="Hora de inicio" label-for="input-25" description="Usar el Formato">
+                    <br>
+                  <b-form-group id="input-group-25" label="Hora de inicio" label-for="input-25" description="Usar el Formato hora:minuto:segundo  Ejemplo:  20:00:00">
                     <b-form-input id="input-25" v-model="ministerio.hora_inicio" required placeholder="00:00:00">
                     </b-form-input>
                   </b-form-group>
-
-                  <b-form-group id="input-group-26" label="Hora fin" label-for="input-26" description="Usar el Formato">
+                    <br>
+                  <b-form-group id="input-group-26" label="Hora fin" label-for="input-26" description="Usar el Formato hora:minuto:segundo  Ejemplo:  23:00:00">
                     <b-form-input id="input-26" v-model="ministerio.hora_fin" required placeholder="00:00:00">
                     </b-form-input>
                   </b-form-group>
-
+                    <br>
                   <!-- <div class="mt-3">Selecciona: {{ file ? file.name : '' }}</div> -->
                     <b-button type="update" variant="primary">Modificar Ministerio</b-button>
+                    <br><br><br>
               </b-form>
           </div>
       </div>
@@ -289,6 +291,7 @@ export default {
             this.form.imagen = '/images/'+res.data.filename
             console.log(res.data)
           })
+          alert('Imagen Guardada')
       },
         async enviarFoto(){
         const fd = new FormData();
@@ -298,6 +301,7 @@ export default {
             this.form.foto = '/images/'+res.data.filename
             console.log(res.data)
           })
+          alert('Foto Guardada')
       },
       async actualizarImagen(){
         const fd = new FormData();
@@ -307,6 +311,7 @@ export default {
             this.ministerio.imagen = '/images/'+res.data.filename
             console.log(res.data)
           })
+          alert('Imagen actualizada')
       },
         async actualizarFoto(){
         const fd = new FormData();
@@ -316,6 +321,7 @@ export default {
             this.ministerio.foto = '/images/'+res.data.filename
             console.log(res.data)
           })
+          alert('Foto actualizada')
       },
       async enviarFormulario() {
        try {
@@ -436,6 +442,7 @@ export default {
         try {
           await axios.delete(this.url+'/ministerio/'+id)
           this.obtenerministerio()
+          alert('Ministerio Eliminado')
         } catch (error) {
           console.log(error);
         }
@@ -448,12 +455,14 @@ export default {
         evt.preventDefault()
         alert('Ministerio Creado Exitosamente')
         this.enviarFormulario();
+        alert('Ministerio Creado')
       },
       onUpdate(evt){
         evt.preventDefault()
         alert('Ministerio Actualizado Exitosamente')
         this.actualizarFormulario()
-        
+        this.show=true;
+        alert('Ministerio Actualizada')
       }
     },
     created() {

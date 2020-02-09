@@ -30,7 +30,7 @@ MinisterioReunion.create = (nuevoMinisterioReunion, result) => {
 //guardando las modificaciones de ministerio en la base de datos
 MinisterioReunion.updateById = (id, ministerioReunion, result) => {
   sql.query(
-    "UPDATE reunion_ministerio SET dia = ?, hora_inicio = ?, hora_fin = ?, id_ministerio = ? WHERE id_reunion_ministerio = ?",
+    "UPDATE reunion_ministerio SET dia = $1, hora_inicio = $2, hora_fin = $3, id_ministerio = $4 WHERE id_reunion_ministerio = $5",
     [ministerioReunion.dia, ministerioReunion.hora_inicio, ministerioReunion.hora_fin, ministerioReunion.id_ministerio, id],
     (err, res) => {
       if (err) {
@@ -39,11 +39,6 @@ MinisterioReunion.updateById = (id, ministerioReunion, result) => {
         return;
       }
 
-      if (res.affectedRows == 0) {
-        // evento no encontrado por id
-        result({ kind: "no_encontrado" }, null);
-        return;
-      }
 
       console.log("reunion ministerio actualizado: ", { id: id, ...ministerioReunion });
       result(null, { id: id, ...ministerioReunion });
