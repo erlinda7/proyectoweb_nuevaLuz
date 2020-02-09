@@ -16,7 +16,7 @@
                  <h1>Registrar Ministerio</h1>
                   <br><br>
                   <b-form-group id="input-group-1" label="Imagen de Ministerio" label-for="input-1">
-                    <b-form-file  v-model="file" :state="Boolean(file)" placeholder="Ingresa Imagen" drop-placeholder="Drop file here...">
+                    <b-form-file  v-model="file" :state="Boolean(file)" placeholder="Selecciona Imagen" drop-placeholder="Drop file here...">
                     </b-form-file>
                   </b-form-group>
 
@@ -28,7 +28,7 @@
                   </b-form-group>
                   <br><br>
                   <b-form-group id="input-group-3" label="Foto del Responsable" label-for="input-3">
-                    <b-form-file  v-model="file2" :state="Boolean(file2)" placeholder="Ingresa foto sin fondo" drop-placeholder="Drop file here...">
+                    <b-form-file  v-model="file2" :state="Boolean(file2)" placeholder="Selecciona foto sin fondo" drop-placeholder="Drop file here...">
                     </b-form-file>
                   </b-form-group>
 
@@ -395,6 +395,21 @@ export default {
             );
             console.log(res.data);            
             this.obtenerministerio()
+            this.file="";
+            this.form.imagen="";
+            this.file2="";
+            this.form.foto="";
+            this.form.nombre="";
+            this.form.lema="";
+            this.form.descripcion="";
+            this.form.lugar="";
+            this.form.responsable="";
+            this.form.email= "";
+            this.form.telefono="";
+            this.form.dia="";
+            this.form.hora_inicio="";
+            this.form.hora_fin="";
+
           } catch (error) {
             console.log(error);
           }
