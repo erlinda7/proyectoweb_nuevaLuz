@@ -13,15 +13,16 @@ const MinisterioReunion = function (ministerioReunion) {
 
 //guardando en la bd ministerio
 MinisterioReunion.create = (nuevoMinisterioReunion, result) => {
-  sql.query("INSERT INTO reunion_ministerio SET ?", nuevoMinisterioReunion, (err, res) => {
+  sql.query("INSERT INTO reunion_ministerio (dia, hora_inicio, hora_fin, id_ministerio) VALUES ($1, $2, $3, $4)  returning id_reunion_ministerio",
+  [nuevoMinisterioReunion.dia, nuevoMinisterioReunion.hora_inicio, nuevoMinisterioReunion.hora_fin, nuevoMinisterioReunion.id_ministerio], (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
       return;
     }
 
-    console.log("Reunion ministerio creado: ", { id: res.insertId, ...nuevoMinisterioReunion });
-    result(null, { id: res.insertId, ...nuevoMinisterioReunion });
+    console.log("Reunion ministerio creado: ", { id: res.rows[0].id_reunion_ministerio, ...nuevoMinisterioReunion });
+    result(null, { id: res.rows[0].id_reunion_ministerio, ...nuevoMinisterioReunion });
   });
 };
 

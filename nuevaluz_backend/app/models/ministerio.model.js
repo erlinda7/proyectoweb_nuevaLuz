@@ -18,15 +18,16 @@ const Ministerio = function (ministerio) {
 
 //guardando en la bd ministerio
 Ministerio.create = (nuevoMinisterio, result) => {
-  sql.query("INSERT INTO ministerio SET ?", nuevoMinisterio, (err, res) => {
+  sql.query("INSERT INTO ministerio (nombre, descripcion_corta, descripcion, lugar, nombre_responsable, email, telefono, foto, imagen, id_iglesia) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) returning id_ministerio", 
+  [nuevoMinisterio.nombre, nuevoMinisterio.descripcion_corta, nuevoMinisterio.descripcion, nuevoMinisterio.lugar, nuevoMinisterio.nombre_responsable, nuevoMinisterio.email, nuevoMinisterio.telefono, nuevoMinisterio.foto, nuevoMinisterio.imagen, nuevoMinisterio.id_iglesia], (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
       return;
     }
 
-    console.log("ministerio creado: ", { id: res.insertId, ...nuevoMinisterio });
-    result(null, { id: res.insertId, ...nuevoMinisterio });
+    console.log("ministerio creado: ", { id: res.rows[0].id_ministerio, ...nuevoMinisterio });
+    result(null, { id: res.rows[0].id_ministerio, ...nuevoMinisterio });
   });
 };
 
