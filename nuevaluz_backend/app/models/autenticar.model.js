@@ -9,14 +9,18 @@ const Usuario = function (usuario) {
 
 
 Usuario.getUsuario = (nombreUsuario, result) => {
-  sql.query(`SELECT * FROM usuario WHERE nombre_user = "${nombreUsuario}"`, (err, res) => {
+  console.log(nombreUsuario, "nombreUSuario");
+  
+  sql.query(`SELECT * FROM usuario WHERE nombre_user = '${nombreUsuario}'`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
       return;
     }
-    if (res.length) {
-      result(null, res[0]);
+    if (res.rows.length) {
+      console.log(res.rows[0]);
+      
+      result(null, res.rows[0]);
       return;
     }
     result({ kind: "no encontrado" }, null);
