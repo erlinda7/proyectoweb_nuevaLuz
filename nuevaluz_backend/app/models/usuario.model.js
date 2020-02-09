@@ -29,7 +29,9 @@ Usuario.findById = (usuarioId, result) => {
 
 //guardando en la bd evento
 Usuario.create = (nuevoUsuario, result) => {
-  sql.query("INSERT INTO usuario SET ?", nuevoUsuario, (err, res) => {
+  console.log(nuevoUsuario);
+  
+  sql.query("INSERT INTO usuario (nombre_user, contrasenia) VALUES ($1, $2)", [nuevoUsuario.nombre_user, nuevoUsuario.contrasenia], (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
