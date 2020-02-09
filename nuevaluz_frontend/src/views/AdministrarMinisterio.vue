@@ -28,7 +28,7 @@
                   </b-form-group>
                   <br><br>
                   <b-form-group id="input-group-3" label="Foto del Responsable" label-for="input-3">
-                    <b-form-file  v-model="file2" :state="Boolean(file)" placeholder="Ingresa foto sin fondo" drop-placeholder="Drop file here...">
+                    <b-form-file  v-model="file2" :state="Boolean(file2)" placeholder="Ingresa foto sin fondo" drop-placeholder="Drop file here...">
                     </b-form-file>
                   </b-form-group>
 
@@ -292,7 +292,7 @@ export default {
       },
         async enviarFoto(){
         const fd = new FormData();
-        fd.append('file',this.file)
+        fd.append('file',this.file2)
         axios.post(this.url+'/subir', fd)
           .then(res => {
             this.form.foto = '/images/'+res.data.filename
