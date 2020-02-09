@@ -12,83 +12,86 @@
       <div class="row justify-content-center">
           <div class="col-sm-6">
               <b-form @submit="onSubmit" v-if="show">
+               
                  <h1>Registrar Ministerio</h1>
+                  <br><br>
                   <b-form-group id="input-group-1" label="Imagen de Ministerio" label-for="input-1">
                     <b-form-file  v-model="file" :state="Boolean(file)" placeholder="Ingresa Imagen" drop-placeholder="Drop file here...">
                     </b-form-file>
                   </b-form-group>
 
-                  <b-form-group id="input-group-2" label-for="input-2">
+                  <b-form-group id="input-group-2" label-for="input-2"  description="La fotografia debe representar al ministerio 'una foto del ministerio'">
                     <b-form inline>
                       <b-form-input v-model="form.imagen" required disabled ></b-form-input>
                       <b-button variant="primary" v-on:click="enviarImagen()">Guardar Imagen</b-button>
                   </b-form>
                   </b-form-group>
-
+                  <br><br>
                   <b-form-group id="input-group-3" label="Foto del Responsable" label-for="input-3">
                     <b-form-file  v-model="file2" :state="Boolean(file)" placeholder="Ingresa foto sin fondo" drop-placeholder="Drop file here...">
                     </b-form-file>
                   </b-form-group>
 
-                  <b-form-group id="input-group-4" label-for="input-4">
+                  <b-form-group id="input-group-4" label-for="input-4" description="La fotografia debe ser tipo '.png' fondo transparente de tamaño 1000x1000 'cuerpo entero de perfil'">
                     <b-form inline>
-                      <b-form-input v-model="form.foto" disabled></b-form-input>
+                      <b-form-input v-model="form.foto" required disabled></b-form-input>
                       <b-button variant="primary" v-on:click="enviarFoto()">Guardar foto</b-button>
                   </b-form>
                   </b-form-group>
-
+                    <br>
                   <b-form-group id="input-group-5" label="Nombre del Ministerio" label-for="input-5">
                     <b-form-input id="input-5" v-model="form.nombre" required placeholder="Ingresa un nombre">
                     </b-form-input>
                   </b-form-group>
-
+<br>
                   <b-form-group id="input-group-6" label="Lema del ministerio" label-for="input-6" description="El lema no debe contener mas de 10 palabras">
                     <b-form-input id="input-6" v-model="form.lema" required placeholder="Ingresa un lema" >
                     </b-form-input>
                   </b-form-group>   
-
+                  <br>
                   <b-form-group label="Descripcion del Ministerio" label-for="textarea-formatter" description="La descripcion debe contener entre 4 a 6 filas">
                      <b-form-textarea id="textarea-formatter" v-model="form.descripcion" placeholder="Ingresa la descripcion" required>
                      </b-form-textarea>
                   </b-form-group>
-
+                  <br>
                   <b-form-group id="input-group-7" label="Ubicacion del ministerio" label-for="input-7">
                     <b-form-input id="input-7" v-model="form.lugar" required placeholder="Ingresa la ubicacion">
                     </b-form-input>
                   </b-form-group>
-                  
+                  <br>
                   <b-form-group id="input-group-8" label="Nombre completo del Responsable" label-for="input-8">
                     <b-form-input id="input-8" v-model="form.responsable" required placeholder="Ingresa el nombre completo">
                     </b-form-input>
                   </b-form-group>
-
+                    <br>
                   <b-form-group id="input-group-9" label="E-mail del Responsable" label-for="input-9" description="En caso de no tener colocar 'sin correo'">
                     <b-form-input id="input-9" v-model="form.email" required placeholder="Ingresa el E-mail">
                     </b-form-input>
                   </b-form-group>
-
+                    <br>
                   <b-form-group id="input-group-10" label="Telefono o Celular del Responsable" label-for="input-10">
-                    <b-form-input id="input-10" v-model="form.telefono" required placeholder="Ingresa el Tel o Cel">
+                    <b-form-input id="input-10" v-model="form.telefono" required placeholder="Ingresa el Telefono  o Celular">
                     </b-form-input>
                   </b-form-group>
-
+                    <br>
                   <b-form-group id="input-group-11" label="Dia que se efectua el Ministerio" label-for="input-11">
-                    <b-form-input id="input-11" v-model="form.dia" required placeholder="Ingresa el Tel o Cel">
+                     <b-form-input id="input-11" v-model="form.dia" required placeholder="Ingrese el dia que se reune el ministerio">
                     </b-form-input>
                   </b-form-group>
-
-                  <b-form-group id="input-group-12" label="Hora de inicio" label-for="input-10" description="Usar el Formato">
+                    <br>
+                  <b-form-group id="input-group-12" label="Hora de inicio" label-for="input-10" description="Usar el Formato hora:minuto:segundo  Ejemplo:  20:00:00">
                     <b-form-input id="input-12" v-model="form.hora_inicio" required placeholder="00:00:00">
                     </b-form-input>
                   </b-form-group>
-
-                  <b-form-group id="input-group-13" label="Hora fin" label-for="input-13" description="Usar el Formato">
+                  <br>
+                  <b-form-group id="input-group-13" label="Hora fin" label-for="input-13" description="Usar el Formato  hora:minuto:segundo  Ejemplo:  22:00:00">
                     <b-form-input id="input-13" v-model="form.hora_fin" required placeholder="00:00:00">
                     </b-form-input>
                   </b-form-group>
-
+                    <br>
                   <!-- <div class="mt-3">Selecciona: {{ file ? file.name : '' }}</div> -->
                     <b-button type="submit" variant="primary">Crear Ministerio</b-button>
+                    <br><br><br>
               </b-form>
           </div>
       </div>
