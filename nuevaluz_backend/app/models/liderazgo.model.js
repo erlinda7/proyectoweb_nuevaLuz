@@ -17,7 +17,7 @@ Liderazgo.getAll = resultado => {
         "c.id_cargo_lider = m.id_cargo_lider AND "+
         "m.id_miembro=g.id_miembro AND "+
         //getion actual hasta menor igual fecha_fin
-        "YEAR(NOW()) <= year(g.fecha_fin) "
+        "extract(year from now())<= extract(year from g.fecha_fin)"
         ,
         (err, res) => {
             if (err) {
@@ -25,8 +25,8 @@ Liderazgo.getAll = resultado => {
                 resultado(null, err); 
                 return;
             }
-            console.log("directorio:", res);
-            resultado(null, res);   
+            console.log("directorio:", res.rows);
+            resultado(null, res.rows);   
 
         })
 
