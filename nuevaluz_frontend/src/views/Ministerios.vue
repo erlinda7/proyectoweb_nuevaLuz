@@ -11,7 +11,7 @@
             <router-link style="text-decoration: none" :to="{name:'Ministerio_Descripcion', params:{id:ministerio.id_ministerio}}">
               <img :src="url+`${ministerio.imagen}`" class="card-img-top" alt="imagen" height="350px"/>
               <div class="card-img-overlay">
-                <h5 id="diseñoSuperior" class="card-title">{{ministerio.nombre}}</h5> 
+                <h5 id="diseñoSuperior" class="card-title centradoVerticalTitulo">{{ministerio.nombre}}</h5> 
               </div>
               <div id="diseñoInferior1" class="card-body">
                 <h5 id="titulo" class="card-title">{{ministerio.nombre}}</h5>
@@ -99,5 +99,9 @@ export default {
   text-align: center;
   color: wheat
 }
-
+.centradoVerticalTitulo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 </style>
