@@ -48,18 +48,12 @@ Evento.updateById = (id, evento, result) => {
   //console.log(id,"id llegando");
 
   sql.query(
-    "UPDATE evento SET titulo = ?, descripcion = ?, lugar = ?, fecha= ?, imagen = ?, id_iglesia = ? WHERE id_evento = ?",
+    "UPDATE evento SET titulo = $1, descripcion = $2, lugar = $3, fecha= $4, imagen = $5, id_iglesia = $6 WHERE id_evento = $7",
     [evento.titulo, evento.descripcion, evento.lugar, evento.fecha, evento.imagen, evento.id_iglesia, id],
     (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(null, err);
-        return;
-      }
-
-      if (res.affectedRows == 0) {
-        // evento no encontrado por id
-        result({ kind: "no_encontrado" }, null);
         return;
       }
 

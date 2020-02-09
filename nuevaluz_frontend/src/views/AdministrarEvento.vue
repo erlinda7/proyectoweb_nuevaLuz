@@ -88,7 +88,7 @@
             <input v-model="evento.fecha" min="1000-01-01" max="3000-12-31" class="form-control">
           </div>
   
-          <div class="mt-3">Selecciona una opcion: {{ file ? file.name : '' }}</div>
+          <!-- <div class="mt-3">Selecciona una opcion: {{ file ? file.name : '' }}</div> -->
             <b-button type="update" variant="primary">Actualizar</b-button>
         </b-form>
         <!-- <b-card class="mt-3" header="Form Data Result">
@@ -252,6 +252,11 @@ export default {
         evt.preventDefault()
         alert('Evento Actualizado Exitosamente')
         this.actualizarFormulario()
+        this.evento.titulo = ""
+         this.evento.imagen = ""
+        this.evento.descripcion = ""
+        this.evento.lugar = ""
+        this.evento.fecha =""
       },
       cargarDatos(event) {
         this.show = false;
