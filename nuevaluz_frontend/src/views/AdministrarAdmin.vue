@@ -133,6 +133,7 @@ export default {
         });
         console.log(resf.data);
         alert('Usuario Creado Exitosamente')
+         this.obtenerUsuarios();
         this.irGestionar = false
       } catch (e) {
         console.error(e);

@@ -29,17 +29,17 @@ Usuario.findById = (usuarioId, result) => {
 
 //guardando en la bd evento
 Usuario.create = (nuevoUsuario, result) => {
-  console.log(nuevoUsuario);
+  //console.log(nuevoUsuario);
   
-  sql.query("INSERT INTO usuario (nombre_user, contrasenia) VALUES ($1, $2)", [nuevoUsuario.nombre_user, nuevoUsuario.contrasenia], (err, res) => {
+  sql.query("INSERT INTO usuario (nombre_user, contrasenia) VALUES ($1, $2) returning id_usuario", [nuevoUsuario.nombre_user, nuevoUsuario.contrasenia], (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
       return;
     }
 
-    console.log("usuario creado: ", { id: res.insertId, ...nuevoUsuario });
-    result(null, { id: res.insertId, ...nuevoUsuario });
+    console.log("usuario creado: ", { id: res.rows[0].id_usuario, ...nuevoUsuario });
+    result(null, { id: res.rows[0].id_usuario, ...nuevoUsuario });
   });
 };
 
@@ -47,21 +47,15 @@ Usuario.create = (nuevoUsuario, result) => {
 
 //para eliminar un evento de la bd
 Usuario.remove = (id, result) => {
-  sql.query("DELETE FROM usuario WHERE id_usuario = ?", id, (err, res) => {
+  sql.query("DELETE FROM usuario WHERE id_usuario = $1", [id], (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
       return;
     }
 
-    if (res.affectedRows == 0) {
-      // not found Customer with the id
-      result({ kind: "no_encontrado" }, null);
-      return;
-    }
-
     console.log("usuario eliminado con id: ", id);
-    result(null, res);
+    result(null, res.rows);
   });
 };
 
