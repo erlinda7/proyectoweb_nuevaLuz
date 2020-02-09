@@ -65,21 +65,15 @@ Evento.updateById = (id, evento, result) => {
 
 //para eliminar un evento de la bd
 Evento.remove = (id, result) => {
-  sql.query("DELETE FROM evento WHERE id_evento = ?", id, (err, res) => {
+  sql.query("DELETE FROM evento WHERE id_evento = $1", [id], (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
       return;
     }
 
-    if (res.affectedRows == 0) {
-      // not found Customer with the id
-      result({ kind: "no_encontrado" }, null);
-      return;
-    }
-
     console.log("evento eliminado con id: ", id);
-    result(null, res);
+    result(null, res.rows);
   });
 };
 
