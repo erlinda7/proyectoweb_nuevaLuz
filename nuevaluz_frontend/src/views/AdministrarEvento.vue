@@ -169,7 +169,7 @@
                   class="mt-3"
                   variant="danger"
                   block
-                  @click="eliminarEvento(evento.id_evento)"
+                  @click="eliminarEvento(evento.id_evento, index)"
                 >Eliminar</b-button>
                 <b-button class="mt-3" variant="primary" block @click="hideModal(index)">Cancelar</b-button>
               </b-modal>
@@ -297,11 +297,12 @@ export default {
          console.error(e);
        }  
     },
-      async eliminarEvento(id){
+      async eliminarEvento(id, index){
         try {
           await axios.delete(this.url+'/evento/'+id);
           this.obtenerevento()
-          alert('Evento Eliminado')
+         // alert('Evento Eliminado')
+         this.hideModal(index) 
         } catch (error) {
           console.log(error);
         }

@@ -550,9 +550,10 @@
               </div>
               <br />
 
-              <b-button type="submit" variant="primary">Actualizar</b-button>
+              <b-button type="submit" variant="primary">Actualizar Miembro</b-button>
             </b-form>
-
+            <br />
+            <br />
             <!-- <b-card class="mt-3" header="Form Data Result">
               <pre class="m-0">{{ miembro }}</pre>
             </b-card>-->
@@ -597,7 +598,7 @@
                 </td>
                 <td>
                   <b-button variant="danger" id="show-btn" @click="showModal(index)">Eliminar</b-button>
-                  <b-modal :ref="'modal_'+index" hide-footer title="Seguro de Eliminar al Miembro">
+                  <b-modal :ref="'modal_'+index" hide-footer title="Seguro de Eliminar al Miembro:">
                     <div class="d-block text-center">
                       <h3>{{miembro.nombre}} {{miembro.apellido_paterno}} {{miembro.apellido_materno}}</h3>
                     </div>
@@ -605,7 +606,7 @@
                       class="mt-3"
                       variant="danger"
                       block
-                      @click="eliminarMiembro(miembro.id_miembro)"
+                      @click="eliminarMiembro(miembro.id_miembro, index)"
                     >Eliminar</b-button>
                     <b-button
                       class="mt-3"
@@ -614,10 +615,6 @@
                       @click="hideModal(index)"
                     >Cancelar</b-button>
                   </b-modal>
-                  <!-- <button
-                    class="btn btn-danger"
-                    v-on:click="eliminarMiembro(miembro.id_miembro)"
-                  >Eliminar</button>-->
                 </td>
               </tr>
             </tbody>
@@ -632,7 +629,6 @@
 import axios from "axios";
 import { mapState } from "vuex";
 import router from "../router/index";
-
 
 export default {
   data() {
@@ -687,8 +683,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["url"]),
-    
+    ...mapState(["url"])
   },
   created() {
     this.obtenerMiembros();
@@ -696,13 +691,13 @@ export default {
   },
   methods: {
     showModal(index) {
-        let modal_id = "modal_"+index
-        this.$refs[modal_id][0].show()
-      },
-      hideModal(index) {
-        let modal_id = "modal_"+index
-        this.$refs[modal_id][0].hide()
-      },
+      let modal_id = "modal_" + index;
+      this.$refs[modal_id][0].show();
+    },
+    hideModal(index) {
+      let modal_id = "modal_" + index;
+      this.$refs[modal_id][0].hide();
+    },
     async obtenerMiembros() {
       try {
         const respuesta = await axios.get(this.url + "/listaMiembros");
@@ -728,7 +723,7 @@ export default {
         this.form.foto = "/images/" + res.data.filename;
         console.log(res.data);
       });
-      alert('Foto guardada')
+      alert("Foto guardada");
     },
 
     async enviarFormulario() {
@@ -748,23 +743,7 @@ export default {
           id_cargo_lider: this.form.cargo_lider.id_cargo_lider
         });
         console.log(res.data.id_miembro);
-        this.obtenerMiembros();
-        this.file="";
-        this.form.nombre= "";
-        this.form.apellido_paterno= "";
-        this.form.apellido_materno= "";
-        this.form.telefono= "";
-        this.form.estado_civil= "";
-        this.form.fecha_nac= "";
-        this.form.fecha_conversion= "";
-        this.form.iglesia_conversion= "";
-        this.form.fecha_bautizo= "";
-        this.form.iglesia_bautizo= "";
-        this.form.nom_completo_pastor_bautizo= "";
-        this.form.fecha_inicio= "";
-        this.form.fecha_fin= "";
-        this.form.foto= "";
-        alert('Miembro Creado Exitosamente')
+
         let c = this.form.cargo_lider.nombre_cargo;
         if (c != "Ninguno") {
           this.datosGestionCargo(res.data.id);
@@ -776,6 +755,24 @@ export default {
             this.datosFotografia(res.data.id);
           }
         }
+        this.file = "";
+        this.form.nombre = "";
+        this.form.apellido_paterno = "";
+        this.form.apellido_materno = "";
+        this.form.telefono = "";
+        this.form.estado_civil = "";
+        this.form.fecha_nac = "";
+        this.form.fecha_conversion = "";
+        this.form.iglesia_conversion = "";
+        this.form.fecha_bautizo = "";
+        this.form.iglesia_bautizo = "";
+        this.form.nom_completo_pastor_bautizo = "";
+        this.form.fecha_inicio = "";
+        this.form.fecha_fin = "";
+        this.form.foto = "";
+
+        this.obtenerMiembros();
+        alert("Miembro Creado Exitosamente");
       } catch (e) {
         console.error(e);
       }
@@ -790,23 +787,7 @@ export default {
           id_miembro: id_m
         });
         console.log(resgc.data);
-        this.obtenerMiembros();
-        this.file="";
-        this.form.nombre= "";
-        this.form.apellido_paterno= "";
-        this.form.apellido_materno= "";
-        this.form.telefono= "";
-        this.form.estado_civil= "";
-        this.form.fecha_nac= "";
-        this.form.fecha_conversion= "";
-        this.form.iglesia_conversion= "";
-        this.form.fecha_bautizo= "";
-        this.form.iglesia_bautizo= "";
-        this.form.nom_completo_pastor_bautizo= "";
-        this.form.fecha_inicio= "";
-        this.form.fecha_fin= "";
-        this.form.foto= "";
-        alert('Miembro Creado Exitosamente')
+
       } catch (e) {
         console.error(e);
       }
@@ -819,27 +800,10 @@ export default {
           id_miembro: id_m
         });
         console.log(resf.data);
+
       } catch (e) {
         console.error(e);
       }
-      this.obtenerMiembros();
-      this.file="";
-      this.form.nombre= "";
-      this.form.apellido_paterno= "";
-      this.form.apellido_materno= "";
-      this.form.telefono= "";
-      this.form.estado_civil= "";
-      this.form.fecha_nac= "";
-      this.form.fecha_conversion= "";
-      this.form.iglesia_conversion= "";
-      this.form.fecha_bautizo= "";
-      this.form.iglesia_bautizo= "";
-      this.form.nom_completo_pastor_bautizo= "";
-      this.form.fecha_inicio= "";
-      this.form.fecha_fin= "";
-      this.form.foto= "";
-      
-      alert('Miembro Creado Exitosamente')
     },
     //para v-show gestion cargo
     cargoSeleccionado() {
@@ -865,9 +829,9 @@ export default {
         }
       }
     },
-    cerrarSesion(){
+    cerrarSesion() {
       //console.log('cerrarSesion');
-      router.app.$auth.token(false)
+      router.app.$auth.token(false);
     },
     //para registrar miembro post
     onSubmit(evt) {
@@ -947,7 +911,63 @@ export default {
           nom_completo_pastor_bautizo: this.miembro.nom_completo_pastor_bautizo,
           id_cargo_lider: this.miembro.cargo_lider.id_cargo_lider
         });
-        this.actualizarGestionCargo();
+
+        //----------------------------------------
+        let ca = this.miembro.cargo_lider.nombre_cargo;
+        if (ca != "Ninguno") {
+          //console.log(this.miembro.id_gestion_cargo , 'id_gestion cargo');
+          
+          if(this.miembro.id_gestion_cargo > 0 ){
+            this.actualizarGestionCargo();
+          }else{
+            this.datosGestionCargoCrearAct(this.miembro.id_miembro)
+          }
+          
+        }
+        if (ca == "Pastor") {
+          if(this.miembro.id_fotografia > 0){
+            this.actualizarFotografia();
+          }else{
+            this.datosFotografiaCrearAct(this.miembro.id_miembro)
+          }
+          
+        } else {
+          if (ca == "Anciano") {
+            if(this.miembro.id_fotografia > 0){
+              this.actualizarFotografia();
+            }else{
+              this.datosFotografiaCrearAct(this.miembro.id_miembro)
+            }
+            
+          }
+        }
+        //---------------------------------------------
+        this.obtenerMiembros();
+      } catch (e) {
+        console.error(e);
+      }
+    },
+    async datosGestionCargoCrearAct(id_m) {
+      try {
+        const resgc = await axios.post(this.url + "/miembroGestionCargo", {
+          fecha_inicio: this.miembro.fecha_inicio,
+          fecha_fin: this.miembro.fecha_fin,
+          id_miembro: id_m
+        });
+        console.log(resgc.data);
+
+      } catch (e) {
+        console.error(e);
+      }
+    },
+    async datosFotografiaCrearAct(id_m) {
+      try {
+        const resf = await axios.post(this.url + "/miembroFotografia", {
+          foto: this.miembro.foto,
+          id_miembro: id_m
+        });
+        console.log(resf.data);
+
       } catch (e) {
         console.error(e);
       }
@@ -962,7 +982,8 @@ export default {
             id_miembro: this.miembro.id_miembro
           }
         );
-        this.actualizarFotografia();
+        //this.actualizarFotografia();
+        // alert('Miembro actualizado')
       } catch (e) {
         console.error(e);
       }
@@ -973,10 +994,11 @@ export default {
           this.url + "/miembroFotografia/" + this.miembro.id_fotografia,
           {
             foto: this.miembro.foto,
-            id_miembro: this.id_miembro
+            id_miembro: this.miembro.id_miembro
           }
         );
-        this.obtenerMiembros();
+      //  this.obtenerMiembros();
+        // alert('Miembro actualizado')
         this.show = true;
       } catch (e) {
         console.error(e);
@@ -989,17 +1011,21 @@ export default {
         this.miembro.foto = "/images/" + res.data.filename;
         console.log(res.data);
       });
-      alert('Foto actualizada')
+      alert("Foto actualizada");
     },
     onUpdate(evt) {
       evt.preventDefault();
-      alert('Miembro Actualizado Exitosamente')
       this.actualizarFormulario();
+      this.obtenerMiembros();
+      this.show=true;
+      alert("Miembro Actualizado Exitosamente");
     },
-    async eliminarMiembro(id) {
+    async eliminarMiembro(id,index) {
       try {
         await axios.delete(this.url + "/miembro/" + id);
         this.obtenerMiembros();
+        // alert('Miembro eliminado')
+        this.hideModal(index)  //para eliminar uno solo y aparesca una sola vez
       } catch (error) {
         console.log(error);
       }

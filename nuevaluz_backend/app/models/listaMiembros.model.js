@@ -41,7 +41,8 @@ ListaMiembros.getAll = resultado => {
     "FROM miembro m " +
     "LEFT JOIN fotografia f ON m.id_miembro=f.id_miembro " +
     "LEFT JOIN cargo_lider c ON c.id_cargo_lider = m.id_cargo_lider " +
-    "LEFT JOIN gestion_cargo g ON m.id_miembro=g.id_miembro "
+    "LEFT JOIN gestion_cargo g ON m.id_miembro=g.id_miembro " +
+    "ORDER BY m.id_miembro ASC"
 
     , (err, res) => {
       if (err) {
@@ -49,7 +50,7 @@ ListaMiembros.getAll = resultado => {
         resultado(null, err);
         return;
       }
-      console.log("miembros:", res.rows);
+      //console.log("miembros:", res.rows);
       resultado(null, res.rows);
 
     })

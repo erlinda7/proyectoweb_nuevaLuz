@@ -75,7 +75,7 @@
                 <div class="d-block text-center">
                  <h3>{{usuario.nombre_user}}</h3>
                 </div>
-                <b-button class="mt-3" variant="danger" block @click="eliminarUsuario(usuario.id_usuario)">Eliminar</b-button>
+                <b-button class="mt-3" variant="danger" block @click="eliminarUsuario(usuario.id_usuario, index)">Eliminar</b-button>
                 <b-button class="mt-3" variant="primary" block @click="hideModal(index)" >Cancelar</b-button>
                </b-modal>
             </td>
@@ -139,11 +139,12 @@ export default {
         console.error(e);
       }
     },
-    async eliminarUsuario(id) {
+    async eliminarUsuario(id, index) {
       try {
         await axios.delete(this.url + "/usuario/" + id);
         this.obtenerUsuarios();
-        alert('Usuario Eliminado')
+        //alert('Usuario Eliminado')
+        this.hideModal(index) 
       } catch (error) {
         console.log(error);
       }

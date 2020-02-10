@@ -207,7 +207,7 @@
                 <div class="d-block text-center">
                  <h3>{{ministerio.nombre}}</h3>
                 </div>
-                <b-button class="mt-3" variant="danger" block @click="eliminarMinisterio(ministerio.id_ministerio)">Eliminar</b-button>
+                <b-button class="mt-3" variant="danger" block @click="eliminarMinisterio(ministerio.id_ministerio, index)">Eliminar</b-button>
                 <b-button class="mt-3" variant="primary" block @click="hideModal(index)" >Cancelar</b-button>
                </b-modal>
             </td>
@@ -438,11 +438,12 @@ export default {
           this.ministerio.hora_inicio = minis.hora_inicio,
           this.ministerio.hora_fin = minis.hora_fin
       },
-      async eliminarMinisterio(id){
+      async eliminarMinisterio(id, index){
         try {
           await axios.delete(this.url+'/ministerio/'+id)
           this.obtenerministerio()
-          alert('Ministerio Eliminado')
+         //alert('Ministerio Eliminado')
+         this.hideModal(index) 
         } catch (error) {
           console.log(error);
         }

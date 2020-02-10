@@ -13,7 +13,7 @@ ListaCargoLider.getAll = resultado => {
         resultado(null, err);
         return;
       }
-      console.log("cargo_lider:", res.rows);
+     // console.log("cargo_lider:", res.rows);
       resultado(null, res.rows);
 
     })
