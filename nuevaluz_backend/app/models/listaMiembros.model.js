@@ -26,16 +26,16 @@ const ListaMiembros = function (listamiembros) {
 ListaMiembros.getAll = resultado => {
   sql.query(
     "SELECT m.id_miembro, m.nombre, m.apellido_paterno, m.apellido_materno, m.telefono, m.estado_civil,  " +
-    "DATE_FORMAT(m.fecha_nac, '%Y-%m-%d') fecha_nac, " +
-    "DATE_FORMAT(m.fecha_conversion, '%Y-%m-%d') fecha_conversion, m.iglesia_conversion, " +
-    "DATE_FORMAT(m.fecha_bautizo, '%Y-%m-%d') fecha_bautizo, m.iglesia_bautizo, " +
+    "to_char(m.fecha_nac,'YYYY-MM-DD') fecha_nac, " +
+    "to_char(m.fecha_conversion, 'YYYY-MM-DD') fecha_conversion, m.iglesia_conversion, " +
+    "to_char(m.fecha_bautizo,'YYYY-MM-DD') fecha_bautizo, m.iglesia_bautizo, " +
     "m.nom_completo_pastor_bautizo, " +
 
     "f.id_fotografia, f.foto, " +
 
     "c.id_cargo_lider, c.nombre_cargo, " +
 
-    "g.id_gestion_cargo, DATE_FORMAT(g.fecha_inicio, '%Y-%m-%d')  fecha_inicio, DATE_FORMAT(g.fecha_fin, '%Y-%m-%d')  fecha_fin " +
+    "g.id_gestion_cargo, to_char(g.fecha_inicio,'YYYY-MM-DD')  fecha_inicio, to_char(g.fecha_fin,'YYYY-MM-DD')  fecha_fin " +
 
 
     "FROM miembro m " +
@@ -49,8 +49,8 @@ ListaMiembros.getAll = resultado => {
         resultado(null, err);
         return;
       }
-      console.log("miembros:", res);
-      resultado(null, res);
+      console.log("miembros:", res.rows);
+      resultado(null, res.rows);
 
     })
 
