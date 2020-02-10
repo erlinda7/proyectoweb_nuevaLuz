@@ -257,10 +257,10 @@
                 <b-form-group
                   id="input-group-14"
                   label-for="input-14"
-                  description="La fotografia debe ser tipo '.png' fondo transparente de tamaño 1000x1000 'medio cuerpo'"
+                  description="La fotografia debe ser tipo '.png' fondo transparente de tamaño 1000x1000 pixeles 'medio cuerpo'"
                 >
                   <b-form inline>
-                    <b-input v-model="form.foto" disabled></b-input>
+                    <b-input v-model="form.foto" required disabled></b-input>
                     <b-button variant="primary" v-on:click="enviarImagen()">Guardar Imagen</b-button>
                   </b-form>
                 </b-form-group>
@@ -539,10 +539,10 @@
                 <b-form-group
                   id="input-group-16"
                   label-for="input-16"
-                  description="La fotografia debe ser tipo '.png' fondo transparente de tamaño 1000x1000 'medio cuerpo'"
+                  description="La fotografia debe ser tipo '.png' fondo transparente de tamaño 1000x1000 pixeles  'medio cuerpo'"
                 >
                   <b-form inline>
-                    <b-input v-model="miembro.foto" disabled></b-input>
+                    <b-input v-model="miembro.foto" required disabled></b-input>
                     <b-button variant="primary" v-on:click="actualizarFoto()">Guardar Imagen</b-button>
                   </b-form>
                 </b-form-group>
@@ -748,6 +748,23 @@ export default {
           id_cargo_lider: this.form.cargo_lider.id_cargo_lider
         });
         console.log(res.data.id_miembro);
+        this.obtenerMiembros();
+        this.file="";
+        this.form.nombre= "";
+        this.form.apellido_paterno= "";
+        this.form.apellido_materno= "";
+        this.form.telefono= "";
+        this.form.estado_civil= "";
+        this.form.fecha_nac= "";
+        this.form.fecha_conversion= "";
+        this.form.iglesia_conversion= "";
+        this.form.fecha_bautizo= "";
+        this.form.iglesia_bautizo= "";
+        this.form.nom_completo_pastor_bautizo= "";
+        this.form.fecha_inicio= "";
+        this.form.fecha_fin= "";
+        this.form.foto= "";
+        alert('Miembro Creado Exitosamente')
         let c = this.form.cargo_lider.nombre_cargo;
         if (c != "Ninguno") {
           this.datosGestionCargo(res.data.id);
@@ -773,6 +790,23 @@ export default {
           id_miembro: id_m
         });
         console.log(resgc.data);
+        this.obtenerMiembros();
+        this.file="";
+        this.form.nombre= "";
+        this.form.apellido_paterno= "";
+        this.form.apellido_materno= "";
+        this.form.telefono= "";
+        this.form.estado_civil= "";
+        this.form.fecha_nac= "";
+        this.form.fecha_conversion= "";
+        this.form.iglesia_conversion= "";
+        this.form.fecha_bautizo= "";
+        this.form.iglesia_bautizo= "";
+        this.form.nom_completo_pastor_bautizo= "";
+        this.form.fecha_inicio= "";
+        this.form.fecha_fin= "";
+        this.form.foto= "";
+        alert('Miembro Creado Exitosamente')
       } catch (e) {
         console.error(e);
       }
@@ -943,6 +977,7 @@ export default {
           }
         );
         this.obtenerMiembros();
+        this.show = true;
       } catch (e) {
         console.error(e);
       }
@@ -954,6 +989,7 @@ export default {
         this.miembro.foto = "/images/" + res.data.filename;
         console.log(res.data);
       });
+      alert('Foto actualizada')
     },
     onUpdate(evt) {
       evt.preventDefault();

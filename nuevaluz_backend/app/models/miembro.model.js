@@ -40,9 +40,9 @@ Miembro.createMiembro = (nuevoMiembro, result) => {
 //guradando las modificaciones de miembro en la base de datos
 Miembro.updateById = (id, miembro, result) => {
   sql.query(
-    "UPDATE miembro SET nombre = ?, apellido_paterno = ?, apellido_materno = ?, " +
-    "telefono= ?, estado_civil = ?, fecha_nac = ?, fecha_conversion = ?, iglesia_conversion = ?, " +
-    "fecha_bautizo = ?, iglesia_bautizo = ?, nom_completo_pastor_bautizo = ?, id_cargo_lider = ? WHERE id_miembro = ?",
+    "UPDATE miembro SET nombre = $1, apellido_paterno = $2, apellido_materno = $3, " +
+    "telefono= $4, estado_civil = $5, fecha_nac = $6, fecha_conversion = $7, iglesia_conversion = $8, " +
+    "fecha_bautizo = $9, iglesia_bautizo = $10, nom_completo_pastor_bautizo = $11, id_cargo_lider = $12 WHERE id_miembro = $13",
     [miembro.nombre, miembro.apellido_paterno, miembro.apellido_materno,
     miembro.telefono, miembro.estado_civil, miembro.fecha_nac, miembro.fecha_conversion,
     miembro.iglesia_conversion, miembro.fecha_bautizo, miembro.iglesia_bautizo, miembro.nom_completo_pastor_bautizo, miembro.id_cargo_lider, id],
@@ -53,10 +53,6 @@ Miembro.updateById = (id, miembro, result) => {
         return;
       }
 
-      if (res.affectedRows == 0) {
-        result({ kind: "no_encontrado" }, null);
-        return;
-      }
 
       console.log("miembro actualizado: ", { id: id, ...miembro });
       result(null, { id: id, ...miembro });

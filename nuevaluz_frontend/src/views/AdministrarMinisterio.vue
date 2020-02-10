@@ -32,7 +32,7 @@
                     </b-form-file>
                   </b-form-group>
 
-                  <b-form-group id="input-group-4" label-for="input-4" description="La fotografia debe ser tipo '.png' fondo transparente de tamaño 1000x1000 'cuerpo entero de perfil'">
+                  <b-form-group id="input-group-4" label-for="input-4" description="La fotografia debe ser tipo '.png' fondo transparente de tamaño 1000x1800 pixeles 'cuerpo entero de perfil'">
                     <b-form inline>
                       <b-form-input v-model="form.foto" required disabled></b-form-input>
                       <b-button variant="primary" v-on:click="enviarFoto()">Guardar foto</b-button>
@@ -118,7 +118,7 @@
                     </b-form-file>
                   </b-form-group>
                     
-                  <b-form-group id="input-group-24" label-for="input-24" description="La fotografia debe ser tipo '.png' fondo transparente de tamaño 1000x1000 'cuerpo entero de perfil'">
+                  <b-form-group id="input-group-24" label-for="input-24" description="La fotografia debe ser tipo '.png' fondo transparente de tamaño 1000x1800 pixeles 'cuerpo entero de perfil'">
                     <b-form inline>
                       <b-form-input v-model="ministerio.foto" required disabled></b-form-input>
                       <b-button variant="primary" v-on:click="actualizarFoto()">Guardar foto</b-button>

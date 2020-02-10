@@ -25,16 +25,11 @@ MiembroFotografia.createMiembroFotografia = (nuevoMiembroFotografia, result) => 
 //guradando las modificaciones de miembro en la base de datos
 MiembroFotografia.updateById = (id, miembroFotografia, result) => {
   sql.query(
-    "UPDATE fotografia SET foto= ? WHERE id_fotografia = ? ", [miembroFotografia.foto, id],
+    "UPDATE fotografia SET foto= $1 WHERE id_fotografia = $2 ", [miembroFotografia.foto, id],
     (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(null, err);
-        return;
-      }
-
-      if (res.affectedRows == 0) {
-        result({ kind: "no_encontrado" }, null);
         return;
       }
 
