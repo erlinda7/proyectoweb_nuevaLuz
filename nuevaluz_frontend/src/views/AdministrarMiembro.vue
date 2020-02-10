@@ -911,7 +911,8 @@ export default {
           nom_completo_pastor_bautizo: this.miembro.nom_completo_pastor_bautizo,
           id_cargo_lider: this.miembro.cargo_lider.id_cargo_lider
         });
-
+          console.log('cargo actual: ', );
+          
         //----------------------------------------
         let ca = this.miembro.cargo_lider.nombre_cargo;
         if (ca != "Ninguno") {
