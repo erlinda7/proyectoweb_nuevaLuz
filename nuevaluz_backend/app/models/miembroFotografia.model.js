@@ -8,15 +8,16 @@ const MiembroFotografia = function (miembroFotografia) {
 
 //guardando en la bd miembro anciano 
 MiembroFotografia.createMiembroFotografia = (nuevoMiembroFotografia, result) => {
-  sql.query("INSERT INTO fotografia SET ?", nuevoMiembroFotografia, (err, res) => {
+  sql.query("INSERT INTO fotografia (foto, id_miembro) VALUES ($1, $2) returning  id_fotografia ",
+   [nuevoMiembroFotografia.foto, nuevoMiembroFotografia.id_miembro], (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
       return;
     }
 
-    console.log("fotografia creado: ", { id: res.insertId, ...nuevoMiembroFotografia });
-    result(null, { id: res.insertId, ...nuevoMiembroFotografia });
+    console.log("fotografia creado: ", { id: res.rows[0].id_fotografia, ...nuevoMiembroFotografia });
+    result(null, { id: res.rows[0].id_fotografia, ...nuevoMiembroFotografia });
   });
 };
 

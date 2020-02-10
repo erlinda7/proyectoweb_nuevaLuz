@@ -1,13 +1,21 @@
 <template>
   <div>
-    <br>
+    <br />
     <div class="row">
-        <div  class="col-sm">
-          <router-link to="/Login"><button style="float: right" class="btn btn-danger" v-on:click="cerrarSesion()">Cerrar Sesion</button></router-link>
-          <router-link to="/Administrar"><button style="float: right" class="btn btn-primary">Atras</button></router-link>
-        </div>
+      <div class="col-sm">
+        <router-link to="/Login">
+          <button
+            style="float: right"
+            class="btn btn-danger"
+            v-on:click="cerrarSesion()"
+          >Cerrar Sesion</button>
+        </router-link>
+        <router-link to="/Administrar">
+          <button style="float: right" class="btn btn-primary">Atras</button>
+        </router-link>
       </div>
-    <br>
+    </div>
+    <br />
     <div id="miembros">
       <div class="container">
         <!-- para registrar nuevo miembro v-show -->
@@ -262,7 +270,9 @@
 
               <b-button type="submit" variant="primary">Registrar Miembro</b-button>
             </b-form>
-            <br><br> <br>
+            <br />
+            <br />
+            <br />
             <!-- <b-card class="mt-3" header="Form Data Result">
               <pre class="m-0">{{ form }}</pre>
             </b-card>-->
@@ -588,16 +598,26 @@
                 <td>
                   <b-button variant="danger" id="show-btn" @click="showModal(index)">Eliminar</b-button>
                   <b-modal :ref="'modal_'+index" hide-footer title="Seguro de Eliminar al Miembro">
-                  <div class="d-block text-center">
-                   <h3>{{miembro.nombre}} {{miembro.apellido_paterno}} {{miembro.apellido_materno}}</h3>
-                  </div>
-                  <b-button class="mt-3" variant="danger" block @click="eliminarMiembro(miembro.id_miembro)">Eliminar</b-button>
-                  <b-button class="mt-3" variant="primary" block @click="hideModal(index)" >Cancelar</b-button>
-                 </b-modal>
+                    <div class="d-block text-center">
+                      <h3>{{miembro.nombre}} {{miembro.apellido_paterno}} {{miembro.apellido_materno}}</h3>
+                    </div>
+                    <b-button
+                      class="mt-3"
+                      variant="danger"
+                      block
+                      @click="eliminarMiembro(miembro.id_miembro)"
+                    >Eliminar</b-button>
+                    <b-button
+                      class="mt-3"
+                      variant="primary"
+                      block
+                      @click="hideModal(index)"
+                    >Cancelar</b-button>
+                  </b-modal>
                   <!-- <button
                     class="btn btn-danger"
                     v-on:click="eliminarMiembro(miembro.id_miembro)"
-                  >Eliminar</button> -->
+                  >Eliminar</button>-->
                 </td>
               </tr>
             </tbody>
@@ -708,6 +728,7 @@ export default {
         this.form.foto = "/images/" + res.data.filename;
         console.log(res.data);
       });
+      alert('Foto guardada')
     },
 
     async enviarFormulario() {
@@ -767,6 +788,24 @@ export default {
       } catch (e) {
         console.error(e);
       }
+      this.obtenerMiembros();
+      this.file="";
+      this.form.nombre= "";
+      this.form.apellido_paterno= "";
+      this.form.apellido_materno= "";
+      this.form.telefono= "";
+      this.form.estado_civil= "";
+      this.form.fecha_nac= "";
+      this.form.fecha_conversion= "";
+      this.form.iglesia_conversion= "";
+      this.form.fecha_bautizo= "";
+      this.form.iglesia_bautizo= "";
+      this.form.nom_completo_pastor_bautizo= "";
+      this.form.fecha_inicio= "";
+      this.form.fecha_fin= "";
+      this.form.foto= "";
+      
+      alert('Miembro Creado Exitosamente')
     },
     //para v-show gestion cargo
     cargoSeleccionado() {
@@ -799,7 +838,6 @@ export default {
     //para registrar miembro post
     onSubmit(evt) {
       evt.preventDefault();
-      alert('Miembro Creado Exitosamente')
       this.enviarFormulario();
     },
     //actualizar miembro---------------------------------------------

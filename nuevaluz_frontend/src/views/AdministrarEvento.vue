@@ -267,9 +267,17 @@ export default {
         );
         this.obtenerevento()
         console.log(res.data)
+          this.file=""
+          this.form.nombre= ""
+          this.form.descripcion= ""
+          this.form.lugar= ""
+          this.form.fecha= ""
+          this.form.imagen= ""
+          alert('Evento Creado')
        } catch (e) {
         console.error(e);
         }
+
       },
       async actualizarFormulario(){
        try { 
@@ -302,13 +310,7 @@ export default {
         evt.preventDefault()
         alert('Evento Creado Exitosamente')
         this.enviarFormulario();
-          this.file=""
-          this.form.nombre= ""
-          this.form.descripcion= ""
-          this.form.lugar= ""
-          this.form.fecha= ""
-          this.form.imagen= ""
-          alert('Evento Creado')
+
       },
       onUpdate(evt) {
         evt.preventDefault()

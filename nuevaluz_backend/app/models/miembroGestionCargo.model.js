@@ -9,15 +9,16 @@ const MiembroGestionCargo = function (miembroGestionCargo) {
 
 //guardando en la bd gestion_cargo del miembro 
 MiembroGestionCargo.createMiembroGestionCargo= (nuevoMiembroGestionCargo, result) => {
-    sql.query("INSERT INTO gestion_cargo SET ?", nuevoMiembroGestionCargo, (err, res) => {
+    sql.query("INSERT INTO gestion_cargo (fecha_inicio, fecha_fin, id_miembro) VALUES ($1, $2, $3) returning id_gestion_cargo", 
+    [nuevoMiembroGestionCargo.fecha_inicio, nuevoMiembroGestionCargo.fecha_fin, nuevoMiembroGestionCargo.id_miembro], (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(err, null);
         return;
       }
   
-      console.log("gestion_cargo creado: ", { id: res.insertId, ...nuevoMiembroGestionCargo });
-      result(null, { id: res.insertId, ...nuevoMiembroGestionCargo });
+      console.log("gestion_cargo creado: ", { id: res.rows[0].id_gestion_cargo, ...nuevoMiembroGestionCargo });
+      result(null, { id: res.rows[0].id_gestion_cargo, ...nuevoMiembroGestionCargo });
     });
   };
   

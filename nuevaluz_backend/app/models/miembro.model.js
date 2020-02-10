@@ -20,15 +20,16 @@ const Miembro = function (miembro) {
 
 //guardando en la bd miembro en la tabla miembro
 Miembro.createMiembro = (nuevoMiembro, result) => {
-  sql.query("INSERT INTO miembro SET ?", nuevoMiembro, (err, res) => {
+  sql.query("INSERT INTO miembro (nombre, apellido_paterno, apellido_materno, telefono, estado_civil, fecha_nac, fecha_conversion, iglesia_conversion, fecha_bautizo, iglesia_bautizo, nom_completo_pastor_bautizo, id_cargo_lider) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) returning id_miembro ", 
+  [nuevoMiembro.nombre, nuevoMiembro.apellido_paterno, nuevoMiembro.apellido_materno, nuevoMiembro.telefono, nuevoMiembro.estado_civil, nuevoMiembro.fecha_nac, nuevoMiembro.fecha_conversion, nuevoMiembro.iglesia_conversion, nuevoMiembro.fecha_bautizo, nuevoMiembro.iglesia_bautizo, nuevoMiembro.nom_completo_pastor_bautizo, nuevoMiembro.id_cargo_lider], (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
       return;
     }
 
-    console.log("miembro creado : ", { id: res.insertId, ...nuevoMiembro });
-    result(null, { id: res.insertId, ...nuevoMiembro });
+    console.log("miembro creado : ", { id: res.rows[0].id_miembro, ...nuevoMiembro });
+    result(null, { id: res.rows[0].id_miembro, ...nuevoMiembro });
   });
 
 
