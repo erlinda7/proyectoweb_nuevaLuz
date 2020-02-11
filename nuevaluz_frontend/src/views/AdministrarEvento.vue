@@ -30,7 +30,7 @@
               drop-placeholder="Drop file here..."
             ></b-form-file>
           </b-form-group>
-
+      
           <b-form-group id="input-group-3" label-for="input-3" description="Debe seleccionar el afiche del aevento">
             <b-form inline>
               <b-input v-model="form.imagen" disabled></b-input>
