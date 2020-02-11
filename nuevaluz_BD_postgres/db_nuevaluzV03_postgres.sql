@@ -5,7 +5,7 @@
 -- Dumped from database version 10.11
 -- Dumped by pg_dump version 10.11
 
--- Started on 2020-02-09 09:15:13
+-- Started on 2020-02-11 09:29:31
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -895,7 +895,7 @@ SELECT pg_catalog.setval('public.diezmo_id_diezmo_seq', 1, true);
 -- Name: evento_id_evento_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.evento_id_evento_seq', 1, false);
+SELECT pg_catalog.setval('public.evento_id_evento_seq', 1, true);
 
 
 --
@@ -967,7 +967,7 @@ SELECT pg_catalog.setval('public.reunion_iglesia_id_reunion_iglesia_seq', 4, tru
 -- Name: reunion_ministerio_id_reunion_ministerio_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.reunion_ministerio_id_reunion_ministerio_seq', 9, true);
+SELECT pg_catalog.setval('public.reunion_ministerio_id_reunion_ministerio_seq', 14, true);
 
 
 --
@@ -1177,7 +1177,7 @@ ALTER TABLE ONLY public.reunion_ministerio
     ADD CONSTRAINT reunion_ministerio_ibfk_1 FOREIGN KEY (id_ministerio) REFERENCES public.ministerio(id_ministerio) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
--- Completed on 2020-02-09 09:15:14
+-- Completed on 2020-02-11 09:29:33
 
 --
 -- PostgreSQL database dump complete
